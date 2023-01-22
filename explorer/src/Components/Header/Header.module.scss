@@ -1,0 +1,21 @@
+@import "../../Styles/theme";
+
+
+.headerWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1.5rem 3rem;
+
+    .navContainer {
+        display: flex;
+        gap: 2.5rem;
+
+        a {
+            color: $primary-color;
+            text-decoration: none;
+            font-size: 0.875rem;
+
+        }
+    }
+}
