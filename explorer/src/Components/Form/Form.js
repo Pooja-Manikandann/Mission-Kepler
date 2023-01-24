@@ -7,6 +7,7 @@ import styles from "./Form.module.scss"
 import { EMPTY_NAME_ERROR, EMPTY_HOME_ERROR, EMPTY_DESTINATION_ERROR, EMPTY_CONTACT_NUMBER_ERROR } from "../../Constants/ErrorMessageConstants";
 import { FORM_CONSTANTS, FORM_TITLE, FORM_CAPTION } from "../../Constants/ContactUsFormConstants";
 import PropTypes from "prop-types"
+import Title from "../Title/Title";
 
 const Form = (props) => {
     const { places } = props;
@@ -35,7 +36,8 @@ const Form = (props) => {
         setName("");
         setDestination("");
         setHome("");
-        setNumber("")
+        setNumber("");
+        setSumbitClicked(false);
     }
 
     const handleonChange = (e, input) => {
@@ -64,8 +66,7 @@ const Form = (props) => {
         <div className={styles.contactFormContainer}>
             <div className={styles.contactFormWrapper}>
                 <div className={styles.contactFromTitleWrapper}>
-                    <p className={styles.title}>{FORM_TITLE}</p>
-                    <p className={styles.caption}>{FORM_CAPTION}</p>
+                    <Title title={FORM_TITLE} caption={FORM_CAPTION} />
                 </div>
                 <form className={styles.formWrapper}>
                     <label for="name">{FORM_CONSTANTS.NAME_INPUT_LABEL}</label>
@@ -74,12 +75,12 @@ const Form = (props) => {
                         <ErrorMessage message={EMPTY_NAME_ERROR} />
                     }
                     <label for="home">{FORM_CONSTANTS.HOMETOWN_INPUT_LABEL}</label>
-                    <Dropdown places={places} className="formDropdown" value={home} onChange={(e) => handleonChange(e, "home")} />
+                    <Dropdown places={places} className="formDropdown" id="home" value={home} onChange={(e) => handleonChange(e, "home")} />
                     {(!home.length && sumbitClicked) &&
                         <ErrorMessage message={EMPTY_HOME_ERROR} />
                     }
                     <label for="destination">{FORM_CONSTANTS.DESTINATION_INPUT_LABEL}</label>
-                    <Dropdown places={places} className="formDropdown" value={destination} onChange={(e) => handleonChange(e, "destination")} />
+                    <Dropdown places={places} className="formDropdown" id="destination" value={destination} onChange={(e) => handleonChange(e, "destination")} />
                     {(!destination.length && sumbitClicked) &&
                         <ErrorMessage message={EMPTY_DESTINATION_ERROR} />
                     }
@@ -98,7 +99,21 @@ const Form = (props) => {
 }
 
 Form.propTypes = {
-    places: PropTypes.object
+    places: PropTypes.arrayOf(PropTypes.shape({
+        caption: PropTypes.string,
+        description: PropTypes.string,
+        id: PropTypes.string,
+        place: PropTypes.string
+    })),
+}
+
+Form.defaultProps = {
+    places: [{
+        caption: "",
+        description: "",
+        id: "",
+        place: ""
+    }]
 }
 
 export default Form;

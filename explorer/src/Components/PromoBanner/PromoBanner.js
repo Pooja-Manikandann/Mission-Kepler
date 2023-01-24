@@ -1,8 +1,10 @@
 import React from "react"
 import styles from "./PromoBanner.module.scss";
 import Dropdown from "../Dropdown/Dropdown";
-import Button from "../Button/Button"
-import PropTypes from "prop-types"
+import Button from "../Button/Button";
+import PropTypes from "prop-types";
+import { PROMO_BANNER_TITLE, PROMO_BANNER_CAPTION } from "../../Constants/PromoBannerConstants";
+
 
 const PromoBanner = (props) => {
 
@@ -12,8 +14,8 @@ const PromoBanner = (props) => {
         <div className={styles.promoBannerWrapper}>
             <div className={styles.promoWrapper}>
                 <div className={styles.promoTextWrapper}>
-                    <div className={styles.welcomeContent}>Welcome to explorer</div>
-                    <div className={styles.captionContent}>Your Adventure Travel Expert in the <b>SOUTH</b></div>
+                    <div className={styles.welcomeContent}>{PROMO_BANNER_TITLE}</div>
+                    <div className={styles.captionContent} dangerouslySetInnerHTML={{ __html: PROMO_BANNER_CAPTION }} />
                 </div>
                 <div className={styles.dropdownWrapper}>
                     <Dropdown places={places} className="dropdownSelect" />
@@ -29,7 +31,21 @@ const PromoBanner = (props) => {
 }
 
 PromoBanner.propTypes = {
-    places: PropTypes.object
+    places: PropTypes.arrayOf(PropTypes.shape({
+        caption: PropTypes.string,
+        description: PropTypes.string,
+        id: PropTypes.string,
+        place: PropTypes.string
+    })),
+}
+
+PromoBanner.defaultProps = {
+    places: [{
+        caption: "",
+        description: "",
+        id: "",
+        place: ""
+    }]
 }
 
 export default PromoBanner;

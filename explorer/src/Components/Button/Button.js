@@ -15,4 +15,10 @@ Button.propTypes = {
     submitForm: PropTypes.func
 }
 
+Button.defaultProps = {
+    label: "Button",
+    className: "",
+    submitForm: () => { }
+}
+
 export default Button;

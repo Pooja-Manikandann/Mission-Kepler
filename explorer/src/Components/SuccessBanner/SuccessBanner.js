@@ -17,4 +17,8 @@ SuccessBanner.propTypes = {
     details: PropTypes.object
 }
 
+SuccessBanner.defaultProps = {
+    details: { name: "", home: "", destination: "", number: "" }
+}
+
 export default SuccessBanner;

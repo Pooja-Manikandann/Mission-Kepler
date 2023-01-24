@@ -13,4 +13,8 @@ ErrorMessage.propTypes = {
     message: PropTypes.string
 }
 
+ErrorMessage.defaultProps = {
+    message: ""
+}
+
 export default ErrorMessage;

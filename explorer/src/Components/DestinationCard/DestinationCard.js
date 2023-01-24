@@ -10,7 +10,7 @@ const DestinationCard = (props) => {
     let imageUrl = `../Assets/${place.id}.png`
 
     return (
-        <div className={styles.destinationCard}>
+        <div className={`card ${styles.destinationCard}`} >
             <img src={(imageUrl)} alt="destination cover" className={styles.detinationCoverImage} />
             <p className={styles.destinationCaption}>{place.caption}</p>
             <h4 className={styles.destionationName}>{place.place}</h4>
@@ -21,7 +21,11 @@ const DestinationCard = (props) => {
 }
 
 DestinationCard.propTypes = {
-    place: PropTypes.object
+    place: PropTypes.object,
+}
+
+DestinationCard.defaultProps = {
+    place: {},
 }
 
 export default DestinationCard;

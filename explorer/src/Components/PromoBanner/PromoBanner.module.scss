@@ -24,12 +24,14 @@
                 margin-top: 35px;
 
             }
-        }
 
+            .captionContent::last-word {
+                color: red;
+            }
+        }
 
         .dropdownWrapper {
             margin-top: 3rem;
-            ;
         }
     }
 
