@@ -1,0 +1,22 @@
+.destinationCard {
+    width: 30%;
+
+    .detinationCoverImage {
+        width: 100%;
+    }
+
+    .destinationCaption {
+        font-size: 30px;
+        font-weight: 200;
+        margin: 1rem 0;
+    }
+
+    .destionationName {
+        padding: 0 0 0.5rem;
+    }
+
+    .destionationDescription {
+        margin: 1rem 0;
+        font-weight: 300;
+    }
+}

@@ -1,0 +1,9 @@
+@import "../../Styles/theme";
+
+.successBannerWrapper {
+    width: 800px;
+    padding: 2rem;
+    margin: 0 auto;
+    background-color: $primary-color;
+    color: $white;
+}

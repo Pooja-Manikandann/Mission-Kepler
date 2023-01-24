@@ -1,0 +1,39 @@
+@import "../../Styles/theme";
+
+.contactFormContainer {
+    width: 100%;
+    background-color: $grey;
+    padding: 3rem 0;
+
+    .contactFormWrapper {
+        width: 600px;
+        margin: 0 auto;
+
+        .contactFromTitleWrapper {
+            color: $primary-color;
+
+            .title {
+                font-size: 2rem;
+            }
+
+            .caption {
+                font-size: 18px;
+                font-weight: 200;
+            }
+        }
+    }
+
+    .formWrapper {
+        display: flex;
+        flex-direction: column;
+
+        .formInput {
+            padding: 1rem 1.5rem;
+        }
+
+        label {
+            font-weight: 600;
+            margin: 20px 0 10px;
+        }
+    }
+}
