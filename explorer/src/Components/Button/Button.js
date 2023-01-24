@@ -1,11 +1,18 @@
 import React from "react"
 import "./Button.scss"
+import PropTypes from 'prop-types';
 
 const Button = (props) => {
-    const { label, className } = props;
+    const { label, className, submitForm } = props;
     return (
-        <button className={className}>{label}</button>
+        <button className={`button ${className}`} onClick={submitForm}>{label}</button>
     )
+}
+
+Button.propTypes = {
+    label: PropTypes.string,
+    className: PropTypes.string,
+    submitForm: PropTypes.func
 }
 
 export default Button;

@@ -8,7 +8,6 @@
         width: 40%;
         padding-left: 10rem;
         padding-right: 4rem;
-        border: 1px solid black;
 
         .promoTextWrapper {
             color: $primary-color;
@@ -19,24 +18,14 @@
                 font-size: 20px;
             }
 
-            p::last-word {
-                color: red;
-            }
-
             .captionContent {
                 font-size: 4rem;
                 font-weight: 100;
                 margin-top: 35px;
 
-                &::last-word {
-                    color: red;
-                }
-            }
-
-            .captionContent::last-letter {
-                color: red;
             }
         }
+
 
         .dropdownWrapper {
             margin-top: 3rem;

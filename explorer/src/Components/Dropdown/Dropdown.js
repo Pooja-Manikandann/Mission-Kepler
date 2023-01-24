@@ -1,13 +1,12 @@
 import React from "react";
-import styles from "./Dropdown.module.scss";
+import "./Dropdown.scss";
+import PropTypes from "prop-types"
 
 const Dropdown = (props) => {
-    const { places } = props;
+    const { places, className, onChange } = props;
 
-
-    console.log("places", places)
     return (
-        <select className={styles.dropdownSelect}>
+        <select className={className} onChange={onChange}>
             <option id="Choose" value="Choose">Choose</option>
             {places.map((place) => {
                 return <option key={place.id} id={place.id}>{place.place}</option>
@@ -15,6 +14,12 @@ const Dropdown = (props) => {
         </select>
 
     )
+}
+
+Dropdown.propTypes = {
+    places: PropTypes.object,
+    className: PropTypes.string,
+    onChange: PropTypes.func
 }
 
 export default Dropdown;
