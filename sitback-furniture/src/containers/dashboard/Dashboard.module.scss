@@ -1,0 +1,23 @@
+@import "../../styles/units";
+
+.dashboardWrapper {
+
+    padding: $unit-10 $unit-11;
+
+    .title {
+        font-size: 48px;
+        font-weight: 400;
+    }
+
+    .caption {
+        font-size: 33px;
+        font-weight: 400;
+        margin: 5px 0;
+    }
+
+    .categoryWrapper {
+        display: flex;
+        justify-content: space-between;
+        margin: $unit-7 0;
+    }
+}

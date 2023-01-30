@@ -1,0 +1,22 @@
+@import "../../styles/colors";
+@import "../../styles/units";
+
+.headerWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 $unit-9;
+    box-shadow: 1px 1px 10px $grey-color;
+
+    .home {
+        color: $black;
+        text-decoration: none;
+        font-size: 1.25rem;
+    }
+
+    .profileWrapper {
+        display: flex;
+        align-items: center;
+        gap: $unit-1;
+    }
+}

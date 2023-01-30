@@ -1,0 +1,1 @@
+export const GET_CATEGORIES = "https://jsonmockserver.vercel.app/api/shopping/furniture/categories"

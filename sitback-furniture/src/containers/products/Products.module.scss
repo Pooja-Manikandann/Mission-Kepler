@@ -1,0 +1,8 @@
+@import "../../styles/units";
+
+.productsWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $unit-8;
+    margin: $unit-9;
+}

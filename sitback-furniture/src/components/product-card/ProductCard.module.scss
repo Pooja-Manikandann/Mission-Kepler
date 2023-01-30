@@ -1,0 +1,33 @@
+@import "../../styles/colors";
+@import "../../styles/units";
+
+.productCardWrapper {
+    width: calc((100% - (2.5rem*3))/4);
+
+    .products {
+        border-bottom: 1px solid $grey-color-light;
+        padding-bottom: $unit-3;
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    img {
+        width: 100%;
+        height: $unit-12;
+        border-radius: 0 $unit-1 $unit-1 $unit-1;
+        object-fit: cover;
+    }
+
+    // .productTitle {}
+
+    .actions {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: $unit-4;
+        margin-top: $unit-3;
+    }
+}

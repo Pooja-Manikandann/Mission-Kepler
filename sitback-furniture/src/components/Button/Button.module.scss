@@ -1,0 +1,12 @@
+@import "../../styles/colors";
+@import "../../styles/units";
+
+.regular {
+    background-color: $black;
+    border: none;
+    color: $white;
+    padding: $unit-1 $unit-6;
+    border-radius: 0 0 0.37rem 0;
+    font-size: 13px;
+    cursor: pointer;
+}
