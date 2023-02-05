@@ -13,6 +13,17 @@
     .active {
         border-bottom: $unit-1 solid $black;
     }
+    .paddingZero {
+        padding: 0;
+    }
+
+    .boldBorderBottom {
+        border-bottom: $unit-1 solid $black;
+    }
+
+    .thinBorderBottom {
+        border-bottom: 2px solid $black;
+    }
 
     a {
         color: $black;

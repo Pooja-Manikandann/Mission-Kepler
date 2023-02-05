@@ -5,12 +5,18 @@ import styles from "./Header.module.scss"
 import PropTypes from "prop-types"
 
 const Header = (props) => {
-    const { categories } = props
+    const { categories, setCategory, category } = props;
+
+
+    function navigateToCategory(id) {
+        setCategory(id);
+    }
+
     return (
         <div className={styles.headerWrapper}>
             <a href="/" className={styles.home}>SITBACK</a>
 
-            <Navbar categories={categories} />
+            <Navbar menuItems={categories} handleClick={navigateToCategory} activeMenu={category} isHeaderNav={true} />
 
             <div className={styles.profileWrapper}>
                 <p>Nijin Vinodan</p>
@@ -26,11 +32,15 @@ Header.defaultProps = {
         category: "",
         description: "",
         photo: ""
-    }
+    },
+    setCategory: () => { },
+    category: ""
 }
 
 Header.propTypes = {
-    categories: PropTypes.array.isRequired
+    categories: PropTypes.array.isRequired,
+    setCategory: PropTypes.func,
+    category: PropTypes.string,
 }
 
 export default Header;

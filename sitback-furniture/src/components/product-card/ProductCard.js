@@ -5,10 +5,20 @@ import { convertToCurrency } from "../../utils/convertToCurrency";
 import PropTypes from "prop-types";
 
 const ProductCard = (props) => {
-    const { product } = props;
+    const { product, setShowCart, setShowWishlist, updateCart, updateWishlist, layout } = props;
+
+    const addToCart = (product) => {
+        setShowCart(true)
+        updateCart(product);
+    }
+
+    const addToWishList = (product) => {
+        setShowWishlist(true)
+        updateWishlist(product);
+    }
 
     return (
-        <div className={styles.productCardWrapper}>
+        <div className={`${styles.productCardWrapper} ${styles[layout]}`}>
             <div className={styles.products}>
                 <img src={product.photo} alt="product" />
                 <div className={styles.header}>
@@ -19,8 +29,8 @@ const ProductCard = (props) => {
                 <h5>{product.guarantee > 1 ? "YEARS" : "YEAR"} GUARANTEE</h5>
             </div>
             <div className={styles.actions}>
-                <span>ADD TO WISHLIST</span>
-                <Button label="ADD TO CART" />
+                <span onClick={() => addToWishList(product)}>ADD TO WISHLIST</span>
+                <Button label="ADD TO CART" onClick={() => addToCart(product)} />
             </div>
         </div>
     )
@@ -35,11 +45,22 @@ ProductCard.defaultProps = {
         photo: "",
         price: "",
         rating: 0.0
-    }
+    },
+    setShowCart: () => { },
+    setShowWishlist: () => { },
+    updateCart: () => { },
+    updateWishlist: () => { },
+    layout: "",
+
 }
 
 ProductCard.propType = {
-    product: PropTypes.object
+    product: PropTypes.object,
+    setShowCart: PropTypes.func,
+    setShowWishlist: PropTypes.func,
+    updateCart: PropTypes.func,
+    updateWishlist: PropTypes.func,
+    layout: PropTypes.string
 }
 
 

@@ -2,18 +2,24 @@ import React from "react";
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 import styles from "./Navbar.module.scss"
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 const Navbar = (props) => {
-    const { categories } = props;
-    const { categoryId } = useParams();
+    const { menuItems, handleClick, activeMenu, isHeaderNav } = props;
+    // const { category } = useParams();
+    function updateActiveMenu(event) {
+        if (!isHeaderNav) {
+            event.preventDefault();
+        }
+        handleClick(event.target.id);
+    }
     return (
         <div className={styles.navbarWrapper}>
-            {categories.map((category) => {
+            {menuItems.map((item) => {
                 return (
-                    <div className={`${styles.navItem} ${categoryId === category.id && styles.active}`}>
-                        <Link key={category.id} to={`/categories/${category.id}`}>{category.id}</Link>
-                    </div>
+                    <nav className={`${styles.navItem} ${!isHeaderNav && styles.paddingZero}  ${(isHeaderNav && activeMenu === item.id) ? styles.boldBorderBottom : ""} ${(!isHeaderNav && activeMenu === item.id) ? styles.thinBorderBottom : ""}`} key={item.id}>
+                        <Link key={item.id} to={`/categories/${item.id}`} id={item.id} onClick={updateActiveMenu}>{item.id}</Link>
+                    </nav>
                 )
 
             })}
@@ -22,16 +28,22 @@ const Navbar = (props) => {
 }
 
 Navbar.defaultProps = {
-    categories: {
+    menuItems: {
         id: "",
         category: "",
         description: "",
         photo: ""
-    }
+    },
+    isHeaderNav: true,
+    handleClick: () => { },
+    activeMenu: ""
 }
 
 Navbar.propTypes = {
-    categories: PropTypes.array.isRequired
+    menuItems: PropTypes.array.isRequired,
+    isHeaderNav: PropTypes.bool,
+    handleClick: PropTypes.func,
+    activeMenu: PropTypes.string
 }
 
 export default Navbar;

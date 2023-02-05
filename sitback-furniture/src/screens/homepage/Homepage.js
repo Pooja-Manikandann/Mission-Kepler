@@ -1,28 +1,29 @@
 import Header from "../../components/header/Header"
-import React, { useEffect, useState } from "react"
-import getCategories from "../../services/getCategories";
+import React from "react"
 import Dashboard from "../../containers/dashboard/Dashboard";
+import PropTypes from "prop-types"
 
 const Homepage = (props) => {
-    const { categories } = props;
-    // const [categories, setCategories] = useState([])
-    // useEffect(() => {
+    const { categories, category, setCategory } = props;
 
-    //     const updateCategories = async () => {
-    //         let categories = await getCategories();
-    //         categories = Array.from(categories)
-    //         setCategories(categories);
-    //     }
-    //     updateCategories();
-
-    // }, [])
     return (
         <div>
-
-            <Header categories={categories} />
+            <Header categories={categories} category={category} setCategory={setCategory} />
             <Dashboard categories={categories} />
         </div>
     )
+}
+
+Homepage.propType = {
+    categories: PropTypes.array,
+    category: PropTypes.string,
+    setCategory: PropTypes.func
+}
+
+Homepage.defaultProps = {
+    categories: [],
+    category: "",
+    setCategory: () => { }
 }
 
 export default Homepage

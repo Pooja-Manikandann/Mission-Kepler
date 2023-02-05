@@ -2,7 +2,14 @@
 @import "../../styles/units";
 
 .productCardWrapper {
-    width: calc((100% - (2.5rem*3))/4);
+
+    &.fourColumnCard {
+        width: calc((100% - (2.5rem*3))/4);
+    }
+
+    &.threeColumnCard {
+        width: calc((100% - (2.5rem*2))/3);
+    }
 
     .products {
         border-bottom: 1px solid $grey-color-light;
