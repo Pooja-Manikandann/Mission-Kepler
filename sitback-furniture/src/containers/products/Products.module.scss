@@ -1,0 +1,12 @@
+@import "../../styles/units";
+
+.productsWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $unit-8;
+    margin: 0 $unit-9;
+
+    &.threeColumnLayout {
+        width: calc(100% - 515px);
+    }
+}
