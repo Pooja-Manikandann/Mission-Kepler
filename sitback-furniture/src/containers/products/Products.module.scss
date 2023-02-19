@@ -4,9 +4,13 @@
     display: flex;
     flex-wrap: wrap;
     gap: $unit-8;
-    margin: 0 $unit-9;
+    margin: 8rem $unit-9;
 
     &.threeColumnLayout {
         width: calc(100% - 515px);
+    }
+
+    &.margin-even {
+        margin: 3rem 3rem 0;
     }
 }

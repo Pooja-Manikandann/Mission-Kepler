@@ -2,11 +2,14 @@ import React from "react";
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 import styles from "./Navbar.module.scss"
-// import { useParams } from "react-router-dom";
 
 const Navbar = (props) => {
     const { menuItems, handleClick, activeMenu, isHeaderNav } = props;
-    // const { category } = useParams();
+
+    /**
+     * function that triggers handle click in parent but prevent default function expect for nav in header
+     * @param {object} event - click event
+     */
     function updateActiveMenu(event) {
         if (!isHeaderNav) {
             event.preventDefault();
@@ -15,9 +18,10 @@ const Navbar = (props) => {
     }
     return (
         <div className={styles.navbarWrapper}>
+            {/* Iterate through the items and return Link tag onclick navigate to respective page */}
             {menuItems.map((item) => {
                 return (
-                    <nav className={`${styles.navItem} ${!isHeaderNav && styles.paddingZero}  ${(isHeaderNav && activeMenu === item.id) ? styles.boldBorderBottom : ""} ${(!isHeaderNav && activeMenu === item.id) ? styles.thinBorderBottom : ""}`} key={item.id}>
+                    <nav className={`${styles.navItem} ${!isHeaderNav && styles.paddingZero}  ${(isHeaderNav && activeMenu === item.id) ? styles.boldBorderBottom : ""} ${(!isHeaderNav && activeMenu === item.id) ? styles.thinBorderBottom : ""} ${(!isHeaderNav && activeMenu !== item.id) ? styles.nonactive : ""}`} key={item.id}>
                         <Link key={item.id} to={`/categories/${item.id}`} id={item.id} onClick={updateActiveMenu}>{item.id}</Link>
                     </nav>
                 )

@@ -1,9 +1,9 @@
 import Axios from "axios";
-import { useParams } from "react-router-dom";
+import { GET_PRODUCTS } from "../constants/ApiConstants";
+
 
 export const getProducts = async (categoryId) => {
-    // const { categoryId } = useParams();
-    let response = await Axios.get("https://jsonmockserver.vercel.app/api/shopping/furniture/products", {
+    let response = await Axios.get(GET_PRODUCTS, {
         params: { category: categoryId }
     })
     if (response.status === 200) {

@@ -11,8 +11,8 @@
     position: relative;
 
     img {
-        width: 120px;
-        height: 75px;
+        width: 125px;
+        height: 85px;
         object-fit: cover;
         border-radius: 12px;
         position: absolute;
@@ -22,6 +22,15 @@
 
     .itemContent {
         margin-left: 100px;
+
+        h4 {
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        p {
+            font-size: 13px;
+        }
     }
 
     .itemActions {
@@ -38,8 +47,17 @@
         .cartAction {
             display: flex;
             justify-content: space-between;
-            width: 80px;
+            width: 60px;
             margin: 3px 10px;
+            align-items: center;
+
+            span {
+                font-size: 12px;
+            }
+
+            .actions {
+                cursor: pointer;
+            }
         }
 
         button {
@@ -47,6 +65,7 @@
             height: 100%;
             font-size: 11px;
             padding: 0 0.5rem;
+            font-weight: 300;
         }
     }
 }

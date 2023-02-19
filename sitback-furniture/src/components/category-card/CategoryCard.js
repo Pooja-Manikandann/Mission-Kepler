@@ -1,19 +1,22 @@
 import React from 'react'
-import Button from '../Button/Button';
+import Button from '../button/Button';
 import styles from "./CategoryCard.module.scss"
 import PropTypes from "prop-types"
+import { Link } from 'react-router-dom';
+import { SHOP_NOW } from '../../constants/AppConstants';
 
 const CategoryCard = (props) => {
-    const { category } = props;
+    const { category, setCategory } = props;
     function handleClick(category) {
-        window.location.href = `http://localhost:3000/categories/${category}`
+        setCategory(category)
     }
     return (
         <div className={styles.categoryCardWrapper}>
             <img src={category.photo} alt="category" />
             <h2 className={styles.categoryTitle}>{category.category}</h2>
             <p className={styles.categoryDescription}>{category.description}</p>
-            <Button label="SHOP NOW" onClick={() => handleClick(category.id)} />
+            {/* Link tag to navigate to shopping page based on the categories choosed  */}
+            <Link to={`/categories/${category.id}`} className="btn btn-primary"><Button label={SHOP_NOW} onClick={() => handleClick(category.id)} /></Link>
         </div>
     )
 }

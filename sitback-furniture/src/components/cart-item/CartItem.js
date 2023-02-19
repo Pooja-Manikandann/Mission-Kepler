@@ -1,11 +1,13 @@
 import React from "react";
 import { convertToCurrency } from "../../utils/convertToCurrency";
-import Button from "../Button/Button";
+import Button from "../button/Button";
 import styles from "./CartItem.module.scss"
 import PropTypes from "prop-types"
+import { ADD_TO_CART, DECREAMENT } from "../../constants/AppConstants";
 
 const CartItem = (props) => {
-    const { cartItem, showCart, updateCart, removeFromWishlist } = props
+    const { cartItem, showCart, updateCart, removeFromWishlist } = props;
+
     return (
         <div className={styles.cartItem}>
             <img src={cartItem && cartItem.photo} alt="product" />
@@ -13,15 +15,16 @@ const CartItem = (props) => {
                 <h4>{cartItem && cartItem.name}</h4>
                 <p>{cartItem && convertToCurrency(cartItem.price)}</p>
             </div>
+            {/* Displays the actions for a cart/wishlist item to increase/decrease cart item or to add item to cart from wishlist */}
             <div className={styles.itemActions}>
                 {
                     showCart ?
                         <div className={styles.cartAction}>
-                            <span onClick={() => { updateCart(cartItem, "decreament") }}>-</span>
+                            <span className={styles.actions} onClick={() => { updateCart(cartItem, DECREAMENT) }}>-</span>
                             <span>{cartItem.count}</span>
-                            <span onClick={() => { updateCart(cartItem) }}>+</span>
+                            <span className={styles.actions} onClick={() => { updateCart(cartItem) }}>+</span>
                         </div> :
-                        <Button label="ADD TO CART" onClick={() => { removeFromWishlist(cartItem) }} />
+                        <Button label={ADD_TO_CART} onClick={() => { removeFromWishlist(cartItem) }} />
                 }
             </div>
         </div>

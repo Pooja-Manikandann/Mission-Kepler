@@ -5,15 +5,16 @@ import PropTypes from "prop-types";
 
 
 const Dashboard = (props) => {
-    const { categories } = props;
+    const { categories, setCategory, classNames } = props;
     return (
-        <div className={styles.dashboardWrapper}>
+        <div className={`${styles.dashboardWrapper} ${styles[classNames]}`}>
             <h1 className={styles.title}>Your Home, With Love</h1>
             <h2 className={styles.caption}>Come, Choose from millions of products</h2>
             <div className={styles.categoryWrapper}>
+                {/* iterates through categories and returns each category card*/}
                 {
                     categories.map((category, index) => {
-                        return <CategoryCard category={category} key={index} />
+                        return <CategoryCard category={category} key={index} setCategory={setCategory} />
                     })
                 }
             </div>
@@ -28,7 +29,9 @@ Dashboard.defaultProps = {
         category: "",
         description: "",
         photo: ""
-    }
+    },
+    className: ""
+
 }
 
 Dashboard.propTypes = {
