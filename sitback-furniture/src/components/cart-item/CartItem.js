@@ -4,13 +4,14 @@ import Button from "../button/Button";
 import styles from "./CartItem.module.scss"
 import PropTypes from "prop-types"
 import { ADD_TO_CART, DECREAMENT } from "../../constants/AppConstants";
+import { defaultImageProvider } from "../../utils/defaultImageProvider";
 
 const CartItem = (props) => {
     const { cartItem, showCart, updateCart, removeFromWishlist } = props;
 
     return (
         <div className={styles.cartItem}>
-            <img src={cartItem && cartItem.photo} alt="product" />
+            <img src={cartItem && cartItem.photo} alt="product" onError={defaultImageProvider} />
             <div className={styles.itemContent}>
                 <h4>{cartItem && cartItem.name}</h4>
                 <p>{cartItem && convertToCurrency(cartItem.price)}</p>

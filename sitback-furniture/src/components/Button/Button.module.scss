@@ -10,4 +10,9 @@
     font-size: 0.813rem;
     cursor: pointer;
     font-weight: 500;
+
+    &:disabled {
+        background-color: #00000091;
+        cursor: not-allowed
+    }
 }

@@ -7,10 +7,24 @@ import styles from './Cart.module.scss'
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 import { MENU_ITEMS, MY_CART, MY_WISHLIST, PLACE_ORDER } from "../../constants/AppConstants";
+import { calculateOrderTotal } from "../../utils/calculateOrderTotal";
 
 const Cart = (props) => {
-    const { items, setActiveCartMenu, activeCartMenu, setShowWishlist, setShowCart, cartPrice, showCart, updateCart, removeFromWishlist, setCategory, setConfirmedOrders } = props;
+    const { items, setActiveCartMenu, activeCartMenu, setShowWishlist, setShowCart, showCart, updateCart, removeFromWishlist, setCategory, setConfirmedOrders } = props;
     const [hideCart, setHideCart] = useState(false)
+    const [totalPrice, setTotalPrice] = useState(false)
+    let cartItems, total = 0;
+
+    useEffect(() => {
+        getTotalPrice();
+    }, [updateCart])
+
+    const getTotalPrice = () => {
+        if (items.length && showCart) {
+            total = calculateOrderTotal(items);
+            setTotalPrice(total);
+        }
+    }
 
     /**
      * function to toggle between cart and wishlist
@@ -47,10 +61,21 @@ const Cart = (props) => {
         setActiveCartMenu("");
     }
 
+    if (items && items.length) {
+        cartItems = items.map((item) => (
+
+            <CartItem cartItem={item} key={item.id} showCart={showCart} updateCart={updateCart} removeFromWishlist={removeFromWishlist} />
+        ))
+    }
+    else if (showCart && !items.length) {
+        cartItems = <p>No items in carts</p>
+    }
+    else if (!showCart && !items.length) {
+        cartItems = <p>No items in wishlist</p>
+    }
+
     return (
         <div>
-            {/* overlay to close cart/wishlist */}
-            <div className={styles.overlay} onClick={closeCart}></div>
 
             {/* Cart/wishlist wrapper */}
             <div className={`${styles.cartWrapper} ${hideCart ? styles.hideCart : styles.showCart}`}>
@@ -58,20 +83,21 @@ const Cart = (props) => {
                 <Navbar menuItems={MENU_ITEMS} handleClick={updateMenu} activeMenu={activeCartMenu} isHeaderNav={false} />
                 <div className={styles.cartItemsWrapper}>
                     {/* retuen each of cart/wishlist items */}
-                    {items.map((item) => (
+                    {/* {items.map((item) => (
 
                         <CartItem cartItem={item} key={item.id} showCart={showCart} updateCart={updateCart} removeFromWishlist={removeFromWishlist} />
-                    ))}
+                    ))} */}
+                    {cartItems}
                 </div>
                 {/* cart footer with total cost of products in cart only shown in show cart tab */}
                 {showCart &&
                     <div className={styles.cartFooterWrapper}>
                         <div className={styles.leftWrapper}>
                             <h5>Total amount</h5>
-                            <p>{convertToCurrency(cartPrice)}</p>
+                            <p>{convertToCurrency(totalPrice)}</p>
                         </div>
                         {/* button to confirm order and navigate to order confirmation page */}
-                        <Link to="/confirmOrder"><Button label={PLACE_ORDER} onClick={placeOrder} /></Link>
+                        <Link to="/confirmOrder"><Button label={PLACE_ORDER} onClick={placeOrder} disabled={showCart && !items.length} /></Link>
                     </div>
                 }
             </div>
@@ -85,7 +111,6 @@ Cart.propType = {
     activeCartMenu: PropTypes.string,
     setShowWishlist: PropTypes.func,
     setShowCart: PropTypes.func,
-    cartPrice: PropTypes.number,
     showCart: PropTypes.bool,
     updateCart: PropTypes.func,
     removeFromWishlist: PropTypes.func
@@ -97,7 +122,6 @@ Cart.defaultProps = {
     activeCartMenu: "",
     setShowWishlist: () => { },
     setShowCart: () => { },
-    cartPrice: 0,
     showCart: false,
     updateCart: () => { },
     removeFromWishlist: () => { }

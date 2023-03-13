@@ -5,16 +5,13 @@ import { getProducts } from "../../services/getProducts";
 import styles from "./CategoriesPage.module.scss"
 import PropTypes from "prop-types"
 import { INCREAMENT, MY_CART } from "../../constants/AppConstants";
-import { calculateOrderTotal } from "../../utils/calculateOrderTotal";
 
 const CategoriesPage = (props) => {
     const { category, setIsLoading, cartItems, setCartItems, wishListItems, setWishListItems, setCategory, setConfirmedOrders } = props;
-    // const { categoryId } = useParams();
     const [products, setProducts] = useState([]);
     const [showCart, setShowCart] = useState(false);
     const [showWishlist, setShowWishlist] = useState(false);
     const [activeCartMenu, setActiveCartMenu] = useState("")
-    const [cartPrice, setCartPrice] = useState(0)
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -26,10 +23,6 @@ const CategoriesPage = (props) => {
             setIsLoading(true);
         fetchProducts();
     }, [category])
-
-    useEffect(() => {
-        getCartTotalPrice();
-    }, [cartItems])
 
 
     /**
@@ -87,10 +80,9 @@ const CategoriesPage = (props) => {
         }
     }
 
-    const getCartTotalPrice = () => {
-        let total = calculateOrderTotal(cartItems);
-        setCartPrice(total);
-    }
+    // const getCartTotalPrice = () => {
+    //     let total = calculateOrderTotal(cartItems);
+    // }
 
     return (
         <div className={styles.wrapper}>
@@ -107,7 +99,6 @@ const CategoriesPage = (props) => {
                     updateCart={updateCart}
                     setShowCart={setShowCart}
                     setShowWishlist={setShowWishlist}
-                    cartPrice={cartPrice}
                     removeFromWishlist={removeFromWishlist}
                     setCategory={setCategory}
                     setConfirmedOrders={setConfirmedOrders}

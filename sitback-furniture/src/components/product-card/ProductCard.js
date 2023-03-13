@@ -5,6 +5,7 @@ import { convertToCurrency } from "../../utils/convertToCurrency";
 import PropTypes from "prop-types";
 import { RiShieldCheckFill } from "react-icons/ri";
 import { ADD_TO_CART, ADD_TO_WISHLIST, YEAR, YEARS } from "../../constants/AppConstants";
+import { defaultImageProvider } from "../../utils/defaultImageProvider";
 
 const ProductCard = (props) => {
     const { product, setShowCart, setShowWishlist, updateCart, updateWishlist, layout, isConfirmationPage } = props;
@@ -31,7 +32,7 @@ const ProductCard = (props) => {
         <div className={`${styles.productCardWrapper} ${styles[layout]}`}>
             {/* returns each product card styles vary based on the presence of card in either shopping page or order confirmation page */}
             <div className={`${styles.products} ${!isConfirmationPage ? styles.borderBottom : ''}`}>
-                <img src={product.photo} alt="product" />
+                <img src={product.photo} alt="product" onError={defaultImageProvider} />
                 <div className={styles.header}>
                     <h4 className={styles.productTitle}>{product.name}</h4>
                     <span>{convertToCurrency(product.price)}</span>

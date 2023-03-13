@@ -6,6 +6,7 @@ import getCategories from "./services/getCategories";
 import OrderConfirmation from "./containers/order-confirmation/OrderConfirmation";
 import Layout from "./containers/layout/Layout";
 import { HOME, ORDER_CONFIRMATION, SHOPPING } from "./constants/PathConstants";
+import { useLocalStorage } from "./utils/useLocalStorage";
 
 function App() {
   const [categories, setCategories] = useState([])
