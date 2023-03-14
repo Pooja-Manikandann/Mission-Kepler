@@ -4,14 +4,14 @@ import Products from "../../containers/products/Products";
 import { getProducts } from "../../services/getProducts";
 import styles from "./CategoriesPage.module.scss"
 import PropTypes from "prop-types"
-import { INCREAMENT, MY_CART } from "../../constants/AppConstants";
+import { INCREAMENT, MY_CART, DECREAMENT } from "../../constants/AppConstants";
 
 const CategoriesPage = (props) => {
-    const { category, setIsLoading, cartItems, setCartItems, wishListItems, setWishListItems, setCategory, setConfirmedOrders } = props;
+    const { category, setIsLoading, setCategory, setConfirmedOrders } = props;
     const [products, setProducts] = useState([]);
-    const [showCart, setShowCart] = useState(false);
-    const [showWishlist, setShowWishlist] = useState(false);
     const [activeCartMenu, setActiveCartMenu] = useState("")
+    const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem("cart")) || []);
+    const [wishListItems, setWishListItems] = useState(JSON.parse(localStorage.getItem("wishlist")) || []);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -25,6 +25,13 @@ const CategoriesPage = (props) => {
     }, [category])
 
 
+    useEffect(() => {
+        localStorage.setItem("cart", JSON.stringify(cartItems))
+    }, [cartItems])
+
+    useEffect(() => {
+        localStorage.setItem("wishlist", JSON.stringify(wishListItems))
+    })
     /**
      * 
      * @param {object} product - product to be updated in cart
@@ -58,48 +65,40 @@ const CategoriesPage = (props) => {
         else {
             setCartItems([])
         }
-
     }
 
-    function removeFromWishlist(product) {
+    function updateWishlist(product, updateFunction = INCREAMENT) {
         let index = wishListItems.findIndex(item => item.id === product.id);
-        if (index >= 0) {
-            setWishListItems([...wishListItems.slice(0, index), ...wishListItems.slice(index + 1)])
-        }
-        updateCart(product);
-        setShowCart(true);
-        setShowWishlist(false);
-        setActiveCartMenu(MY_CART)
-    }
-
-
-    function updateWishlist(product) {
-        let index = wishListItems.findIndex(item => item.id === product.id);
-        if (index < 0) {
+        if (updateFunction === INCREAMENT && index < 0) {
             setWishListItems([...wishListItems, product])
         }
+        else if (updateFunction === DECREAMENT && index >= 0) {
+            setWishListItems([...wishListItems.slice(0, index), ...wishListItems.slice(index + 1)])
+            updateCart(product);
+            setActiveCartMenu(MY_CART)
+        }
     }
 
-    // const getCartTotalPrice = () => {
-    //     let total = calculateOrderTotal(cartItems);
-    // }
 
     return (
         <div className={styles.wrapper}>
 
             {/* shows all products on selected category */}
-            <Products products={products} setShowCart={setShowCart} showWishlist={showWishlist} showCart={showCart} setShowWishlist={setShowWishlist} updateCart={updateCart} updateWishlist={updateWishlist} setActiveCartMenu={setActiveCartMenu} />
+            <Products
+                products={products}
+                activeCartMenu={activeCartMenu}
+                updateCart={updateCart}
+                updateWishlist={updateWishlist}
+                setActiveCartMenu={setActiveCartMenu}
+            />
             {/* Displays cart or wishlist based on selected */}
-            {(showCart || showWishlist) &&
+            {(activeCartMenu !== "") &&
                 <Cart
-                    items={(showCart && cartItems) || (showWishlist && wishListItems)}
+                    items={(activeCartMenu === MY_CART && cartItems) || (activeCartMenu === "mywishlist" && wishListItems)}
                     activeCartMenu={activeCartMenu}
                     setActiveCartMenu={setActiveCartMenu}
-                    showCart={showCart}
                     updateCart={updateCart}
-                    setShowCart={setShowCart}
-                    setShowWishlist={setShowWishlist}
-                    removeFromWishlist={removeFromWishlist}
+                    updateWishlist={updateWishlist}
                     setCategory={setCategory}
                     setConfirmedOrders={setConfirmedOrders}
                 />}

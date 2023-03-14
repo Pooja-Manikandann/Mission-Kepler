@@ -5,24 +5,23 @@ import PropTypes from "prop-types"
 import { MY_CART, MY_WISHLIST } from "../../constants/AppConstants";
 
 const Products = (props) => {
-    const { products, setShowCart, updateCart, updateWishlist, showCart, showWishlist, setActiveCartMenu, setShowWishlist, isConfirmationPage, classNames } = props;
+    const { products, updateCart, updateWishlist, activeCartMenu, setActiveCartMenu, isConfirmationPage, classNames } = props;
     function updateShowCart() {
-        setShowCart(true)
-        setShowWishlist(false);
+        // setShowCart(true)
         setActiveCartMenu(MY_CART);
     }
 
     function updateShowWishList() {
-        setShowWishlist(true);
-        setShowCart(false)
+        // setShowWishlist(true);
+        // setShowCart(true)
         setActiveCartMenu(MY_WISHLIST);
     }
 
     return (
-        <div className={`${styles.productsWrapper} ${styles[classNames]} ${(showCart || showWishlist) ? styles.threeColumnLayout : ""}`}>
+        <div className={`${styles.productsWrapper} ${styles[classNames]} ${(activeCartMenu !== "") ? styles.threeColumnLayout : ""}`}>
             {/* iterate through products and returns product cards */}
             {products.map((product) => (
-                <ProductCard product={product} key={product.id} layout={(showCart || showWishlist) ? "threeColumnCard" : "fourColumnCard"} setShowCart={updateShowCart} setShowWishlist={updateShowWishList} updateCart={updateCart} updateWishlist={updateWishlist} isConfirmationPage={isConfirmationPage} />
+                <ProductCard product={product} key={product.id} layout={(activeCartMenu !== "") ? "threeColumnCard" : "fourColumnCard"} setShowCart={updateShowCart} setShowWishlist={updateShowWishList} updateCart={updateCart} updateWishlist={updateWishlist} isConfirmationPage={isConfirmationPage} />
             ))}
         </div>
     )

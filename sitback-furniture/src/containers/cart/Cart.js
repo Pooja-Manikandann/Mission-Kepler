@@ -10,8 +10,7 @@ import { MENU_ITEMS, MY_CART, MY_WISHLIST, PLACE_ORDER } from "../../constants/A
 import { calculateOrderTotal } from "../../utils/calculateOrderTotal";
 
 const Cart = (props) => {
-    const { items, setActiveCartMenu, activeCartMenu, setShowWishlist, setShowCart, showCart, updateCart, removeFromWishlist, setCategory, setConfirmedOrders } = props;
-    const [hideCart, setHideCart] = useState(false)
+    const { items, setActiveCartMenu, activeCartMenu, updateCart, updateWishlist, setCategory, setConfirmedOrders } = props;
     const [totalPrice, setTotalPrice] = useState(false)
     let cartItems, total = 0;
 
@@ -20,7 +19,7 @@ const Cart = (props) => {
     }, [updateCart])
 
     const getTotalPrice = () => {
-        if (items.length && showCart) {
+        if (items.length && activeCartMenu === MY_CART) {
             total = calculateOrderTotal(items);
             setTotalPrice(total);
         }
@@ -32,14 +31,6 @@ const Cart = (props) => {
      */
     const updateMenu = (id) => {
         setActiveCartMenu(id)
-        if (id === MY_CART) {
-            setShowCart(true);
-            setShowWishlist(false)
-        }
-        else if (id === MY_WISHLIST) {
-            setShowCart(false);
-            setShowWishlist(true)
-        }
     }
 
     /**
@@ -51,26 +42,17 @@ const Cart = (props) => {
         updateCart([])
     }
 
-    /**
-     * function to close cart/wishlist
-     */
-    const closeCart = () => {
-        setHideCart(true)
-        setShowCart(false);
-        setShowWishlist(false);
-        setActiveCartMenu("");
-    }
 
     if (items && items.length) {
         cartItems = items.map((item) => (
 
-            <CartItem cartItem={item} key={item.id} showCart={showCart} updateCart={updateCart} removeFromWishlist={removeFromWishlist} />
+            <CartItem cartItem={item} key={item.id} showCart={activeCartMenu === MY_CART} updateCart={updateCart} updateWishlist={updateWishlist} />
         ))
     }
-    else if (showCart && !items.length) {
+    else if (activeCartMenu === MY_CART && !items.length) {
         cartItems = <p>No items in carts</p>
     }
-    else if (!showCart && !items.length) {
+    else if (activeCartMenu === MY_WISHLIST && !items.length) {
         cartItems = <p>No items in wishlist</p>
     }
 
@@ -78,26 +60,21 @@ const Cart = (props) => {
         <div>
 
             {/* Cart/wishlist wrapper */}
-            <div className={`${styles.cartWrapper} ${hideCart ? styles.hideCart : styles.showCart}`}>
+            <div className={`${styles.cartWrapper} ${styles.showCart}`}>
                 {/* Navbar to switch tab between cart/wishlist */}
                 <Navbar menuItems={MENU_ITEMS} handleClick={updateMenu} activeMenu={activeCartMenu} isHeaderNav={false} />
                 <div className={styles.cartItemsWrapper}>
-                    {/* retuen each of cart/wishlist items */}
-                    {/* {items.map((item) => (
-
-                        <CartItem cartItem={item} key={item.id} showCart={showCart} updateCart={updateCart} removeFromWishlist={removeFromWishlist} />
-                    ))} */}
                     {cartItems}
                 </div>
                 {/* cart footer with total cost of products in cart only shown in show cart tab */}
-                {showCart &&
+                {activeCartMenu === MY_CART &&
                     <div className={styles.cartFooterWrapper}>
                         <div className={styles.leftWrapper}>
                             <h5>Total amount</h5>
                             <p>{convertToCurrency(totalPrice)}</p>
                         </div>
                         {/* button to confirm order and navigate to order confirmation page */}
-                        <Link to="/confirmOrder"><Button label={PLACE_ORDER} onClick={placeOrder} disabled={showCart && !items.length} /></Link>
+                        <Link to="/confirmOrder"><Button label={PLACE_ORDER} onClick={placeOrder} disabled={activeCartMenu === MY_CART && !items.length} /></Link>
                     </div>
                 }
             </div>
@@ -109,9 +86,7 @@ Cart.propType = {
     items: PropTypes.array,
     setActiveCartMenu: PropTypes.func,
     activeCartMenu: PropTypes.string,
-    setShowWishlist: PropTypes.func,
     setShowCart: PropTypes.func,
-    showCart: PropTypes.bool,
     updateCart: PropTypes.func,
     removeFromWishlist: PropTypes.func
 }
@@ -120,9 +95,7 @@ Cart.defaultProps = {
     items: [],
     setActiveCartMenu: () => { },
     activeCartMenu: "",
-    setShowWishlist: () => { },
     setShowCart: () => { },
-    showCart: false,
     updateCart: () => { },
     removeFromWishlist: () => { }
 }

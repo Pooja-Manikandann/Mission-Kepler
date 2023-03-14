@@ -7,7 +7,7 @@ import { ADD_TO_CART, DECREAMENT } from "../../constants/AppConstants";
 import { defaultImageProvider } from "../../utils/defaultImageProvider";
 
 const CartItem = (props) => {
-    const { cartItem, showCart, updateCart, removeFromWishlist } = props;
+    const { cartItem, showCart, updateCart, updateWishlist } = props;
 
     return (
         <div className={styles.cartItem}>
@@ -25,7 +25,7 @@ const CartItem = (props) => {
                             <span>{cartItem.count}</span>
                             <span className={styles.actions} onClick={() => { updateCart(cartItem) }}>+</span>
                         </div> :
-                        <Button label={ADD_TO_CART} onClick={() => { removeFromWishlist(cartItem) }} />
+                        <Button label={ADD_TO_CART} onClick={() => { updateWishlist(cartItem, DECREAMENT) }} />
                 }
             </div>
         </div>
@@ -36,7 +36,7 @@ CartItem.propTypes = {
     cartItem: PropTypes.object,
     showCart: PropTypes.bool,
     updateCart: PropTypes.func,
-    removeFromWishlist: PropTypes.func
+    updateWishlist: PropTypes.func
 }
 
 CartItem.defaultProps = {
@@ -52,7 +52,7 @@ CartItem.defaultProps = {
     },
     showCart: false,
     updateCart: () => { },
-    removeFromWishlist: () => { }
+    updateWishlist: () => { }
 }
 
 export default CartItem;
