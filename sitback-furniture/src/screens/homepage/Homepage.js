@@ -3,10 +3,10 @@ import Dashboard from "../../containers/dashboard/Dashboard";
 import PropTypes from "prop-types"
 
 const Homepage = (props) => {
-    const { categories, setCategory } = props;
+    const { categories } = props;
 
     return (
-        <Dashboard categories={categories} setCategory={setCategory} />
+        <Dashboard categories={categories} />
     )
 }
 

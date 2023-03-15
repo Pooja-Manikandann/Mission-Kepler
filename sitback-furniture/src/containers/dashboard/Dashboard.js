@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 
 const Dashboard = (props) => {
-    const { categories, setCategory, classNames } = props;
+    const { categories, classNames } = props;
     return (
         <div className={`${styles.dashboardWrapper} ${styles[classNames]}`}>
             <h1 className={styles.title}>Your Home, With Love</h1>
@@ -14,7 +14,7 @@ const Dashboard = (props) => {
                 {/* iterates through categories and returns each category card*/}
                 {
                     categories.map((category, index) => {
-                        return <CategoryCard category={category} key={index} setCategory={setCategory} />
+                        return <CategoryCard category={category} key={index} />
                     })
                 }
             </div>
@@ -35,7 +35,8 @@ Dashboard.defaultProps = {
 }
 
 Dashboard.propTypes = {
-    categories: PropTypes.array.isRequired
+    categories: PropTypes.object,
+    className: PropTypes.string
 }
 
 export default Dashboard;

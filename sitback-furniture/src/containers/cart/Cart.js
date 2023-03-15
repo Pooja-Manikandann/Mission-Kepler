@@ -10,7 +10,7 @@ import { MENU_ITEMS, MY_CART, MY_WISHLIST, PLACE_ORDER } from "../../constants/A
 import { calculateOrderTotal } from "../../utils/calculateOrderTotal";
 
 const Cart = (props) => {
-    const { items, setActiveCartMenu, activeCartMenu, updateCart, updateWishlist, setCategory, setConfirmedOrders } = props;
+    const { items, setActiveCartMenu, activeCartMenu, updateCart, updateWishlist, setConfirmedOrders } = props;
     const [totalPrice, setTotalPrice] = useState(false)
     let cartItems, total = 0;
 
@@ -37,7 +37,6 @@ const Cart = (props) => {
      * function called on confirm order
      */
     const placeOrder = () => {
-        setCategory("");
         setConfirmedOrders([...items])
         updateCart([])
     }

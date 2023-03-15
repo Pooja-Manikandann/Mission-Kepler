@@ -10,7 +10,6 @@ import PageNotFound from "./screens/page-not-found/PageNotFound";
 
 function App() {
   const [categories, setCategories] = useState([])
-  const [category, setCategory] = useState("")
   const [isLoading, setIsLoading] = useState(false);
   const [confirmedOrders, setConfirmedOrders] = useState([]);
   useEffect(() => {
@@ -26,17 +25,14 @@ function App() {
 
   }, [])
 
-
-
-
   return (
     <BrowserRouter>
-      <Layout categories={categories} category={category} setCategory={setCategory} isLoading={isLoading}>
+      <Layout categories={categories} isLoading={isLoading}>
         <Routes>
-          <Route path={HOME} element={<Homepage categories={categories} setCategory={setCategory} />} />
-          <Route path={SHOPPING} element={<CategoriesPage setIsLoading={setIsLoading} setCategory={setCategory} category={category} setConfirmedOrders={setConfirmedOrders} />} />
-          <Route path={ORDER_CONFIRMATION} element={<OrderConfirmation products={confirmedOrders} categories={categories} setCategory={setCategory} />} />
-          <Route path="*" element={<PageNotFound />} />
+          <Route path={HOME} element={<Homepage categories={categories} />} />
+          <Route path={SHOPPING} element={<CategoriesPage setIsLoading={setIsLoading} setConfirmedOrders={setConfirmedOrders} />} />
+          <Route path={ORDER_CONFIRMATION} element={<OrderConfirmation products={confirmedOrders} categories={categories} />} />
+          {/* <Route path="*" element={<PageNotFound />} /> */}
         </Routes>
       </Layout>
     </BrowserRouter>

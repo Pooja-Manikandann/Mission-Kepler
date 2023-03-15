@@ -5,25 +5,26 @@ import { getProducts } from "../../services/getProducts";
 import styles from "./CategoriesPage.module.scss"
 import PropTypes from "prop-types"
 import { INCREAMENT, MY_CART, DECREAMENT } from "../../constants/AppConstants";
+import { useParams } from "react-router-dom";
 
 const CategoriesPage = (props) => {
-    const { category, setIsLoading, setCategory, setConfirmedOrders } = props;
+    const { setIsLoading, setConfirmedOrders } = props;
     const [products, setProducts] = useState([]);
     const [activeCartMenu, setActiveCartMenu] = useState("")
     const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem("cart")) || []);
     const [wishListItems, setWishListItems] = useState(JSON.parse(localStorage.getItem("wishlist")) || []);
 
+    let { categoryId } = useParams();
     useEffect(() => {
         const fetchProducts = async () => {
-            let products = await getProducts(category);
+            let products = await getProducts(categoryId);
             setProducts(products);
             setIsLoading(false);
         }
         if (products.length)
             setIsLoading(true);
         fetchProducts();
-    }, [category])
-
+    }, [categoryId])
 
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(cartItems))
@@ -99,7 +100,6 @@ const CategoriesPage = (props) => {
                     setActiveCartMenu={setActiveCartMenu}
                     updateCart={updateCart}
                     updateWishlist={updateWishlist}
-                    setCategory={setCategory}
                     setConfirmedOrders={setConfirmedOrders}
                 />}
         </div>

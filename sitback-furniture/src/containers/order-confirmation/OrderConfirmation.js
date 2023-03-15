@@ -4,7 +4,7 @@ import styles from "./OrderConfirmation.module.scss"
 import Dashboard from "../dashboard/Dashboard"
 
 const OrderConfirmation = (props) => {
-    const { products, categories, setCategory } = props;
+    const { products, categories } = props;
 
     return (
         <div>
@@ -13,7 +13,7 @@ const OrderConfirmation = (props) => {
                 <h3 className={styles.confirmationCaption}>Thank you for shopping with us. The items will be delivered in 7 days.</h3>
                 <Products products={products} classNames="margin-even" isConfirmationPage={true} />
             </div>
-            <Dashboard categories={categories} setCategory={setCategory} classNames="padding-even" />
+            <Dashboard categories={categories} classNames="padding-even" />
         </div >
     )
 }
