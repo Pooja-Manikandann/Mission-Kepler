@@ -6,6 +6,8 @@ import { MY_CART, MY_WISHLIST } from "../../constants/AppConstants";
 
 const Products = (props) => {
     const { products, updateCart, updateWishlist, activeCartMenu, setActiveCartMenu, isConfirmationPage, classNames } = props;
+
+
     function updateShowCart() {
         // setShowCart(true)
         setActiveCartMenu(MY_CART);

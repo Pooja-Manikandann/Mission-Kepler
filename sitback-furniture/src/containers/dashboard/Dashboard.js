@@ -35,7 +35,7 @@ Dashboard.defaultProps = {
 }
 
 Dashboard.propTypes = {
-    categories: PropTypes.object,
+    // categories: PropTypes.object,
     className: PropTypes.string
 }
 

@@ -14,27 +14,8 @@
         border-bottom: $unit-1 solid $black;
     }
 
-    .nonactive {
-        a {
-
-            color: #888888;
-        }
-    }
-
-    .paddingZero {
-        padding: 0;
-
-        a {
-            font-size: 16px;
-        }
-    }
-
     .boldBorderBottom {
         border-bottom: $unit-1 solid $black;
-    }
-
-    .thinBorderBottom {
-        border-bottom: 2px solid $black;
     }
 
     a {

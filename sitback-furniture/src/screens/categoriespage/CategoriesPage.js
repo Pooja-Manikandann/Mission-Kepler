@@ -6,6 +6,8 @@ import styles from "./CategoriesPage.module.scss"
 import PropTypes from "prop-types"
 import { INCREAMENT, MY_CART, DECREAMENT } from "../../constants/AppConstants";
 import { useParams } from "react-router-dom";
+import { calculateOrderTotal } from "../../utils/calculateOrderTotal";
+import Loader from "../../components/loader/Loader";
 
 const CategoriesPage = (props) => {
     const { setIsLoading, setConfirmedOrders } = props;
@@ -13,26 +15,38 @@ const CategoriesPage = (props) => {
     const [activeCartMenu, setActiveCartMenu] = useState("")
     const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem("cart")) || []);
     const [wishListItems, setWishListItems] = useState(JSON.parse(localStorage.getItem("wishlist")) || []);
+    const [totalPrice, setTotalPrice] = useState(false)
 
     let { categoryId } = useParams();
     useEffect(() => {
         const fetchProducts = async () => {
             let products = await getProducts(categoryId);
             setProducts(products);
-            setIsLoading(false);
         }
-        if (products.length)
-            setIsLoading(true);
         fetchProducts();
-    }, [categoryId])
+    }, [categoryId, setIsLoading])
+
 
     useEffect(() => {
-        localStorage.setItem("cart", JSON.stringify(cartItems))
-    }, [cartItems])
+        if ((cartItems.length !== 0 || wishListItems.length !== 0) && activeCartMenu === "") {
+            let activeCartMenu = cartItems.length ? "mycart" : "mywishlist"
+            setActiveCartMenu(activeCartMenu);
+        }
+    }, [cartItems.length, wishListItems.length, activeCartMenu])
+
 
     useEffect(() => {
         localStorage.setItem("wishlist", JSON.stringify(wishListItems))
-    })
+    }, [wishListItems])
+
+    useEffect(() => {
+        const getTotalPrice = () => {
+            setTotalPrice(calculateOrderTotal(cartItems));
+        }
+        localStorage.setItem("cart", JSON.stringify(cartItems))
+        getTotalPrice();
+    }, [cartItems])
+
     /**
      * 
      * @param {object} product - product to be updated in cart
@@ -83,15 +97,16 @@ const CategoriesPage = (props) => {
 
     return (
         <div className={styles.wrapper}>
-
             {/* shows all products on selected category */}
-            <Products
-                products={products}
-                activeCartMenu={activeCartMenu}
-                updateCart={updateCart}
-                updateWishlist={updateWishlist}
-                setActiveCartMenu={setActiveCartMenu}
-            />
+
+            {products.length ?
+                <Products
+                    products={products}
+                    activeCartMenu={activeCartMenu}
+                    updateCart={updateCart}
+                    updateWishlist={updateWishlist}
+                    setActiveCartMenu={setActiveCartMenu}
+                /> : <Loader />}
             {/* Displays cart or wishlist based on selected */}
             {(activeCartMenu !== "") &&
                 <Cart
@@ -101,6 +116,7 @@ const CategoriesPage = (props) => {
                     updateCart={updateCart}
                     updateWishlist={updateWishlist}
                     setConfirmedOrders={setConfirmedOrders}
+                    totalPrice={totalPrice}
                 />}
         </div>
     )

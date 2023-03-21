@@ -32,7 +32,7 @@ function App() {
           <Route path={HOME} element={<Homepage categories={categories} />} />
           <Route path={SHOPPING} element={<CategoriesPage setIsLoading={setIsLoading} setConfirmedOrders={setConfirmedOrders} />} />
           <Route path={ORDER_CONFIRMATION} element={<OrderConfirmation products={confirmedOrders} categories={categories} />} />
-          {/* <Route path="*" element={<PageNotFound />} /> */}
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Layout>
     </BrowserRouter>

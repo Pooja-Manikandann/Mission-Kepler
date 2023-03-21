@@ -10,13 +10,13 @@ const Layout = (props) => {
     return (
         <React.Fragment>
             {/* Shows loader till the API is completed */}
-            {isLoading ? <div><Loader /></div> :
-                <div>
-                    <Header categories={categories} />
-                    {/* main content changes based on each page  */}
-                    <main className={styles.mainContentWrapper}>{children}</main>
-                    <Footer />
-                </div>}
+            <div>
+                <Header categories={categories} />
+                {/* main content changes based on each page  */}
+                {isLoading ? <div><Loader /></div> :
+                    <main className={styles.mainContentWrapper}>{children}</main>}
+                <Footer />
+            </div>
         </React.Fragment>
     )
 }

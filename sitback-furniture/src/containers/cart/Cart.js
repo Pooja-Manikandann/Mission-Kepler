@@ -1,29 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Button from "../../components/button/Button";
 import CartItem from "../../components/cart-item/CartItem";
-import Navbar from "../../components/navbar/Navbar";
 import { convertToCurrency } from "../../utils/convertToCurrency";
 import styles from './Cart.module.scss'
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 import { MENU_ITEMS, MY_CART, MY_WISHLIST, PLACE_ORDER } from "../../constants/AppConstants";
-import { calculateOrderTotal } from "../../utils/calculateOrderTotal";
+import CartNavbar from "../../components/cart-navbar/CartNavbar";
 
 const Cart = (props) => {
-    const { items, setActiveCartMenu, activeCartMenu, updateCart, updateWishlist, setConfirmedOrders } = props;
-    const [totalPrice, setTotalPrice] = useState(false)
-    let cartItems, total = 0;
+    const { items, setActiveCartMenu, activeCartMenu, updateCart, updateWishlist, setConfirmedOrders, totalPrice } = props;
+    let cartItems;
 
-    useEffect(() => {
-        getTotalPrice();
-    }, [updateCart])
-
-    const getTotalPrice = () => {
-        if (items.length && activeCartMenu === MY_CART) {
-            total = calculateOrderTotal(items);
-            setTotalPrice(total);
-        }
-    }
 
     /**
      * function to toggle between cart and wishlist
@@ -61,8 +49,9 @@ const Cart = (props) => {
             {/* Cart/wishlist wrapper */}
             <div className={`${styles.cartWrapper} ${styles.showCart}`}>
                 {/* Navbar to switch tab between cart/wishlist */}
-                <Navbar menuItems={MENU_ITEMS} handleClick={updateMenu} activeMenu={activeCartMenu} isHeaderNav={false} />
-                <div className={styles.cartItemsWrapper}>
+                {/* <Navbar menuItems={MENU_ITEMS} handleClick={updateMenu} activeMenu={activeCartMenu} isHeaderNav={false} /> */}
+                <CartNavbar updateMenu={updateMenu} activeCartMenu={activeCartMenu} menuItems={MENU_ITEMS} />
+                <div className={`${styles.cartItemsWrapper} ${activeCartMenu === MY_WISHLIST && styles.containerLarge}`}>
                     {cartItems}
                 </div>
                 {/* cart footer with total cost of products in cart only shown in show cart tab */}
