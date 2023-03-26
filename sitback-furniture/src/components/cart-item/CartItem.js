@@ -1,9 +1,9 @@
 import React from "react";
 import { convertToCurrency } from "../../utils/convertToCurrency";
-import Button from "../button/Button";
+import Button from "../Button/Button";
 import styles from "./CartItem.module.scss"
 import PropTypes from "prop-types"
-import { ADD_TO_CART, DECREAMENT } from "../../constants/AppConstants";
+import { ADD_TO_CART, DECREAMENT, SMALL_VARIANT } from "../../constants/AppConstants";
 import { defaultImageProvider } from "../../utils/defaultImageProvider";
 
 const CartItem = (props) => {
@@ -25,7 +25,7 @@ const CartItem = (props) => {
                             <span>{cartItem.count}</span>
                             <span className={styles.actions} onClick={() => { updateCart(cartItem) }}>+</span>
                         </div> :
-                        <Button label={ADD_TO_CART} onClick={() => { updateWishlist(cartItem, DECREAMENT) }} />
+                        <Button label={ADD_TO_CART} variant={SMALL_VARIANT} onClick={() => { updateWishlist(cartItem, DECREAMENT) }} />
                 }
             </div>
         </div>

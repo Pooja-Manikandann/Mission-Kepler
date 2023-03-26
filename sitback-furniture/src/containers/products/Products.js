@@ -9,13 +9,10 @@ const Products = (props) => {
 
 
     function updateShowCart() {
-        // setShowCart(true)
         setActiveCartMenu(MY_CART);
     }
 
     function updateShowWishList() {
-        // setShowWishlist(true);
-        // setShowCart(true)
         setActiveCartMenu(MY_WISHLIST);
     }
 

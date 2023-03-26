@@ -46,7 +46,7 @@
             display: flex;
             align-items: center;
             gap: 5px;
-            color: #3b8624;
+            color: $green;
 
             svg {
                 font-size: 18px;
@@ -78,7 +78,7 @@
         span {
             cursor: pointer;
             font-size: 13px;
-            color: #888888;
+            color: $grey-color-lighter;
             font-weight: 500;
         }
     }

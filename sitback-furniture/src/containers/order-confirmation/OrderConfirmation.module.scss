@@ -1,6 +1,8 @@
+@import "../../styles/colors";
+
 .confirmationWrapper {
     padding: 70px 100px 0;
-    background-color: #f7f7f7;
+    background-color: $white-1;
 
     .confirmationTitle {
         margin: 0 3rem;

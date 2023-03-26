@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../../components/button/Button";
+import Button from "../../components/Button/Button";
 import CartItem from "../../components/cart-item/CartItem";
 import { convertToCurrency } from "../../utils/convertToCurrency";
 import styles from './Cart.module.scss'
@@ -32,7 +32,6 @@ const Cart = (props) => {
 
     if (items && items.length) {
         cartItems = items.map((item) => (
-
             <CartItem cartItem={item} key={item.id} showCart={activeCartMenu === MY_CART} updateCart={updateCart} updateWishlist={updateWishlist} />
         ))
     }
@@ -49,7 +48,6 @@ const Cart = (props) => {
             {/* Cart/wishlist wrapper */}
             <div className={`${styles.cartWrapper} ${styles.showCart}`}>
                 {/* Navbar to switch tab between cart/wishlist */}
-                {/* <Navbar menuItems={MENU_ITEMS} handleClick={updateMenu} activeMenu={activeCartMenu} isHeaderNav={false} /> */}
                 <CartNavbar updateMenu={updateMenu} activeCartMenu={activeCartMenu} menuItems={MENU_ITEMS} />
                 <div className={`${styles.cartItemsWrapper} ${activeCartMenu === MY_WISHLIST && styles.containerLarge}`}>
                     {cartItems}

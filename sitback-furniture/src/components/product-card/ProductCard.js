@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./ProductCard.module.scss"
-import Button from "../button/Button"
+import Button from "../Button/Button"
 import { convertToCurrency } from "../../utils/convertToCurrency";
 import PropTypes from "prop-types";
 import { RiShieldCheckFill } from "react-icons/ri";

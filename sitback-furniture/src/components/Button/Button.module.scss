@@ -12,7 +12,15 @@
     font-weight: 500;
 
     &:disabled {
-        background-color: #00000091;
+        background-color: $disabled-button;
         cursor: not-allowed
     }
+}
+
+.small {
+    width: 100px;
+    height: 100%;
+    font-size: 11px;
+    padding: 0 0.5rem;
+    font-weight: 300;
 }

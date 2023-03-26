@@ -82,6 +82,11 @@ const CategoriesPage = (props) => {
         }
     }
 
+    /**
+     * 
+     * @param {*} product - product to be updated in wishlist
+     * @param {*} updateFunction - increament or decreament functionality
+     */
     function updateWishlist(product, updateFunction = INCREAMENT) {
         let index = wishListItems.findIndex(item => item.id === product.id);
         if (updateFunction === INCREAMENT && index < 0) {

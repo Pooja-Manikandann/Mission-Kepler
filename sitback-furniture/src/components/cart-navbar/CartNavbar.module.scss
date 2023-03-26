@@ -14,7 +14,7 @@
         cursor: pointer;
 
         &:not(.active) {
-            color: #888888;
+            color: $grey-color-lighter;
         }
     }
 

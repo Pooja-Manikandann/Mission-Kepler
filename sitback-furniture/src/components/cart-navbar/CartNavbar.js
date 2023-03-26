@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./CartNavbar.module.scss"
+import { PropTypes } from "prop-types";
 
 const CartNavbar = (props) => {
     const { updateMenu, menuItems, activeCartMenu } = props;
@@ -10,6 +11,18 @@ const CartNavbar = (props) => {
             ))}
         </nav>
     )
+}
+
+CartNavbar.defaultProps = {
+    updateMenu: () => { },
+    menuItems: [{ id: "" }],
+    activeCartMenu: ""
+}
+
+CartNavbar.propType = {
+    updateMenu: PropTypes.func,
+    menuItems: PropTypes.array,
+    activeCartMenu: PropTypes.string
 }
 
 export default CartNavbar;
