@@ -1,7 +1,10 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
+import BookContext from "../../Context/Books";
 import "./BookEdit.css"
 
-function BookEdit({ book, updateBookTitle, handleEdit }) {
+function BookEdit({ handleEdit, book }) {
+
+    const { updateBookTitle } = useContext(BookContext)
 
     const [newTitle, setNewTitle] = useState(book.title)
 

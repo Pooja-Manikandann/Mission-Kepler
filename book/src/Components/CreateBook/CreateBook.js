@@ -1,6 +1,8 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
+import BookContext from "../../Context/Books";
 
-function CreateBook({ onCreateBook }) {
+function CreateBook() {
+    const { appendToBooks } = useContext(BookContext)
     const [book, updateBook] = useState("")
 
 
@@ -10,7 +12,7 @@ function CreateBook({ onCreateBook }) {
 
     function createBook(e) {
         e.preventDefault();
-        onCreateBook(book);
+        appendToBooks(book);
         updateBook('');
     }
 

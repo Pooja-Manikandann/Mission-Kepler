@@ -1,9 +1,11 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
+import BookContext from "../../Context/Books";
 import BookEdit from "../BookEdit/BookEdit";
 import "./Book.css"
 
-function Book({ book, deleteBook, updateBookTitle }) {
+function Book({ book }) {
     const [showEdit, setShowEdit] = useState(false);
+    const { deleteBook } = useContext(BookContext)
     function handleClick() {
         deleteBook(book.id)
     }
@@ -12,10 +14,9 @@ function Book({ book, deleteBook, updateBookTitle }) {
         setShowEdit(!showEdit);
     }
 
-
     let element = <p>{book.title}</p>
     if (showEdit) {
-        element = <BookEdit handleEdit={handleEdit} book={book} updateBookTitle={updateBookTitle} />
+        element = <BookEdit book={book} handleEdit={handleEdit} />
     }
 
     return (
