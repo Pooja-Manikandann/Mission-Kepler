@@ -1,0 +1,85 @@
+@import "../../styles/colors";
+@import "../../styles/units";
+
+.productCardWrapper {
+
+    &.fourColumnCard {
+        width: calc((100% - (2.5rem*3))/4);
+    }
+
+    &.threeColumnCard {
+        width: calc((100% - (2.5rem*2))/3);
+    }
+
+    .products {
+        padding-bottom: $unit-3;
+
+        &.borderBottom {
+            border-bottom: 1px solid $grey-color-light;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+
+            h4,
+            span {
+                font-weight: 500;
+                font-size: 14.5px;
+            }
+        }
+
+        .quantity {
+            font-size: 11px;
+            font-weight: 400;
+            margin-top: 8px;
+        }
+
+        .productDescription {
+            font-size: 11px;
+            line-height: 1.8;
+            font-weight: 300;
+            padding: 8px 0;
+        }
+
+        .guaranteeWrapper {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: $green;
+
+            svg {
+                font-size: 18px;
+            }
+
+            h5 {
+                font-size: 13px;
+                font-weight: 500;
+            }
+        }
+    }
+
+    img {
+        width: 100%;
+        height: $unit-12;
+        border-radius: 0 $unit-1 $unit-1 $unit-1;
+        object-fit: cover;
+    }
+
+    // .productTitle {}
+
+    .actions {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: $unit-4;
+        margin-top: $unit-3;
+
+        span {
+            cursor: pointer;
+            font-size: 13px;
+            color: $grey-color-lighter;
+            font-weight: 500;
+        }
+    }
+}

@@ -1,0 +1,18 @@
+@import "../../styles/colors";
+
+.confirmationWrapper {
+    padding: 70px 100px 0;
+    background-color: $white-1;
+
+    .confirmationTitle {
+        margin: 0 3rem;
+        font-size: 22px;
+        font-weight: 500;
+    }
+
+    .confirmationCaption {
+        font-size: 17px;
+        font-weight: 300;
+        margin: 1rem 3rem;
+    }
+}

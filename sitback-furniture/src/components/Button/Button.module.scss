@@ -1,0 +1,26 @@
+@import "../../styles/colors";
+@import "../../styles/units";
+
+.regular {
+    background-color: $black;
+    border: none;
+    color: $white;
+    padding: $unit-1 $unit-6;
+    border-radius: 0 0 0.37rem 0;
+    font-size: 0.813rem;
+    cursor: pointer;
+    font-weight: 500;
+
+    &:disabled {
+        background-color: $disabled-button;
+        cursor: not-allowed
+    }
+}
+
+.small {
+    width: 100px;
+    height: 100%;
+    font-size: 11px;
+    padding: 0 0.5rem;
+    font-weight: 300;
+}

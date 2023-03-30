@@ -1,0 +1,24 @@
+@import "../../styles/colors";
+@import "../../styles/units";
+
+.cartNavbar {
+    display: flex;
+
+    .navItem {
+        color: $black;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 16px;
+        font-weight: 500;
+        margin: 0 $unit-7;
+        cursor: pointer;
+
+        &:not(.active) {
+            color: $grey-color-lighter;
+        }
+    }
+
+    .active {
+        border-bottom: 2px solid $black;
+    }
+}

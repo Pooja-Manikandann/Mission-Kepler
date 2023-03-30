@@ -1,0 +1,27 @@
+@import "../../styles/units";
+
+.dashboardWrapper {
+
+    padding: $unit-10 $unit-11 2rem;
+
+    .title {
+        font-size: 47px;
+        font-weight: 400;
+    }
+
+    .caption {
+        font-size: 30px;
+        font-weight: 400;
+        margin: 5px 0;
+    }
+
+    .categoryWrapper {
+        display: flex;
+        justify-content: space-between;
+        margin: $unit-7 0;
+    }
+
+    &.padding-even {
+        padding: 2rem $unit-11;
+    }
+}
