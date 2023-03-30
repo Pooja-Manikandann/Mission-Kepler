@@ -17,10 +17,10 @@ const Products = (props) => {
     }
 
     return (
-        <div className={`${styles.productsWrapper} ${styles[classNames]} ${(activeCartMenu !== "") ? styles.threeColumnLayout : ""}`}>
+        <div className={`${styles.productsWrapper} ${styles[classNames]} ${(activeCartMenu && activeCartMenu !== "") ? styles.threeColumnLayout : ""}`}>
             {/* iterate through products and returns product cards */}
             {products.map((product) => (
-                <ProductCard product={product} key={product.id} layout={(activeCartMenu !== "") ? "threeColumnCard" : "fourColumnCard"} setShowCart={updateShowCart} setShowWishlist={updateShowWishList} updateCart={updateCart} updateWishlist={updateWishlist} isConfirmationPage={isConfirmationPage} />
+                <ProductCard product={product} key={product.id} layout={(activeCartMenu && activeCartMenu !== "") ? "threeColumnCard" : "fourColumnCard"} setShowCart={updateShowCart} setShowWishlist={updateShowWishList} updateCart={updateCart} updateWishlist={updateWishlist} isConfirmationPage={isConfirmationPage} />
             ))}
         </div>
     )

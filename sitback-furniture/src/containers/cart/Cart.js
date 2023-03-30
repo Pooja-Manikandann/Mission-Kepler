@@ -7,10 +7,12 @@ import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 import { MENU_ITEMS, MY_CART, MY_WISHLIST, PLACE_ORDER } from "../../constants/AppConstants";
 import CartNavbar from "../../components/cart-navbar/CartNavbar";
+import { ORDER_CONFIRMATION } from "../../constants/PathConstants";
 
 const Cart = (props) => {
-    const { items, setActiveCartMenu, activeCartMenu, updateCart, updateWishlist, setConfirmedOrders, totalPrice } = props;
+    const { items, setActiveCartMenu, activeCartMenu, updateCart, updateWishlist, totalPrice } = props;
     let cartItems;
+
 
 
     /**
@@ -25,7 +27,6 @@ const Cart = (props) => {
      * function called on confirm order
      */
     const placeOrder = () => {
-        setConfirmedOrders([...items])
         updateCart([])
     }
 
@@ -60,11 +61,12 @@ const Cart = (props) => {
                             <p>{convertToCurrency(totalPrice)}</p>
                         </div>
                         {/* button to confirm order and navigate to order confirmation page */}
-                        <Link to="/confirmOrder"><Button label={PLACE_ORDER} onClick={placeOrder} disabled={activeCartMenu === MY_CART && !items.length} /></Link>
+                        <Link to={ORDER_CONFIRMATION}
+                            state={{ items: items }}><Button label={PLACE_ORDER} onClick={placeOrder} disabled={activeCartMenu === MY_CART && !items.length} /></Link>
                     </div>
                 }
             </div>
-        </div>
+        </div >
     )
 }
 

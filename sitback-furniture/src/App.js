@@ -11,7 +11,6 @@ import PageNotFound from "./screens/page-not-found/PageNotFound";
 function App() {
   const [categories, setCategories] = useState([])
   const [isLoading, setIsLoading] = useState(false);
-  const [confirmedOrders, setConfirmedOrders] = useState([]);
   useEffect(() => {
 
     const updateCategories = async () => {
@@ -30,8 +29,8 @@ function App() {
       <Layout categories={categories} isLoading={isLoading}>
         <Routes>
           <Route path={HOME} element={<Homepage categories={categories} />} />
-          <Route path={SHOPPING} element={<CategoriesPage setIsLoading={setIsLoading} setConfirmedOrders={setConfirmedOrders} />} />
-          <Route path={ORDER_CONFIRMATION} element={<OrderConfirmation products={confirmedOrders} categories={categories} />} />
+          <Route path={SHOPPING} element={<CategoriesPage setIsLoading={setIsLoading} />} />
+          <Route path={ORDER_CONFIRMATION} element={<OrderConfirmation categories={categories} />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Layout>

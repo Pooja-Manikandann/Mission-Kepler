@@ -29,3 +29,4 @@ export const MY_WISHLIST = "mywishlist"
 export const SMALL_VARIANT = "small"
 
 export const ERROR_IMAGE_URL = "https://i.postimg.cc/RZvT9tdr/guerrillabuzz-crypto-pr-Wtol-M5hsj14-unsplash.jpg"
+export const ERROR_IMAGE_ALT = "sitback furniture"

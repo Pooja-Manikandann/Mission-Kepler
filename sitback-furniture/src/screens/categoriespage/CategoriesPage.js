@@ -4,13 +4,13 @@ import Products from "../../containers/products/Products";
 import { getProducts } from "../../services/getProducts";
 import styles from "./CategoriesPage.module.scss"
 import PropTypes from "prop-types"
-import { INCREAMENT, MY_CART, DECREAMENT } from "../../constants/AppConstants";
+import { INCREAMENT, MY_CART, DECREAMENT, MY_WISHLIST } from "../../constants/AppConstants";
 import { useParams } from "react-router-dom";
 import { calculateOrderTotal } from "../../utils/calculateOrderTotal";
 import Loader from "../../components/loader/Loader";
 
 const CategoriesPage = (props) => {
-    const { setIsLoading, setConfirmedOrders } = props;
+    const { setIsLoading } = props;
     const [products, setProducts] = useState([]);
     const [activeCartMenu, setActiveCartMenu] = useState("")
     const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem("cart")) || []);
@@ -78,7 +78,7 @@ const CategoriesPage = (props) => {
             }
         }
         else {
-            setCartItems([])
+            setCartItems(...product)
         }
     }
 
@@ -115,12 +115,11 @@ const CategoriesPage = (props) => {
             {/* Displays cart or wishlist based on selected */}
             {(activeCartMenu !== "") &&
                 <Cart
-                    items={(activeCartMenu === MY_CART && cartItems) || (activeCartMenu === "mywishlist" && wishListItems)}
+                    items={(activeCartMenu === MY_CART && cartItems) || (activeCartMenu === MY_WISHLIST && wishListItems)}
                     activeCartMenu={activeCartMenu}
                     setActiveCartMenu={setActiveCartMenu}
                     updateCart={updateCart}
                     updateWishlist={updateWishlist}
-                    setConfirmedOrders={setConfirmedOrders}
                     totalPrice={totalPrice}
                 />}
         </div>
