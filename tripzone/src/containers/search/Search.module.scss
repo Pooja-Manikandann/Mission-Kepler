@@ -1,0 +1,33 @@
+.searchContainer {
+    border: 1px solid black;
+    padding: 1rem 1.25rem;
+    background-color: #e8ecef;
+
+    h3 {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .content {
+        font-size: 11px;
+        width: 54%;
+        margin-top: 1.25rem;
+    }
+
+    .content {
+        font-size: 11.6px;
+        width: 48%;
+        font-weight: 400;
+        margin: 0.5rem 0;
+    }
+
+    .searchInputBox {
+        width: 55%;
+        padding: 0.5rem;
+        border: none;
+        margin: 0.25rem 0 0.5rem 0;
+
+    }
+
+
+}
