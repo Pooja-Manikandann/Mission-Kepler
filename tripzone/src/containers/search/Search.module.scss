@@ -8,14 +8,14 @@
         font-weight: 600;
     }
 
-    .content {
+    .contentSmall {
         font-size: 11px;
         width: 54%;
         margin-top: 1.25rem;
     }
 
-    .content {
-        font-size: 11.6px;
+    .contentBig {
+        font-size: 11px;
         width: 48%;
         font-weight: 400;
         margin: 0.5rem 0;
@@ -27,6 +27,10 @@
         border: none;
         margin: 0.25rem 0 0.5rem 0;
 
+    }
+
+    .searchInputBox:focus {
+        border: none;
     }
 
 

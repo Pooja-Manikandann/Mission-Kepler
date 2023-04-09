@@ -1,13 +1,16 @@
 .wrapper {
+    display: flex;
     width: 86%;
     margin: 30px auto;
+    gap: 20px;
 
     .leftWrapper {
-        width: 60%;
+        width: 75%;
         border: 1px solid black;
     }
 
     .rightWrapper {
-        width: 40%;
+        width: 25%;
+        border: 1px solid black;
     }
 }
