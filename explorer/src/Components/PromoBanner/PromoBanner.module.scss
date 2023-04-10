@@ -1,0 +1,45 @@
+@import "../../Styles/theme";
+
+.promoBannerWrapper {
+
+    display: flex;
+
+    .promoWrapper {
+        width: 40%;
+        padding-left: 10rem;
+        padding-right: 4rem;
+
+        .promoTextWrapper {
+            color: $primary-color;
+            margin-top: 50%;
+
+            .welcomeContent {
+                text-transform: uppercase;
+                font-size: 20px;
+            }
+
+            .captionContent {
+                font-size: 4rem;
+                font-weight: 100;
+                margin-top: 35px;
+
+            }
+
+            .captionContent::last-word {
+                color: red;
+            }
+        }
+
+        .dropdownWrapper {
+            margin-top: 3rem;
+        }
+    }
+
+    .bannerWrapper {
+        width: 60%;
+
+        .bannerImage {
+            width: 100%;
+        }
+    }
+}
