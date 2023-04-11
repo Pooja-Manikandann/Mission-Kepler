@@ -1,19 +1,20 @@
 import React from 'react';
+import styles from "./Dropdown.module.scss"
 
 const Dropdown = (props) => {
 
     const { label, options, value, bindValue } = props;
 
     return (
-        <React.Fragment>
+        <div className={styles.dropdownWrapper}>
             <label>{label}</label>
-            <select value={value} {...bindValue}>
+            <select className={styles.dropdown} value={value} {...bindValue}>
                 <option>Select</option>
                 {options.map((option) => (
-                    <option value={option.code}>{option.name}</option>
+                    <option value={option.code} key={option.code}>{option.name}</option>
                 ))}
             </select>
-        </React.Fragment>
+        </div>
     )
 }
 

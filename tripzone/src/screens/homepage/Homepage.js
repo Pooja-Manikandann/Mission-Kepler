@@ -1,13 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../../containers/header/Header';
 import Search from '../../containers/search/Search';
 import TripForm from '../../containers/trip-form/TripForm';
 import styles from "./Homepage.module.scss"
 
 const Homepage = () => {
+    const [availableFlights, setAvailableFlights] = useState([])
     useEffect(() => {
 
     })
+
+    console.log("availableFlight", availableFlights)
+
     return (
         <div>
             <Header />
@@ -17,7 +21,7 @@ const Homepage = () => {
 
                 </div>
                 <div className={styles.rightWrapper}>
-                    <TripForm />
+                    <TripForm setAvailableFlights={setAvailableFlights} />
                 </div>
             </div>
         </div>

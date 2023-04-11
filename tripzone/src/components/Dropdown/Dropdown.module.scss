@@ -1,0 +1,17 @@
+.dropdownWrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem 0;
+
+    label {
+        margin: 0.25rem 0;
+        font-size: 12px;
+    }
+
+    .dropdown {
+        padding: 0.5rem 0.75rem;
+        border: none;
+        font-size: 12px;
+    }
+
+}
