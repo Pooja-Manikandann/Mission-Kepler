@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import Button from '../../components/Button/Button';
-import Dropdown from '../../components/Dropdown/Dropdown';
+import Button from '../../components/button/Button';
+import Dropdown from '../../components/dropdown/Dropdown';
 import useInput from '../../hooks/useInput';
 import getCities from '../../services/getCities';
 import styles from "./TripForm.module.scss"
@@ -9,15 +9,10 @@ import getAvailableFlights from '../../services/getAvailableFlights';
 
 const TripForm = (props) => {
 
-    const { setAvailableFlights } = props;
+    const { setAvailableFlights, source, bindSource, destination, bindDestination } = props;
 
     const [cities, setCities] = useState([])
     // const [source, setSourse] = useState("");
-
-    const [source, bindSource] = useInput("")
-
-    const [destination, bindDestination] = useInput("");
-
 
     useEffect(() => {
 

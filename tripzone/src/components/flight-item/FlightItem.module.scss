@@ -1,0 +1,25 @@
+.flightItemWrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    background-color: #fff;
+
+    .imageWrapper {
+        width: 10%;
+
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .flightDetailsWrapper {
+        width: 70%;
+    }
+
+    .bookButtonWrapper {
+        width: 20%;
+    }
+}
