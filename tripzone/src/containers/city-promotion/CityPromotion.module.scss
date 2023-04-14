@@ -1,0 +1,28 @@
+.cityPromotionWrapper {
+    padding: 1rem 1.25rem;
+    background-color: #fae17f;
+
+
+    .promotionHeading {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .cityTemperature {
+        font-size: 25px;
+        font-weight: 300;
+        margin: 0.75rem 0;
+    }
+
+    .polaroidsContainer {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin: 14px 0;
+    }
+
+    .cityDescription {
+        font-size: 12px;
+        font-weight: 400;
+    }
+}

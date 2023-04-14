@@ -6,11 +6,13 @@ import Search from '../../containers/search/Search';
 import TripForm from '../../containers/trip-form/TripForm';
 import useInput from '../../hooks/useInput';
 import getCityInformation from '../../services/getCityInformation';
+import getTouristSpots from '../../services/getTouristSpots';
 import styles from "./Homepage.module.scss"
 
 const Homepage = () => {
     const [availableFlights, setAvailableFlights] = useState([])
     const [cityInformation, setCityInformation] = useState([])
+    const [touristSpots, setTouristSpots] = useState([]);
     const [source, bindSource] = useInput("")
 
     const [destination, bindDestination] = useInput("");
@@ -22,11 +24,18 @@ const Homepage = () => {
         async function updateCityInformation() {
             let response = await getCityInformation(destination);
             setCityInformation(response);
-
         }
+
+        async function updateTouristSpotInformation() {
+            let response = await getTouristSpots(destination);
+            setTouristSpots(response);
+        }
+
         updateCityInformation();
+        updateTouristSpotInformation();
     }, [destination])
 
+    console.log("touristSpots", touristSpots)
     console.log("availableFlight", availableFlights)
 
     return (
@@ -35,7 +44,7 @@ const Homepage = () => {
             <div className={styles.wrapper}>
                 <div className={styles.leftWrapper}>
                     <Search />
-                    <CityPromotion cityInformation={cityInformation} />
+                    <CityPromotion cityInformation={cityInformation} touristSpots={touristSpots} />
                 </div>
                 <div className={styles.rightWrapper}>
                     <TripForm source={source} bindSource={bindSource} destination={destination} bindDestination={bindDestination} setAvailableFlights={setAvailableFlights} />
