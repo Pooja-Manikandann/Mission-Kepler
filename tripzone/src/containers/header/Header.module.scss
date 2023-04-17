@@ -1,6 +1,8 @@
+@import "../../styles/color";
+
 .header {
     padding: 1rem 2rem;
-    background-color: #d4525c;
+    background-color: $red;
 
     .logo {
         width: 120px;

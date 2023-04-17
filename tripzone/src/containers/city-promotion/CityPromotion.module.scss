@@ -1,28 +1,23 @@
+@import "../../styles/color";
+@import "../../styles//mixins";
+
 .cityPromotionWrapper {
     padding: 1rem 1.25rem;
-    background-color: #fae17f;
+    background-color: $yellow;
 
 
     .promotionHeading {
-        font-size: 16px;
-        font-weight: 600;
+        @include headingMedium;
     }
 
     .cityTemperature {
-        font-size: 25px;
+        font-size: 1.563rem;
         font-weight: 300;
         margin: 0.75rem 0;
     }
 
-    .polaroidsContainer {
-        display: flex;
-        gap: 14px;
-        flex-wrap: wrap;
-        margin: 14px 0;
-    }
-
     .cityDescription {
-        font-size: 12px;
+        font-size: 0.75rem;
         font-weight: 400;
     }
 }

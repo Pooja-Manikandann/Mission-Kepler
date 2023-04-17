@@ -1,0 +1,15 @@
+@mixin content {
+    font-size: 0.74rem;
+    font-weight: 400;
+}
+
+@mixin headingMedium {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+@mixin headingLarge {
+    font-size: 1.063rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}

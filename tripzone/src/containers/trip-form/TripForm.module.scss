@@ -1,6 +1,13 @@
+@import "../../styles/color";
+@import "../../styles/mixins";
+
 .tripFormWrapper {
     padding: 1rem;
-    background-color: #94befa;
+    background-color: $blue;
+
+    h2 {
+        @include headingLarge;
+    }
 
     form {
         display: flex;

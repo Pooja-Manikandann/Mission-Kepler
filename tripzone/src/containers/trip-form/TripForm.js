@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Button from '../../components/button/Button';
 import Dropdown from '../../components/dropdown/Dropdown';
-import useInput from '../../hooks/useInput';
 import getCities from '../../services/getCities';
 import styles from "./TripForm.module.scss"
-import Axios from 'axios'
 import getAvailableFlights from '../../services/getAvailableFlights';
+import { DESTINATION, SOURCE } from '../../constants/appConstants';
 
 const TripForm = (props) => {
 
@@ -14,10 +13,9 @@ const TripForm = (props) => {
     const [cities, setCities] = useState([])
     // const [source, setSourse] = useState("");
 
+    console.log("trip form")
     useEffect(() => {
-
         updateCities();
-
         async function updateCities() {
             let citiesResponse = await getCities();
             setCities(citiesResponse);
@@ -34,8 +32,8 @@ const TripForm = (props) => {
         <div className={styles.tripFormWrapper}>
             <h2>Plan my trip</h2>
             <form>
-                <Dropdown options={cities} label="Source" bindValue={bindSource} />
-                <Dropdown options={cities} label="Destination" bindValue={bindDestination} />
+                <Dropdown options={cities} label={SOURCE} bindValue={bindSource} />
+                <Dropdown options={cities} label={DESTINATION} bindValue={bindDestination} />
                 <Button label="Search" onClick={updateAvailableFlights} />
             </form>
         </div>

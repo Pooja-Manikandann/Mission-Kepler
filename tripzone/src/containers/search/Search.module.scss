@@ -1,31 +1,32 @@
+@import "../../styles/color";
+@import '../../styles/mixins';
+
 .searchContainer {
-    border: 1px solid black;
     padding: 1rem 1.25rem;
-    background-color: #e8ecef;
+    background-color: $grey;
 
     h3 {
-        font-size: 16px;
-        font-weight: 600;
+        @include headingMedium;
     }
 
     .contentSmall {
-        font-size: 11px;
+        font-size: 0.688rem;
         width: 54%;
         margin-top: 1.25rem;
+        @include content;
     }
 
     .contentBig {
-        font-size: 11px;
         width: 48%;
-        font-weight: 400;
         margin: 0.5rem 0;
+        @include content;
     }
 
     .searchInputBox {
         width: 55%;
         padding: 0.5rem;
         border: none;
-        margin: 0.25rem 0 0.5rem 0;
+        margin: 0.25rem 0 0.5rem;
 
     }
 

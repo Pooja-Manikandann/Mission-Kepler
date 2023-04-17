@@ -3,22 +3,20 @@
     align-items: flex-start;
     width: 86%;
     margin: 30px auto;
-    gap: 20px;
+    gap: 1.25rem;
 
     .leftWrapper {
         width: 75%;
-        border: 1px solid black;
     }
 
     .rightWrapper {
         width: 25%;
-        border: 1px solid black;
     }
 
     .leftWrapper,
     .rightWrapper {
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 1.25rem;
     }
 }

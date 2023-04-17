@@ -1,7 +1,9 @@
+@import "../../styles/color";
+
 .polaroidWrapper {
-    width: 200px;
+    width: calc((100% - 4*0.875rem)/5);
     padding: 0.75rem;
-    background-color: #fff;
+    background-color: $white;
     height: 250px;
 
     img {
@@ -15,12 +17,12 @@
         margin-top: 0.25rem;
 
         .heading {
-            font-size: 11px;
+            font-size: 0.688rem;
             font-weight: 600;
         }
 
         .subHeading {
-            font-size: 12.5px;
+            font-size: 0.781rem;
             font-weight: 400;
         }
     }

@@ -1,0 +1,12 @@
+@import "../../styles/color";
+@import "../../styles/mixins";
+
+.globalPromotionWrapper {
+    padding: 1rem 1.25rem;
+    background-color: $grey;
+
+    h2 {
+        @include headingMedium;
+    }
+
+}

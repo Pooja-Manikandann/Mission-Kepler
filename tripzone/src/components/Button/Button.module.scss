@@ -1,9 +1,12 @@
+@import "../../styles/color";
+
 .button {
     border: none;
     text-transform: uppercase;
-    color: #fff;
-    background-color: #d4525c;
-    font-weight: 300;
+    color: $white;
+    background-color: $red;
+    width: 100%;
+    font-weight: 400;
     padding: 0.5rem;
     margin: 0.25rem 0;
     cursor: pointer;
@@ -11,7 +14,6 @@
 
 .small {
     padding: 0.25rem;
-    width: 100%;
     margin: 0;
-    font-size: 13px;
+    font-size: 0.6rem;
 }
