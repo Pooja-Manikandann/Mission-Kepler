@@ -10,6 +10,7 @@ const FlightItem = (props) => {
     console.log("flightItem", flightItem)
 
     function book() {
+        console.log("bookkkkkkk")
         bookFlight(flightItem)
     }
     return (

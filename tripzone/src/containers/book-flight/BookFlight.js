@@ -9,6 +9,9 @@ const BookFlight = (props) => {
     const { flightDetails } = props;
     const [discount, setDiscount] = useState(10);
     const [tax, setTax] = useState(5);
+
+    console.log("book flighttt")
+
     return (
         <div className={styles.bookFlightWrapper}>
             <h2>Book now</h2>

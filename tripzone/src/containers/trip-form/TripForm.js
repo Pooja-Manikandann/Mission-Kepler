@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Button from '../../components/button/Button';
 import Dropdown from '../../components/dropdown/Dropdown';
 import getCities from '../../services/getCities';
 import styles from "./TripForm.module.scss"
-import getAvailableFlights from '../../services/getAvailableFlights';
 import { DESTINATION, SOURCE } from '../../constants/appConstants';
 
 const TripForm = (props) => {
 
-    const { setAvailableFlights, source, bindSource, destination, bindDestination } = props;
+    const { source, bindSource, destination, bindDestination, onChange, onSearch } = props;
 
     const [cities, setCities] = useState([])
     // const [source, setSourse] = useState("");
 
     console.log("trip form")
+    console.log("soucedesti", source, destination)
     useEffect(() => {
         updateCities();
         async function updateCities() {
@@ -22,19 +22,15 @@ const TripForm = (props) => {
         }
     }, [])
 
-    const updateAvailableFlights = async (e) => {
-        e.preventDefault();
-        const flightResponse = await getAvailableFlights(source, destination)
-        setAvailableFlights(flightResponse);
-    }
+
 
     return (
         <div className={styles.tripFormWrapper}>
             <h2>Plan my trip</h2>
             <form>
                 <Dropdown options={cities} label={SOURCE} bindValue={bindSource} />
-                <Dropdown options={cities} label={DESTINATION} bindValue={bindDestination} />
-                <Button label="Search" onClick={updateAvailableFlights} />
+                <Dropdown options={cities} label={DESTINATION} bindValue={bindDestination} onChange={onChange} />
+                <Button label="Search" onClick={onSearch} />
             </form>
         </div>
     )

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import TouristSpots from '../../components/tourist-spots/TouristSpots';
 import styles from "./CityPromotion.module.scss"
 import { isEmpty } from "lodash"

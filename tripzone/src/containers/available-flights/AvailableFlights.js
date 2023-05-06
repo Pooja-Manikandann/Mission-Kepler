@@ -11,7 +11,7 @@ const AvailableFlights = (props) => {
     console.log("available flights", availableFlights)
 
     if (availableFlights === NOT_SELECTED || !availableFlights) {
-        element = <h5 className={styles.warning}>Please select source and destination and click serach to view available flights</h5>
+        element = <h5 className={styles.warning}>Please select source and destination and click search to view available flights</h5>
     }
     else if (!availableFlights.length) {
         element = <div className={styles.notAvailableWrapper}>
