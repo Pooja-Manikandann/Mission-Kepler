@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { } from 'react'
 import TouristSpots from '../../components/tourist-spots/TouristSpots';
 import styles from "./CityPromotion.module.scss"
 import { isEmpty } from "lodash"
@@ -10,7 +10,7 @@ const CityPromotion = (props) => {
     console.log("cicty promotion", cityInformation, touristSpots)
     return (
         <div className={styles.cityPromotionWrapper}>
-            {!isEmpty(cityInformation) ?
+            {!isEmpty(cityInformation) && !isEmpty(touristSpots) ?
                 <div><h3 className={styles.promotionHeading}>Travelling to <span>{cityInformation.cityName}? Know more about it.</span></h3>
                     <h4 className={styles.cityTemperature}>{cityInformation.weather}</h4>
                     <p className={styles.cityDescription}>{cityInformation.description}</p>

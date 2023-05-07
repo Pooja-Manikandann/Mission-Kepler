@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import FlightItem from "../../components/flight-item/FlightItem";
 import styles from "./AvailableFlights.module.scss"
 import FLIGHT_NOT_AVAILABLE from "../../assets/not_available.png"
@@ -37,4 +37,4 @@ const AvailableFlights = (props) => {
     )
 }
 
-export default AvailableFlights;
+export default memo(AvailableFlights);

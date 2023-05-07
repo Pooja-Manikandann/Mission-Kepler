@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from '../../components/button/Button';
 import Dropdown from '../../components/dropdown/Dropdown';
 import getCities from '../../services/getCities';
@@ -7,13 +7,12 @@ import { DESTINATION, SOURCE } from '../../constants/appConstants';
 
 const TripForm = (props) => {
 
-    const { source, bindSource, destination, bindDestination, onChange, onSearch } = props;
+    const { bindSource, bindDestination, onSearch } = props;
 
     const [cities, setCities] = useState([])
     // const [source, setSourse] = useState("");
 
     console.log("trip form")
-    console.log("soucedesti", source, destination)
     useEffect(() => {
         updateCities();
         async function updateCities() {
@@ -29,7 +28,7 @@ const TripForm = (props) => {
             <h2>Plan my trip</h2>
             <form>
                 <Dropdown options={cities} label={SOURCE} bindValue={bindSource} />
-                <Dropdown options={cities} label={DESTINATION} bindValue={bindDestination} onChange={onChange} />
+                <Dropdown options={cities} label={DESTINATION} bindValue={bindDestination} />
                 <Button label="Search" onClick={onSearch} />
             </form>
         </div>
