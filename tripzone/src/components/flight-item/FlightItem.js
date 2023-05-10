@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../button/Button";
 import airIndia from "../../assets/air-india.png"
 import styles from "./FlightItem.module.scss"
-import { BOOK, SMALL_VARIANT } from "../../constants/appConstants";
+import { BOOK, SMALL_VARIANT } from "../../constants/appConstants.constant";
 
 const FlightItem = (props) => {
     const { flightItem, bookFlight } = props;

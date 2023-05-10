@@ -12,24 +12,30 @@ export const ERROR_HANDLER_IMG_URL = "https://i1.wp.com/uxdworld.com/wp-content/
 
 export const MEMBERSHIP_YEAR = [
     {
-        name: "1 YEAR"
+        name: "1 YEAR",
+        increamentValue: 5
     },
     {
-        name: "2 YEARS"
+        name: "2 YEARS",
+        increamentValue: 10
     },
     {
-        name: "3 YEARS"
+        name: "3 YEARS",
+        increamentValue: 15
     },
 ]
 
 export const TAX_PERCENTAGE = [
     {
-        name: "10%"
+        name: "10%",
+        increamentValue: 10
     },
     {
-        name: "20%"
+        name: "20%",
+        increamentValue: 20
     },
     {
-        name: "30%"
+        name: "30%",
+        increamentValue: 30
     },
 ]

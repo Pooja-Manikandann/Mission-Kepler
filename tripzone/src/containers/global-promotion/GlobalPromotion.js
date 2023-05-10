@@ -2,7 +2,7 @@ import React, { useCallback, memo, useMemo, useState, useEffect } from "react";
 import TouristSpots from "../../components/tourist-spots/TouristSpots";
 import styles from "./GlobalPromotion.module.scss";
 import getTouristSpots from "../../services/getTouristSpots";
-import { ALL } from "../../constants/appConstants";
+import { ALL } from "../../constants/appConstants.constant";
 
 const GlobalPromotion = (props) => {
     // const { touristSpots } = props;

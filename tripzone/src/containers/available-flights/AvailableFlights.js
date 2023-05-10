@@ -1,14 +1,18 @@
-import React, { memo } from "react";
+import React, { useState, useCallback, useContext, useEffect } from "react";
 import FlightItem from "../../components/flight-item/FlightItem";
 import styles from "./AvailableFlights.module.scss"
 import FLIGHT_NOT_AVAILABLE from "../../assets/not_available.png"
-import { NOT_SELECTED } from "../../constants/appConstants";
+import { NOT_SELECTED } from "../../constants/appConstants.constant";
+import AppContext from "../../context/appContext";
+import getAvailableFlights from "../../services/getAvailableFlights";
 
 const AvailableFlights = (props) => {
-    const { availableFlights, bookFlight } = props;
+    const { bookFlight, availableFlights } = props;
     let element;
+    // const { availableFlights } = useContext(AppContext);
 
-    console.log("available flights", availableFlights)
+
+    console.log("available flights");
 
     if (availableFlights === NOT_SELECTED || !availableFlights) {
         element = <h5 className={styles.warning}>Please select source and destination and click search to view available flights</h5>
@@ -37,4 +41,4 @@ const AvailableFlights = (props) => {
     )
 }
 
-export default memo(AvailableFlights);
+export default AvailableFlights;

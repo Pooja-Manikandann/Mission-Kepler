@@ -1,15 +1,27 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import styles from "./Search.module.scss"
+import useInput from '../../hooks/useInput';
+import AppContext from '../../context/appContext';
+import { getCityPromotion } from '../../utils/getCityPromotion';
 
 const Search = (props) => {
 
-    const { search, bindSearch } = props;
+    // const { search, bindSearch } = props;
+    const [search, bindSearch] = useInput("");
+    const { setCityPromotion } = useContext(AppContext);
 
     const inputReference = useRef(null);
 
     useEffect(() => {
         inputReference.current.focus();
     }, [])
+
+    useEffect(() => {
+        let promotionData = getCityPromotion(search.toUpperCase())
+        setCityPromotion(promotionData);
+
+    }, [search]);
+
     console.log("search")
 
     return (

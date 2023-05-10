@@ -5,9 +5,20 @@
     padding: 1rem;
     background-color: $blue;
 
-    h2 {
-        @include headingLarge;
+    .bookFlightHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2 {
+            @include headingLarge;
+        }
+
+        .primeLogo {
+            width: 40px;
+        }
     }
+
 
     .price {
         font-size: 1.625rem;

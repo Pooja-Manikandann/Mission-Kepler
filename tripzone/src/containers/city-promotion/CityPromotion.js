@@ -1,12 +1,13 @@
-import React, { } from 'react'
+import React, { useContext } from 'react'
 import TouristSpots from '../../components/tourist-spots/TouristSpots';
 import styles from "./CityPromotion.module.scss"
 import { isEmpty } from "lodash"
-
-
+import AppContext from '../../context/appContext';
 
 const CityPromotion = (props) => {
-    const { cityInformation, touristSpots } = props;
+
+    const { cityPromotion } = useContext(AppContext)
+    const { cityInformation, touristSpots } = cityPromotion;
     console.log("cicty promotion", cityInformation, touristSpots)
     return (
         <div className={styles.cityPromotionWrapper}>

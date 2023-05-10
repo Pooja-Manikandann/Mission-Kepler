@@ -1,5 +1,5 @@
 import Axios from 'axios'
-import { GET_FLIGHTS } from '../constants/apiConstants';
+import { GET_FLIGHTS } from '../constants/apiConstants.constant';
 
 const getAvailableFlights = async (source, destination) => {
     const response = await Axios.get(GET_FLIGHTS, {

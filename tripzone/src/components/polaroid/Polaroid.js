@@ -1,7 +1,7 @@
 import React from "react";
 import errorImageProvider from "../../utils/errorImageProvider";
 import styles from "./Polaroid.module.scss"
-import { ASSETS_PATH } from "../../constants/appConstants";
+import { ASSETS_PATH } from "../../constants/appConstants.constant";
 
 const Polaroid = (props) => {
     const { details } = props;
