@@ -4,11 +4,10 @@ import useInput from '../../hooks/useInput';
 import AppContext from '../../context/appContext';
 import { getCityPromotion } from '../../utils/getCityPromotion';
 
-const Search = (props) => {
+const Search = () => {
 
-    // const { search, bindSearch } = props;
     const [search, bindSearch] = useInput("");
-    const { setCityPromotion } = useContext(AppContext);
+    const { setCityPromotion, setShowCityPromotion } = useContext(AppContext);
 
     const inputReference = useRef(null);
 
@@ -17,12 +16,15 @@ const Search = (props) => {
     }, [])
 
     useEffect(() => {
-        let promotionData = getCityPromotion(search.toUpperCase())
-        setCityPromotion(promotionData);
-
+        async function fetchPromotion() {
+            if (search !== "") {
+                let promotionData = await getCityPromotion(search.toUpperCase())
+                setCityPromotion(promotionData);
+                setShowCityPromotion(true);
+            }
+        }
+        fetchPromotion();
     }, [search]);
-
-    console.log("search")
 
     return (
         <div className={styles.searchContainer}>

@@ -1,4 +1,4 @@
-import React, { useCallback, memo, useMemo, useState, useEffect } from "react";
+import React, { memo, useState, useEffect } from "react";
 import TouristSpots from "../../components/tourist-spots/TouristSpots";
 import styles from "./GlobalPromotion.module.scss";
 import getTouristSpots from "../../services/getTouristSpots";
@@ -10,11 +10,9 @@ const GlobalPromotion = (props) => {
     const [globalTouristSpots, setGlobalTouristSpots] = useState([]);
 
     useEffect(() => {
-        console.log("use memo global promo")
         async function updateGlobalPromotion() {
             let response = await getTouristSpots(ALL);
             setGlobalTouristSpots(response);
-            // console.log("res", response)
             return response;
         }
         updateGlobalPromotion();

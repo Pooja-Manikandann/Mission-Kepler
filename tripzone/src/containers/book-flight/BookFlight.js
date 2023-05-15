@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import DiscountDisplayer from "../../components/discount-displayer/DiscountDisplayer";
 import { MEMBERSHIP_YEAR, TAX_PERCENTAGE } from "../../constants/appConstants.constant";
 import ButtonGroup from "../../components/button-group/ButtonGroup";
@@ -16,13 +16,22 @@ const BookFlight = (props) => {
     console.log("book flighttt")
     const { user } = useContext(LoginContext)
 
+    useEffect(() => {
+        setDiscount(10);
+        setTax(5);
+        setFlightPrice(flightDetails.price);
+    }, [flightDetails])
+
     function increaseDiscount(increamentValue) {
-        setDiscount(10 + increamentValue)
+        const price = Number(flightDetails.price)
+        setDiscount(10 + increamentValue);
+        setFlightPrice(price - discount)
     }
 
     function increaseTax(taxPercentage) {
         const price = Number(flightDetails.price)
         const amount = (price / 100) * taxPercentage;
+        setTax(taxPercentage);
         setFlightPrice(price + amount);
     }
 
@@ -51,7 +60,6 @@ const BookFlight = (props) => {
                 <p className={styles.content}>Your ticket will be emailed to your registered email and phone number.</p>
                 <Button label="Prooced to pay" />
             </div>
-
         </div>
     )
 }

@@ -7,10 +7,9 @@ import { BOOK, SMALL_VARIANT } from "../../constants/appConstants.constant";
 const FlightItem = (props) => {
     const { flightItem, bookFlight } = props;
 
-    console.log("flightItem", flightItem)
+    console.log("flightItem")
 
     function book() {
-        console.log("bookkkkkkk")
         bookFlight(flightItem)
     }
     return (

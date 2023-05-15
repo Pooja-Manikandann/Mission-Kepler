@@ -9,7 +9,7 @@ const Dropdown = (props) => {
         <div className={styles.dropdownWrapper}>
             <label>{label}</label>
             <select className={styles.dropdown} value={value} {...bindValue}>
-                <option>Select</option>
+                <option hidden>Select</option>
                 {options.map((option) => (
                     <option value={option.code} key={option.code}>{option.name}</option>
                 ))}

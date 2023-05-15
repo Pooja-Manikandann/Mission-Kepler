@@ -1,20 +1,13 @@
-import React, { createContext, useCallback, useState } from 'react';
-import useInput from '../hooks/useInput';
-import getAvailableFlights from '../services/getAvailableFlights';
-import getCityInformation from '../services/getCityInformation';
-import getTouristSpots from '../services/getTouristSpots';
+import React, { createContext, useState } from 'react';
 
 const AppContext = createContext();
 const AppProvider = ({ children }) => {
 
     const [cityPromotion, setCityPromotion] = useState({});
 
-    console.log("helloooo", cityPromotion)
+    const [showCityPromotion, setShowCityPromotion] = useState(false);
 
-
-    // console.log("availableFlightsavailableFlights", availableFlights)
-
-    const valuesToExport = { cityPromotion, setCityPromotion }
+    const valuesToExport = { cityPromotion, setCityPromotion, showCityPromotion, setShowCityPromotion }
 
     return <AppContext.Provider value={valuesToExport}>{children}</AppContext.Provider>
 

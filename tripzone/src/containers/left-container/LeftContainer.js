@@ -1,25 +1,21 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useContext } from 'react'
 import Search from '../search/Search';
 import CityPromotion from '../city-promotion/CityPromotion';
 import GlobalPromotion from '../global-promotion/GlobalPromotion';
 import styles from "./LeftContainer.module.scss"
-import useInput from '../../hooks/useInput';
+import AppContext from '../../context/appContext';
 
-const LeftContainer = (props) => {
-    const { cityInformation, touristSpots } = props;
+const LeftContainer = () => {
 
-    // const [search, bindSearch] = useInput("");
-
-
-
+    const { showCityPromotion } = useContext(AppContext);
 
     return (
         <div className={styles.leftWrapper}>
             <Search />
-            <CityPromotion cityInformation={cityInformation} touristSpots={touristSpots} />
+            {showCityPromotion
+                &&
+                <CityPromotion />}
             <GlobalPromotion />
-            {/* <PureGlobalPromotion /> */}
-
         </div>
     )
 }

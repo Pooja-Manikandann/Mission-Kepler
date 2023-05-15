@@ -4,11 +4,29 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 0 2rem;
     background-color: $red;
     color: $white;
 
     .logo {
+        margin: 1rem 0;
         width: 120px;
     }
+
+    .detailsWrapper {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+
+        .dateTimeWrapper {
+            display: flex;
+            gap: 3px;
+        }
+
+        .profileName {
+            font-size: 14px;
+            font-weight: 600;
+        }
+    }
+
 }

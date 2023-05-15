@@ -1,0 +1,17 @@
+.box {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 0.5rem 2rem;
+    background-color: #bd434c;
+
+    .subtitle {
+        font-size: 10px;
+        font-weight: 500;
+    }
+
+    .content {
+        font-size: 13px;
+        font-weight: 600;
+    }
+}
