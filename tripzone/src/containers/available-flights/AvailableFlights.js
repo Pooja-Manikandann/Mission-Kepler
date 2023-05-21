@@ -2,13 +2,12 @@ import React from "react";
 import FlightItem from "../../components/flight-item/FlightItem";
 import styles from "./AvailableFlights.module.scss"
 import FLIGHT_NOT_AVAILABLE from "../../assets/not_available.png"
-import { NOT_SELECTED } from "../../constants/appConstants.constant";
 
 const AvailableFlights = (props) => {
     const { bookFlight, availableFlights } = props;
     let element;
 
-    console.log("available flights");
+    console.log("Container - available flights");
 
     if (!availableFlights.length) {
         element = <div className={styles.notAvailableWrapper}>

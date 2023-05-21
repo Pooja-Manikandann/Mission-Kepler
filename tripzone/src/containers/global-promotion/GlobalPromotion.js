@@ -4,9 +4,8 @@ import styles from "./GlobalPromotion.module.scss";
 import getTouristSpots from "../../services/getTouristSpots";
 import { ALL } from "../../constants/appConstants.constant";
 
-const GlobalPromotion = (props) => {
-    // const { touristSpots } = props;
-    console.log("global promotion")
+const GlobalPromotion = () => {
+    console.log("Container - global promotion")
     const [globalTouristSpots, setGlobalTouristSpots] = useState([]);
 
     useEffect(() => {

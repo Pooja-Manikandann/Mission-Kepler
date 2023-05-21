@@ -9,6 +9,8 @@ const LeftContainer = () => {
 
     const { showCityPromotion } = useContext(AppContext);
 
+    console.log("Container - Leftcontainer");
+
     return (
         <div className={styles.leftWrapper}>
             <Search />

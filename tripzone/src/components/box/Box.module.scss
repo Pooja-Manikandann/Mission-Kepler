@@ -1,9 +1,11 @@
+@import "../../styles/color";
+
 .box {
     display: flex;
     flex-direction: column;
     text-align: center;
     padding: 0.5rem 2rem;
-    background-color: #bd434c;
+    background-color: $dark-red;
 
     .subtitle {
         font-size: 10px;

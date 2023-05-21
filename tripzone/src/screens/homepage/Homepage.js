@@ -15,6 +15,8 @@ const Homepage = () => {
         setUser(userResponse);
     }, [])
 
+    console.log("Page - Homepage");
+
     useEffect(() => {
         loginUser("jim", "jim123");
     }, [loginUser])

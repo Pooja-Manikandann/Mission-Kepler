@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Homepage from './screens/homepage/Homepage';
-import { Provider } from './context/loginContext';
+import { LoginProvider } from './context/loginContext';
 import { AppProvider } from "./context/appContext";
 
 function App() {
   return (
-    <Provider>
+    <LoginProvider>
       <AppProvider>
         <BrowserRouter>
           <Routes>
@@ -13,7 +13,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </AppProvider>
-    </Provider>
+    </LoginProvider>
   );
 }
 

@@ -1,23 +1,16 @@
-import React, { createContext, useState, useCallBack } from 'react';
-import loginInUser from '../services/loginInUser';
-
+import React, { createContext, useState } from 'react';
 
 const LoginContext = createContext();
 
-const Provider = ({ children }) => {
+const LoginProvider = ({ children }) => {
 
     const [user, setUser] = useState({});
-
-    // const loginUser = async (userName, password) => {
-    //     let userResponse = await loginInUser(userName, password);
-    //     setUser(userResponse);
-    // }
 
     const valuesToExport = { user, setUser }
 
     return <LoginContext.Provider value={valuesToExport}>{children}</LoginContext.Provider>
 }
 
-export { Provider };
+export { LoginProvider };
 
 export default LoginContext;

@@ -11,7 +11,7 @@ const CityPromotion = () => {
 
     const cityPromotionRef = useRef(null)
 
-    console.log("city promotion")
+    console.log("Container - city promotion")
 
     return (
         <div className={styles.cityPromotionWrapper} ref={cityPromotionRef}>

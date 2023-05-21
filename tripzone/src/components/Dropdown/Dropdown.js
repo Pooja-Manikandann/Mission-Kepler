@@ -3,12 +3,12 @@ import styles from "./Dropdown.module.scss"
 
 const Dropdown = (props) => {
 
-    const { label, options, value, bindValue } = props;
+    const { label, options, bindValue } = props;
 
     return (
         <div className={styles.dropdownWrapper}>
             <label>{label}</label>
-            <select className={styles.dropdown} value={value} {...bindValue}>
+            <select className={styles.dropdown} {...bindValue}>
                 <option hidden>Select</option>
                 {options.map((option) => (
                     <option value={option.code} key={option.code}>{option.name}</option>
@@ -16,9 +16,6 @@ const Dropdown = (props) => {
             </select>
         </div>
     )
-}
-
-Dropdown.defaultProps = {
 }
 
 export default Dropdown;

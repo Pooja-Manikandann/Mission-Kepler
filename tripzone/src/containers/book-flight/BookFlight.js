@@ -13,7 +13,7 @@ const BookFlight = (props) => {
     const [tax, setTax] = useState(5);
     const [flightPrice, setFlightPrice] = useState(flightDetails.price)
 
-    console.log("book flighttt")
+    console.log("Container - book flight")
     const { user } = useContext(LoginContext)
 
     useEffect(() => {

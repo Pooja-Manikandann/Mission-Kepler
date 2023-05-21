@@ -7,12 +7,17 @@ import { isEmpty } from "lodash"
 import getAvailableFlights from '../../services/getAvailableFlights';
 
 
-const RightContainer = (props) => {
+const RightContainer = () => {
     const [flightItem, setFlightItem] = useState({})
     const [availableFlights, setAvailableFlights] = useState([]);
+    const [showFlights, setShowFlights] = useState(false);
+
+    console.log("Container - Rightcontainer");
+
     const fetchFlight = async (source, destination) => {
         const flightResponse = await getAvailableFlights(source, destination);
         setAvailableFlights(flightResponse);
+        setShowFlights(true);
         setFlightItem({});
     }
 
@@ -20,7 +25,7 @@ const RightContainer = (props) => {
         <div className={styles.rightWrapper}>
 
             <TripForm fetchFlight={fetchFlight} />
-            {!isEmpty(availableFlights) &&
+            {showFlights &&
                 <AvailableFlights availableFlights={availableFlights} bookFlight={setFlightItem} />}
             {!isEmpty(flightItem) &&
                 <BookFlight flightDetails={flightItem} />

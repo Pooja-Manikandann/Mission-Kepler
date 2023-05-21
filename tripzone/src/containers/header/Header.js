@@ -7,7 +7,6 @@ import useTimer from '../../hooks/useTimer';
 import { convertISDToEST, getDefaultTime } from '../../utils/getTime';
 
 const Header = () => {
-    console.log("header")
 
     const [minutes, setMinutes] = useState(0);
     const [hours, setHours] = useState(0);
@@ -17,6 +16,8 @@ const Header = () => {
     const [estDate, setEstDate] = useState("");
     const [sessionTime, setSessionTime] = useState(0);
     const [session, setSession] = useState("");
+
+    const { user } = useContext(LoginContext);
 
     useEffect(() => {
         const date = new Date();
@@ -60,8 +61,8 @@ const Header = () => {
         let session = sessionHours && sessionMinutes ? `${sessionHours}HR ${sessionMinutes}MIN` : sessionHours ? `${sessionHours}HR` : sessionMinutes ? `${sessionMinutes}MIN` : `0MIN`
         setSession(session);
     }, [sessionTime])
+    console.log("Container - header");
 
-    const { user } = useContext(LoginContext);
     return (
         <header className={styles.header}>
             <img src={logo} alt='logo' className={styles.logo} />

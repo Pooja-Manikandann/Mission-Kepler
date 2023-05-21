@@ -11,6 +11,8 @@ const Search = () => {
 
     const inputReference = useRef(null);
 
+    console.log("Container - search");
+
     useEffect(() => {
         inputReference.current.focus();
     }, [])

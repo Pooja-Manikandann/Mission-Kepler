@@ -9,6 +9,7 @@ import useInput from '../../hooks/useInput';
 import { getCityPromotion } from '../../utils/getCityPromotion';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import { SAME_SOURCE_DESTINATION, SOURCE_DESTINATION_EMPTY } from '../../constants/errorContants.constant';
 
 const TripForm = (props) => {
 
@@ -18,12 +19,16 @@ const TripForm = (props) => {
     const [cities, setCities] = useState([])
     const [showError, setShowError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+
     const { fetchFlight } = props;
+
     const { setCityPromotion, setShowCityPromotion } = useContext(AppContext);
+
     let vertical = 'top';
     let horizontal = 'right';
 
-    console.log("trip form")
+    console.log("Container - tripform");
+
     useEffect(() => {
         updateCities();
         async function updateCities() {
@@ -36,7 +41,7 @@ const TripForm = (props) => {
         e.preventDefault();
         if (!source || !destination) {
             setShowError(true);
-            setErrorMessage("Please select source and destination")
+            setErrorMessage(SOURCE_DESTINATION_EMPTY);
             setTimeout(() => {
                 setShowError(false);
             }, 5000)
@@ -45,11 +50,11 @@ const TripForm = (props) => {
         }
         if (source === destination) {
             setShowError(true);
-            setErrorMessage("Select different source and destination")
+            setErrorMessage(SAME_SOURCE_DESTINATION);
 
             setTimeout(() => {
                 setShowError(false);
-            }, 5000)
+            }, 5000);
             return;
         }
         fetchFlight(source, destination);
@@ -64,7 +69,7 @@ const TripForm = (props) => {
             }
         }
         fetchPromotion();
-    }, [destination])
+    }, [destination]);
 
     return (
         <>
@@ -75,7 +80,7 @@ const TripForm = (props) => {
             <div className={styles.tripFormWrapper}>
                 <h2>Plan my trip</h2>
                 <form>
-                    <Dropdown options={cities} label={SOURCE} bindValue={bindSource} />
+                    <Dropdown options={cities} label={SOURCE} value={source} bindValue={bindSource} />
                     <Dropdown options={cities} label={DESTINATION} bindValue={bindDestination} />
                     <Button label="Search" onClick={searchFlights} />
                 </form>
