@@ -18,9 +18,9 @@ const Homepage = () => {
     console.log("Page - Homepage");
 
     useEffect(() => {
+        // loginUser("pam", "pam123");
         loginUser("jim", "jim123");
     }, [loginUser])
-
 
     return (
         <div>

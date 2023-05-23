@@ -8,10 +8,22 @@
     background-color: $red;
     color: $white;
 
-    .logo {
-        margin: 1rem 0;
-        width: 120px;
+    .logoContainer {
+        display: flex;
+        gap: 6px;
+
+        .logo {
+            margin: 1rem 0;
+            width: 120px;
+        }
+
+        .primeLogo {
+            width: 2rem;
+            object-fit: contain;
+            margin-bottom: 0.5rem;
+        }
     }
+
 
     .detailsWrapper {
         display: flex;

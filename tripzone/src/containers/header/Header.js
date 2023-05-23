@@ -5,6 +5,7 @@ import LoginContext from '../../context/loginContext';
 import Box from '../../components/box/Box';
 import useTimer from '../../hooks/useTimer';
 import { convertISDToEST, getDefaultTime } from '../../utils/getTime';
+import prime from "../../assets/prime.png";
 
 const Header = () => {
 
@@ -65,7 +66,12 @@ const Header = () => {
 
     return (
         <header className={styles.header}>
-            <img src={logo} alt='logo' className={styles.logo} />
+            <div className={styles.logoContainer}>
+                <img src={logo} alt='logo' className={styles.logo} />
+                {user.prime &&
+                    <img src={prime} alt='prime user' className={styles.primeLogo} />}
+
+            </div>
             <div className={styles.detailsWrapper}>
                 <div className={styles.dateTimeWrapper}>
                     <Box subtitle='SESSION TIME' content={session} />
