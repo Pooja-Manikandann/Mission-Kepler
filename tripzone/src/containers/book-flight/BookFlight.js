@@ -23,9 +23,12 @@ const BookFlight = (props) => {
     }, [flightDetails])
 
     function increaseDiscount(increamentValue) {
+        console.log('incrrease discount');
         const price = Number(flightDetails.price)
-        setDiscount(10 + increamentValue);
-        setFlightPrice(price - discount)
+        const discountAmount = 10 + increamentValue;
+        setDiscount(discountAmount);
+        const total = price - discountAmount;
+        setFlightPrice(total);
     }
 
     function increaseTax(taxPercentage) {
@@ -49,11 +52,11 @@ const BookFlight = (props) => {
                 <DiscountDisplayer title="Tax Amount" price={tax} />
             </div>
             <div className={styles.contentWrapper}>
-                <p className={styles.content}>You can increase your membership discount by renewing your membership. Choose Number of Years to Renew.</p>
+                <p className={styles.content}>You can further increase your membership discount by renewing your membership. Choose Number of Years to Renew.</p>
                 <ButtonGroup items={MEMBERSHIP_YEAR} onClick={increaseDiscount} />
             </div>
             <div className={styles.contentWrappsr}>
-                <p className={styles.content}>You can donate to COVID-19 fund by increasing the Tax component. Choose % of Tax Component to be increased</p>
+                <p className={styles.content}>You can donate to COVID-19 care fund by increasing the TaxComponent. Choose % of Tax Component to be increased</p>
                 <ButtonGroup items={TAX_PERCENTAGE} onClick={increaseTax} />
             </div>
             <div className={styles.contentWrapper}>

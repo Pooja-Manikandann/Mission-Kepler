@@ -19,7 +19,7 @@ const GlobalPromotion = () => {
 
     return (
         <div className={styles.globalPromotionWrapper}>
-            <h2>The world is Beautiful. Keep Travelling</h2>
+            <h2>The World is Beautiful. Keep Travelling</h2>
             <TouristSpots touristSpots={globalTouristSpots} />
         </div>
     )

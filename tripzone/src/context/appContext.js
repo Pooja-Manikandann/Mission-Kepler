@@ -7,7 +7,9 @@ const AppProvider = ({ children }) => {
 
     const [showCityPromotion, setShowCityPromotion] = useState(false);
 
-    const valuesToExport = { cityPromotion, setCityPromotion, showCityPromotion, setShowCityPromotion }
+    const [previousCity, setPreviousCity] = useState({});
+
+    const valuesToExport = { cityPromotion, setCityPromotion, showCityPromotion, setShowCityPromotion, previousCity, setPreviousCity }
 
     return <AppContext.Provider value={valuesToExport}>{children}</AppContext.Provider>
 

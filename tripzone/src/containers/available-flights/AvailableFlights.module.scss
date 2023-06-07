@@ -2,11 +2,12 @@
 @import "../../styles/mixins";
 
 .availableFlightsWrapper {
-    padding: 1rem;
+    padding: 1.5rem;
     background-color: $green;
 
     h2 {
         @include headingLarge;
+        margin-bottom: 1rem;
     }
 
     .notAvailableWrapper {

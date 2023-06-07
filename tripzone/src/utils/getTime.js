@@ -11,11 +11,20 @@ function updateToTwoDigits(hours) {
 }
 
 
-function getDefaultTime(date) {
-    const initialMinutes = updateToTwoDigits(date.getMinutes());
-    const initialHours = updateToTwoDigits(date.getHours());
-    const formattedDate = updateToTwoDigits(getFormattedDate(date));
-    return { initialMinutes, initialHours, formattedDate };
+function getDefaultTime() {
+    const date = new Date();
+    const est = convertISDToEST(date);
+    return {
+        ist: getTimings(date),
+        est: getTimings(est)
+    }
+}
+
+function getTimings(currentDate) {
+    const minutes = updateToTwoDigits(currentDate.getMinutes());
+    const hours = updateToTwoDigits(currentDate.getHours());
+    const date = getFormattedDate(currentDate);
+    return { minutes, hours, date };
 }
 
 function convertISDToEST(date) {
@@ -25,14 +34,4 @@ function convertISDToEST(date) {
 }
 
 
-function increamentOneHour(hours, setHours, setMinutes) {
-    setHours(parseInt(hours + 1));
-    setMinutes(parseInt(0));
-}
-
-function increamentOneMinute(ISTMinutes, ESTMinutes, setISTMinutes, setESTMinutes) {
-    setESTMinutes(parseInt(ESTMinutes) + 1);
-    setISTMinutes(parseInt(ISTMinutes) + 1);
-}
-
-export { increamentOneHour, increamentOneMinute, getDefaultTime, convertISDToEST };
+export {getDefaultTime, updateToTwoDigits };

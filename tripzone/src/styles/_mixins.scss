@@ -1,15 +1,15 @@
 @mixin content {
-    font-size: 0.74rem;
-    font-weight: 400;
+    font-size: 0.88rem;
+    font-weight: 500;
 }
 
 @mixin headingMedium {
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 1.35rem;
+    font-weight: 700;
 }
 
 @mixin headingLarge {
-    font-size: 1.063rem;
+    font-size: 1.4rem;
     font-weight: 600;
     text-transform: uppercase;
 }

@@ -6,8 +6,9 @@
     color: $white;
     background-color: $red;
     width: 100%;
+    font-size: 0.95rem;
     font-weight: 400;
-    padding: 0.5rem;
+    padding: 0.75rem;
     margin: 0.25rem 0;
     cursor: pointer;
 }
@@ -15,5 +16,5 @@
 .small {
     padding: 0.25rem;
     margin: 0;
-    font-size: 0.6rem;
+    font-size: 0.75rem;
 }

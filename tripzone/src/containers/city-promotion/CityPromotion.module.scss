@@ -2,23 +2,33 @@
 @import "../../styles//mixins";
 
 .cityPromotionWrapper {
-    padding: 1rem 1.25rem;
+    padding: 1.6rem;
     background-color: $yellow;
 
 
+    .promotionHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        .previosButtonWrapper {
+            width: 100px;
+        }
+    }
     .promotionHeading {
         @include headingMedium;
     }
 
     .cityTemperature {
-        font-size: 1.563rem;
+        font-size: 2.4rem;
         font-weight: 300;
-        margin: 0.75rem 0;
+        margin: 1rem 0 0.75rem;
     }
 
     .cityDescription {
-        font-size: 0.75rem;
-        font-weight: 400;
+        @include content;
+        word-spacing: 2px;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
     }
 }
 
