@@ -1,0 +1,30 @@
+.trailerSection {
+    .tarilerTitle {
+        font-size: 1.5rem;
+        font-weight: 400;
+    }
+    .trailerAction {
+        font-size: 1rem;
+        margin: 0.5rem 0 1.5rem;
+    }
+    .trailerContainer {
+        display: flex;
+        gap: 2rem;
+        img{
+            width: 400px;
+        }
+        .trailerContentWrapper {
+            h3 {
+                font-size: 2rem;
+                font-weight: 300;
+                margin-bottom: 1.25rem;
+            }
+            p { 
+                width: 78%;
+                margin: 1rem 0;             
+                font-size: 1.25rem;
+                font-weight: 300;
+            }
+        }
+    }
+}

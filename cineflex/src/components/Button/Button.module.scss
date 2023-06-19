@@ -1,0 +1,40 @@
+.cineflexButton {
+    width: 100%;
+    padding: 1.3rem;
+    border: none;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-top: 2.3rem;
+    cursor: pointer;
+    &.yellow {
+        background-color: #E09D1F;
+        &.disabled {
+            background-color: #77571d;
+            color: #807d7d;
+        }
+    }
+    &.red {
+        background-color: #D0011C;
+        &.disabled {
+            background-color: #9e0116bd;
+            color: #807d7d;
+        }
+    }
+    &.small {
+        width: 20%;
+        margin: 0;
+        padding: 1rem;
+    }
+    &.smaller {
+        width: 18%;
+        padding: 0.5rem;
+        font-size: 1.3rem;
+        margin: 0;
+    }
+}
+
+.disabled {
+    cursor: not-allowed;
+}

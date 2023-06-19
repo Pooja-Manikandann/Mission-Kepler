@@ -1,0 +1,14 @@
+.homeWrapper {
+    .coverPicture {
+        img {
+            width: 100%;
+            height: 100%;
+            // object-fit: contain;
+        }
+    }
+    .section {
+        padding: 3rem 12rem;
+        background-color: #151515;
+        color: #fff;
+    }
+}
