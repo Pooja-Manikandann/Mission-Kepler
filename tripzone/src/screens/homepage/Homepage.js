@@ -10,17 +10,18 @@ const Homepage = () => {
 
     const { setUser } = useContext(LoginContext);
 
-    const loginUser = useCallback(async (userName, password) => {
+    const loginUser = async(userName, password) => {
+        console.log("login user")
         let userResponse = await loginInUser(userName, password);
         setUser(userResponse);
-    }, [])
+    }
 
     console.log("Page - Homepage");
 
     useEffect(() => {
         loginUser("pam", "pam123");
         // loginUser("jim", "jim123");
-    }, [loginUser])
+    }, [])
 
     return (
         <div>

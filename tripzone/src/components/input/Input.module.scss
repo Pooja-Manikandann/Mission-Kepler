@@ -1,0 +1,15 @@
+.searchInputBox {
+    width: 55%;
+    padding: 0.75rem;
+    border: none;
+    margin: 0.5rem 0 0.35rem;
+
+}
+
+.searchInputBox::placeholder{
+    color: #CDCDCD;
+    font-size: 0.75rem;
+}
+.searchInputBox:focus {
+    border: none;
+}

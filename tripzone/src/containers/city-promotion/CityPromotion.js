@@ -3,7 +3,7 @@ import TouristSpots from '../../components/tourist-spots/TouristSpots';
 import styles from "./CityPromotion.module.scss"
 import { isEmpty, isEqual } from "lodash"
 import AppContext from '../../context/appContext';
-import Button from '../../components/button/Button'
+import Button from '../../components/Button/Button'
 import { SMALL_VARIANT } from '../../constants/appConstants.constant';
 
 const CityPromotion = () => {

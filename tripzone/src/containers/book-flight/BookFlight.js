@@ -1,8 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useMemo } from "react";
 import DiscountDisplayer from "../../components/discount-displayer/DiscountDisplayer";
 import { MEMBERSHIP_YEAR, TAX_PERCENTAGE } from "../../constants/appConstants.constant";
 import ButtonGroup from "../../components/button-group/ButtonGroup";
-import Button from "../../components/button/Button";
+import Button from "../../components/Button/Button";
 import styles from "./BookFlight.module.scss";
 import LoginContext from "../../context/loginContext";
 import prime from "../../assets/prime.png";
@@ -22,21 +22,44 @@ const BookFlight = (props) => {
         setFlightPrice(flightDetails.price);
     }, [flightDetails])
 
-    function increaseDiscount(increamentValue) {
-        console.log('incrrease discount');
+    function increaseDiscount() {
         const price = Number(flightDetails.price)
-        const discountAmount = 10 + increamentValue;
-        setDiscount(discountAmount);
-        const total = price - discountAmount;
+        const total = price - discount;
         setFlightPrice(total);
+        return total; 
     }
 
-    function increaseTax(taxPercentage) {
-        const price = Number(flightDetails.price)
-        const amount = (price / 100) * taxPercentage;
-        setTax(taxPercentage);
-        setFlightPrice(price + amount);
+    function updateDiscount(increamentValue){
+        const discountAmount = 10 + increamentValue;
+        setDiscount(discountAmount);
     }
+    function updateTax(increamentValue){
+        setTax(increamentValue);
+    }
+
+    const memoizedDiscount = useMemo(()=>{
+        increaseDiscount();
+        // increaseTax();
+    }, [discount]);
+    const memoizedTax = useMemo(increaseTax, [tax]);
+
+    function increaseTax() {
+        const price = Number(flightDetails.price)
+        const amount = Math.round((price / 100) * tax);
+        console.log('ygjbgjbh', amount, price);
+        // setTax(amount);
+        setFlightPrice(price + amount);
+        return price + amount;
+    }
+
+    useEffect(()=>{
+        if(memoizedTax)
+        setFlightPrice(memoizedTax)
+    },[memoizedTax])
+    useEffect(()=>{
+        if(memoizedDiscount)
+        setFlightPrice(memoizedDiscount)
+    },[memoizedDiscount])
 
     return (
         <div className={styles.bookFlightWrapper}>
@@ -53,11 +76,11 @@ const BookFlight = (props) => {
             </div>
             <div className={styles.contentWrapper}>
                 <p className={styles.content}>You can further increase your membership discount by renewing your membership. Choose Number of Years to Renew.</p>
-                <ButtonGroup items={MEMBERSHIP_YEAR} onClick={increaseDiscount} />
+                <ButtonGroup items={MEMBERSHIP_YEAR} onClick={updateDiscount} />
             </div>
             <div className={styles.contentWrappsr}>
                 <p className={styles.content}>You can donate to COVID-19 care fund by increasing the TaxComponent. Choose % of Tax Component to be increased</p>
-                <ButtonGroup items={TAX_PERCENTAGE} onClick={increaseTax} />
+                <ButtonGroup items={TAX_PERCENTAGE} onClick={updateTax} />
             </div>
             <div className={styles.contentWrapper}>
                 <p className={styles.content}>Your ticket will be emailed to your registered email and phone number.</p>

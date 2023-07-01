@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
-import Button from '../../components/button/Button';
-import Dropdown from '../../components/dropdown/Dropdown';
+import Button from '../../components/Button/Button';
+import Dropdown from '../../components/Dropdown/Dropdown';
 import getCities from '../../services/getCities';
 import styles from "./TripForm.module.scss"
 import { DESTINATION, SOURCE } from '../../constants/appConstants.constant';

@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../button/Button";
+import Button from "../Button/Button";
 import { SMALL_VARIANT } from "../../constants/appConstants.constant";
 import styles from "./ButtonGroup.module.scss"
 import PropTypes from "prop-types";

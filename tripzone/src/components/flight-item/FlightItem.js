@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../button/Button";
+import Button from "../Button/Button";
 import airIndia from "../../assets/air-india.png"
 import styles from "./FlightItem.module.scss"
 import { BOOK, SMALL_VARIANT } from "../../constants/appConstants.constant";
