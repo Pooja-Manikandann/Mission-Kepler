@@ -6,11 +6,13 @@ export const FORM_CONSTANTS = {
         FORM_LABELS: {
             EMAIL: {
                 LABEL: 'Email',
-                TYPE: 'email'
+                TYPE: 'email',
+                NAME: 'email'
             },
             PASSWORD: {
                 LABEL: 'Password',
-                TYPE: 'text'
+                TYPE: 'text',
+                NAME: 'password'
             },
         },
         FORM_ATTRIBUTES: ['email', 'password'],

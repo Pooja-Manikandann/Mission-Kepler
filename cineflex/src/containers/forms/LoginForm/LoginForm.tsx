@@ -45,8 +45,8 @@ const LoginForm = () => {
 
   return (
    <form className={styles.loginFormWrapper} onSubmit={handleSubmit(handleFormSubmit)}>
-      <Input label={EMAIL.LABEL} name='email' type={EMAIL.TYPE} register={register} variant={VARIANT.COLUMN} border={BORDER.BOTTOM} />
-      <Input label={PASSWORD.LABEL} name='password'  type={PASSWORD.TYPE} register={register} variant={VARIANT.COLUMN} />
+      <Input label={EMAIL.LABEL} name={EMAIL.NAME} type={EMAIL.TYPE} register={register} variant={VARIANT.COLUMN} border={BORDER.BOTTOM} />
+      <Input label={PASSWORD.LABEL} name={PASSWORD.NAME}  type={PASSWORD.TYPE} register={register} variant={VARIANT.COLUMN} border={BORDER.BOTTOM} />
       <Button label={LOGIN} disabled={disableButton} color={COLOR.YELLOW} />
    </form>
   )

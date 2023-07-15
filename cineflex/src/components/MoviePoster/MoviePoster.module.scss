@@ -1,0 +1,34 @@
+.moviePoster {
+    width: calc((100% - (42px * 2)) / 3);
+    .moviePosterImage {
+        width: 100%;
+        cursor: pointer;
+    }
+    .descriptionWrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .description {
+            padding: 0.85rem 0;
+            color: #fff;
+            .movieName {
+                font-size: 1.4rem;
+                font-weight: 400;
+            }
+            .likes {
+                font-size: 1rem;
+                font-weight: 400;
+                margin: 0.25rem 0;
+            }
+        }
+        .iconWrapper {
+            width: 20px;
+            cursor: pointer;
+            svg {
+                width: 100%;
+                height: 100%;
+                color: #fff;
+            }
+        }
+    }
+}

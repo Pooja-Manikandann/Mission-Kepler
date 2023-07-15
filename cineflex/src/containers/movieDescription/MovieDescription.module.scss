@@ -1,0 +1,55 @@
+.movieDescriptionSection {
+    .movieDescriptionHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #fff;
+        .movieName{
+            font-size: 2.9rem;
+            font-weight: 400;
+        }
+        .likeIconWrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid #fff;
+            cursor: pointer;
+            svg {
+                // color: #fff;
+            }
+        }
+
+    }
+    .moviePosterImage {
+        width: 180px;
+    }
+    .movieLikes {
+        margin: 1.2rem 0;
+        font-size: 1.3rem;
+        color: #FCAA23;
+    }
+    .movieDescription {
+        margin: 1.5rem 0;
+        margin-right: 11px;
+        font-size: 1.02rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #fff;
+    }
+    .actorsWrapper {
+        color: #fff;
+        .actorTitle {
+            font-size: 1.4rem;
+            font-weight: 500;
+        }
+        .actorsContent {
+            margin: 1.8rem 0;
+            .actorName {
+                margin: 0.5rem 0;
+            }
+        }
+    }
+}

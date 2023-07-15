@@ -11,9 +11,13 @@
     }
     .group {
         display: flex;
-        gap: 3rem;
+        gap: 3.5rem;
         align-items: center;
-        a:last-child {
+        // margin-right: 7rem;
+        a {
+            font-weight: 500;
+        }
+        a:nth-child(3) {
             color: #417CC3;
         }
     }
