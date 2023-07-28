@@ -1,0 +1,34 @@
+@import "../../styles/color";
+@import "../../styles/mixins";
+
+.availableFlightsWrapper {
+    padding: 1.5rem;
+    background-color: $green;
+
+    h2 {
+        @include headingLarge;
+        margin-bottom: 1rem;
+    }
+
+    .notAvailableWrapper {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+
+        img {
+            width: 20%;
+        }
+
+        .warning {
+            width: 80%;
+            padding: 0;
+            margin-top: 0.875rem;
+        }
+    }
+
+    .warning {
+        font-size: 1.125rem;
+        font-weight: 300;
+        padding: 1rem;
+    }
+}

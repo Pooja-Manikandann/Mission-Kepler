@@ -1,0 +1,19 @@
+@import "../../styles/color";
+
+.box {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem 2rem;
+    background-color: $dark-red;
+
+    .subtitle {
+        font-size: 10px;
+        font-weight: 500;
+    }
+
+    .content {
+        font-size: 13px;
+        font-weight: 600;
+    }
+}

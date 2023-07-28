@@ -1,0 +1,22 @@
+.wrapper {
+    display: flex;
+    align-items: flex-start;
+    width: 87.5%;
+    margin: 30px auto;
+    gap: 1.5rem;
+
+    .leftWrapper {
+        width: 70%;
+    }
+
+    .rightWrapper {
+        width: 30%;
+    }
+
+    .leftWrapper,
+    .rightWrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}

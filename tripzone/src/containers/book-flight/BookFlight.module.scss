@@ -1,0 +1,43 @@
+@import "../../styles/color";
+@import "../../styles/mixins";
+
+.bookFlightWrapper {
+    padding: 1.5rem;
+    background-color: $blue;
+
+    .bookFlightHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2 {
+            @include headingLarge;
+        }
+
+        .primeLogo {
+            width: 40px;
+        }
+    }
+
+
+    .price {
+        font-size: 2.4rem;
+        font-weight: 400;
+        margin: 1rem 0 0.75rem;
+    }
+
+    .displayDiscountContainer {
+        display: flex;
+        margin: 1.25rem 0;
+    }
+
+    .contentWrapper {
+        margin: 1.25rem 0;
+    }
+
+    .content {
+        margin: 0.5rem 0;
+        @include content;
+    }
+
+}

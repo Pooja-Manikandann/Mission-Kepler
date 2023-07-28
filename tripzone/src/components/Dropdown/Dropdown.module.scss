@@ -1,0 +1,27 @@
+@import "../../styles/color";
+
+.dropdownWrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem 0;
+
+    label {
+        margin: 0.35rem 0;
+        font-size: 0.88rem;
+    }
+
+    .dropdown {
+        padding: 0.75rem;
+        border: none;
+        font-size: 0.75rem;
+        appearance: none;
+        background: url("../../../public/assets/Dropdown.png") no-repeat right $white;
+        background-size: 0.938rem 0.938rem;
+        background-position-x: 97%;
+    }
+
+    .dropdown:hover {
+        cursor: pointer;
+    }
+
+}

@@ -1,0 +1,47 @@
+@import "../../styles/color";
+
+.flightItemWrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.65rem;
+    margin: 0.85rem 0;
+    background-color: $white;
+
+    .imageWrapper {
+        width: 10%;
+
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .flightDetailsWrapper {
+        width: 75%;
+
+        h5 {
+            font-weight: 300;
+            font-size: 1rem;
+        }
+
+        h6 {
+            font-size: 0.68rem;
+            font-weight: 500;
+        }
+
+        span {
+            font-size: 0.65rem;
+            font-weight: 600;
+            display: block;
+        }
+
+    }
+
+    .bookButtonWrapper {
+        width: 15%;
+        button {
+            font-size: 0.75rem;
+        }
+    }
+}

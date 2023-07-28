@@ -1,0 +1,45 @@
+@import "../../styles/color";
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0rem 2rem;
+    background-color: $red;
+    color: $white;
+
+    .logoContainer {
+        display: flex;
+        gap: 6px;
+
+        .logo {
+            margin: 1rem 0;
+            width: 135px;
+            cursor: pointer;
+        }
+
+        .primeLogo {
+            width: 2rem;
+            object-fit: contain;
+            margin-bottom: 0.5rem;
+        }
+    }
+
+
+    .detailsWrapper {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+
+        .dateTimeWrapper {
+            display: flex;
+            gap: 3px;
+        }
+
+        .profileName {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+    }
+
+}
