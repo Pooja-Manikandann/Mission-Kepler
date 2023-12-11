@@ -1,0 +1,7 @@
+exports[`Other langueages should match correctly`] = `
+<div class="OtherLanguages_languageIconWrapper__x8c5J"><img src="../../assets/languages/language-1.png" class="OtherLanguages_languageIcon__0VRoF" alt="language"></div>
+<div class="OtherLanguages_languageIconWrapper__x8c5J"><img src="../../assets/languages/language-2.png" class="OtherLanguages_languageIcon__0VRoF" alt="language"></div>
+<div class="OtherLanguages_languageIconWrapper__x8c5J"><img src="../../assets/languages/language-3.png" class="OtherLanguages_languageIcon__0VRoF" alt="language"></div>
+<div class="OtherLanguages_languageIconWrapper__x8c5J"><img src="../../assets/languages/language-4.png" class="OtherLanguages_languageIcon__0VRoF" alt="language"></div>
+<div class="OtherLanguages_languageIconWrapper__x8c5J"><img src="../../assets/languages/language-5.png" class="OtherLanguages_languageIcon__0VRoF" alt="language"></div>
+`

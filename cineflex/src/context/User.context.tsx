@@ -1,17 +1,19 @@
-import { ReactNode, createContext, useState } from 'react';
+import React, { ReactNode, createContext, useState } from 'react';
+import { localStorageHelper } from '../utils/localStorage.util';
+import { AUTH } from '../constants';
 
 interface UserContextValue {
-    isUserLoggedIn: boolean
-    setIsUserLoggedIn: Function
-  }
+    isUserLoggedIn: boolean;
+    setIsUserLoggedIn: Function;
+}
 
-  
-  type Props = {
-      children: ReactNode,
-  }
+type Props = {
+    children: ReactNode;
+};
+
 export const UserContext = createContext<UserContextValue>({
     isUserLoggedIn: false,
-    setIsUserLoggedIn: () => { }
+    setIsUserLoggedIn: () => {},
 });
 
 /**
@@ -20,7 +22,9 @@ export const UserContext = createContext<UserContextValue>({
  * @returns context provider along with the values to be shared
  */
 const UserContextProvider = ({ children }: Props) => {
-    const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+    const { get } = localStorageHelper;
+    const { IS_USER_LOGGED_IN } = AUTH;
+    const [isUserLoggedIn, setIsUserLoggedIn] = useState(JSON.parse(get(IS_USER_LOGGED_IN)|| 'null') || false);
     return (
         <UserContext.Provider value={{ isUserLoggedIn, setIsUserLoggedIn }}>
             {children}
@@ -29,4 +33,3 @@ const UserContextProvider = ({ children }: Props) => {
 };
 
 export default UserContextProvider;
-

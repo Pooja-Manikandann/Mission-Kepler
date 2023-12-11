@@ -1,26 +1,23 @@
-import Header from '../Header/Header'
-
-type Props = {
-  children: React.ReactNode
-}
-
+import { layoutProps } from '../../modals/modal';
+import Header from '../Header/Header';
+import React from 'react';
 const defaultProps = {
-  children: <></>
-}
+    children: <></>,
+};
 
 /**
  * @description - the component provides header component and the specifies child component
  * @param param - the children component that needs to be rendered inside the layout
  * @returns - layout that consists of header
  */
-const Layout = ({ children }: Props) => {
-  return (
-    <>
-      <Header />
-      {children}
-    </>
-  )
-}
+const Layout = ({ children }: layoutProps) => {
+    return (
+        <>
+            <Header />
+            {children}
+        </>
+    );
+};
 
 Layout.defaultProps = defaultProps;
 

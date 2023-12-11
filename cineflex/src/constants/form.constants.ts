@@ -1,18 +1,18 @@
 export const FORM_CONSTANTS = {
     LOGIN_FORM: {
-
         TITLE: 'Login',
-        CAPTION: 'Logging into CineFLEX will give you access to full videos and movies. You can sit back, relax and watch at your home.',
+        CAPTION:
+            'Logging into CineFLEX will give you access to full videos and movies. You can sit back, relax and watch at your home.',
         FORM_LABELS: {
             EMAIL: {
                 LABEL: 'Email',
                 TYPE: 'email',
-                NAME: 'email'
+                NAME: 'email',
             },
             PASSWORD: {
                 LABEL: 'Password',
                 TYPE: 'text',
-                NAME: 'password'
+                NAME: 'password',
             },
         },
         FORM_ATTRIBUTES: ['email', 'password'],
@@ -24,7 +24,7 @@ export const FORM_CONSTANTS = {
         BUTTON_LABEL: `I'm feeling lucky`,
         PLACE_HOLDER: 'Enter Mobile Number',
         NAME: 'lottery',
-        TYPE: 'tel'
+        TYPE: 'tel',
     },
     VARIANT: {
         COLUMN: 'column',
@@ -34,10 +34,10 @@ export const FORM_CONSTANTS = {
         WHITE: 'white',
     },
     BORDER: {
-        BOTTOM: 'bottom'
+        BOTTOM: 'bottom',
     },
     COLOR: {
         YELLOW: 'yellow',
         RED: 'red',
     },
-}
+};

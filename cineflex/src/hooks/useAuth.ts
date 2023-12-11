@@ -1,7 +1,7 @@
-import { useContext } from "react";
-import { UserContext } from "../context/User.context";
-import { localStorageHelper } from "../utils/localStorage.util";
-import { AUTH } from "../constants";
+import { useContext } from 'react';
+import { UserContext } from '../context/User.context';
+import { localStorageHelper } from '../utils/localStorage.util';
+import { AUTH } from '../constants';
 
 /**
  * @description - auth functions to update the context to confirm login and logout functionalites
@@ -31,8 +31,10 @@ export const useAuth = () => {
     const clearAuth = () => {
         setIsUserLoggedIn(false);
         remove(IS_USER_LOGGED_IN);
-    }
+    };
     return {
-        useAuthContext, setAuth, clearAuth
-    }
+        useAuthContext,
+        setAuth,
+        clearAuth,
+    };
 };

@@ -5,20 +5,25 @@
         "jest": true,
         "es6": true
     },
-    "plugins": [
-        "import"
-    ],
-    "extends": [
-        "eslint:recommended", 
-        "plugin:react/recommended"
-    ],
+    // "extends": [
+    //     "eslint:recommended", 
+    //     "plugin:react/recommended"
+    // ],
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": 2018,
         "ecmaFeatures": {
             "jsx": true
         },
-        "sourceType": "module"
+        "sourceType": "module",
+        "parser": "@babel/eslint-parser",
+        "requireConfigFile": false,
+        "babelOptions": {
+            "presets": ["@babel/preset-react"]
+        }
     },
+    "plugins": ["@typescript-eslint", "import", "prettier"],
+    "ignorePatterns": ["node_modules/", "lib/", "coverage/"],
     "settings": {
         "react": {
             "version": "detect"

@@ -1,30 +1,37 @@
-import styles from './Button.module.scss'
+import React from 'react';
+import styles from './Button.module.scss';
+import { buttonProps } from '../../modals/modal';
 
-type Props = {
-  label: string,
-  size?: string,
-  disabled: boolean,
-  color: string,
-}
-
-const defaultProps = {
-  label: 'button',
-  size: '',
-  disabled: false,
-  color: ''
-}
+export const defaultProps = {
+    label: 'button',
+    size: '',
+    disabled: false,
+    color: '',
+    onClick: () => {},
+    dataTestId: '',
+};
 
 /**
- * @description function to render button component 
+ * @description function to render button component
  * @param param required props to render button
  * @returns button element with the expected props
  */
-const Button = ({ label, size, disabled, color }: Props) => {
-  const className = `${styles.cineflexButton} ${size ? styles[size] : ''} ${disabled ? styles.disabled : ''} ${color ? styles[color] : ''}`
-  return (
-    <button className={className} disabled={disabled}>{label}</button>
-  )
-}
+const Button = ({ label, size, disabled, color, onClick }: buttonProps) => {
+    const className = `${styles.cineflexButton} ${size ? styles[size] : ''} ${
+        disabled ? styles.disabled : ''
+    } ${color ? styles[color] : ''}`;
+    return (
+        <button
+            className={className}
+            disabled={disabled}
+            onClick={() => {
+                onClick();
+            }}
+        >
+            {label}
+        </button>
+    );
+};
 
 Button.defaultProps = defaultProps;
 

@@ -1,74 +1,127 @@
-import React, { useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react';
 import Button from '../../components/Button/Button';
 import MoviePoster from '../../components/MoviePoster/MoviePoster';
 import styles from './AllMovies.module.scss';
 import MovieDescription from '../../containers/movieDescription/MovieDescription';
-import { FORM_CONSTANTS, MEDIUM_VARIANT } from '../../constants';
-import { APP_CONSTANTS } from '../../constants/app.constants';
+import {
+    ADVERTISEMENT_LIMIT,
+    FORM_CONSTANTS,
+    MEDIUM_VARIANT,
+} from '../../constants';
+import { APP_CONSTANTS } from '../../constants';
+import { getMovies } from '../../services/MovieService';
+import { movieDetails } from '../../modals/modal';
 
+/**
+ * @description component that renders all movies page
+ * @returns renders all movies page 
+ */
 function AllMovies() {
-  const moviesList = [
-    {
-      id: 1,
-      name: 'Drishyam',
-      likes: 223,
-      description: `Drishyam (transl. Visual) is a 2013 Indian Malayalam-language crime drama thriller film written and directed by Jeethu Joseph. It stars Mohanlal and Meena in the lead roles and features Ansiba Hassan, Esther Anil, Kalabhavan Shajon, Asha Sarath, Siddique, Roshan Basheer and Neeraj Madhav in supporting roles. The film was produced by Antony Perumbavoor for Aashirvad Cinemas. It follows the struggle of Georgekutty and his family, who come under suspicion when Varun Prabhakar, the son of the Inspector-general of police, goes missing after an attempt to physically harass Georgekutty's daughter.`,
-      actors: ['Mohanlal', 'Meena', 'Ansiba Hassan', 'Esther Anil', 'Siddique', 'Asha Sarath'],
-    },
-    {
-      id: 2,
-      name: 'Drishyam',
-      likes: 223,
-      description: `Drishyam (transl. Visual) is a 2013 Indian Malayalam-language crime drama thriller film written and directed by Jeethu Joseph. It stars Mohanlal and Meena in the lead roles and features Ansiba Hassan, Esther Anil, Kalabhavan Shajon, Asha Sarath, Siddique, Roshan Basheer and Neeraj Madhav in supporting roles. The film was produced by Antony Perumbavoor for Aashirvad Cinemas. It follows the struggle of Georgekutty and his family, who come under suspicion when Varun Prabhakar, the son of the Inspector-general of police, goes missing after an attempt to physically harass Georgekutty's daughter.`,
-      actors: ['Mohanlal', 'Meena', 'Ansiba Hassan', 'Esther Anil', 'Siddique', 'Asha Sarath'],
-    },
-    {
-      id: 3,
-      name: 'Drishyam',
-      likes: 223,
-      description: `Drishyam (transl. Visual) is a 2013 Indian Malayalam-language crime drama thriller film written and directed by Jeethu Joseph. It stars Mohanlal and Meena in the lead roles and features Ansiba Hassan, Esther Anil, Kalabhavan Shajon, Asha Sarath, Siddique, Roshan Basheer and Neeraj Madhav in supporting roles. The film was produced by Antony Perumbavoor for Aashirvad Cinemas. It follows the struggle of Georgekutty and his family, who come under suspicion when Varun Prabhakar, the son of the Inspector-general of police, goes missing after an attempt to physically harass Georgekutty's daughter.`,
-      actors: ['Mohanlal', 'Meena', 'Ansiba Hassan', 'Esther Anil', 'Siddique', 'Asha Sarath'],
-    },
-    {
-      id: 4,
-      name: 'Drishyam',
-      likes: 223,
-      description: `Drishyam (transl. Visual) is a 2013 Indian Malayalam-language crime drama thriller film written and directed by Jeethu Joseph. It stars Mohanlal and Meena in the lead roles and features Ansiba Hassan, Esther Anil, Kalabhavan Shajon, Asha Sarath, Siddique, Roshan Basheer and Neeraj Madhav in supporting roles. The film was produced by Antony Perumbavoor for Aashirvad Cinemas. It follows the struggle of Georgekutty and his family, who come under suspicion when Varun Prabhakar, the son of the Inspector-general of police, goes missing after an attempt to physically harass Georgekutty's daughter.`,
-      actors: ['Mohanlal', 'Meena', 'Ansiba Hassan', 'Esther Anil', 'Siddique', 'Asha Sarath'],
-    },
-  ]
+    const { COLOR } = FORM_CONSTANTS;
+    const { TITLE, LOAD_MORE } = APP_CONSTANTS.ALL_MOVIES;
+    const { LARGE_AD } = ADVERTISEMENT_LIMIT;
 
-  const [selectedMovie, setSelectedMovie] = useState({id: 0,
-    name: '',
-    likes: 0,
-    description: '',
-    actors:['']});
+    const [selectedMovie, setSelectedMovie] = useState({
+        id: '0',
+        movie: '',
+        likes: '0',
+        description: '',
+        actors: [''],
+        link: '',
+        isLiked: false,
+    });
+    const [movies, setMovies] = useState<movieDetails[] | any>([]);
+    const [pageNo, setPageNo] = useState(1);
+    const [resetAdvertisement, setResetAdvertisement] = useState<boolean>(false);
 
-  const { COLOR } = FORM_CONSTANTS;
-  const { TITLE, LOAD_MORE } = APP_CONSTANTS.ALL_MOVIES;
+    useEffect(() => {
+        const fetchAllMovies = async () => {
+            const data = await getMovies(pageNo);
+            setMovies(data);
+        };
+        fetchAllMovies();
+    }, [pageNo]);
 
-  return (
-    <div className={styles.allMoviesContainer}>
-      <div className={styles.allMoviesWrapper}>
-        <h2 className={styles.allMoviesTitle}>{TITLE}</h2>
-        <div className={styles.allMoviesContextWrapper}>
-          <div className={styles.moviesLeftContainer}>
-            <div className={styles.moviesWrapper}>
-              {moviesList.map((movie) => (
-                <MoviePoster movieDetails={movie} updateSelectedMovie={setSelectedMovie} />
-              ))}
+    /**
+     * @description update page number to show movie cards
+     */
+    const updatePageNo = () => {
+        setPageNo(pageNo + 1);
+    };
+
+    /**
+     * @description function to update like count for movie
+     * @param movieId id of the movie that needs to be updated
+     * @param likes likes count to be updated
+     * @returns returns the updated movie data
+     */
+    const updateLike = (movieId: string, likes: string) => {
+        const index = movies.findIndex(
+            (movie: movieDetails) => movie.id === movieId,
+        );
+        const likeStatus = movies[index].isLiked;
+        const likesCount = Number(movies[index].likes);
+        const movieUpdate = {
+            ...movies[index],
+            likes: likeStatus ? likesCount - 1 : likesCount + 1,
+            isLiked: !likeStatus,
+        };
+        const data = [
+            ...movies.slice(0, index),
+            movieUpdate,
+            ...movies.slice(index + 1),
+        ];
+        setMovies(data);
+        if (selectedMovie.id === movieUpdate.id) setSelectedMovie(movieUpdate);
+        return data;
+    };
+
+    /**
+     * @description function to reset advertisement
+     */
+    const selectMovie = () => {
+        setResetAdvertisement(true);
+    };
+
+    return (
+        <div className={styles.allMoviesContainer}>
+            <div className={styles.allMoviesWrapper}>
+                <h2 className={styles.allMoviesTitle}>{TITLE}</h2>
+                <div className={styles.allMoviesContextWrapper}>
+                    <div className={styles.moviesLeftContainer}>
+                        <div className={styles.moviesWrapper}>
+                            {movies.map((movie: movieDetails, index: number) => (
+                                <MoviePoster
+                                    key={index}
+                                    movieDetails={movie}
+                                    updateSelectedMovie={setSelectedMovie}
+                                    updateLike={updateLike}
+                                    selectMovie={selectMovie}
+                                />
+                            ))}
+                        </div>
+
+                        <Button
+                            label={LOAD_MORE}
+                            size={MEDIUM_VARIANT}
+                            color={COLOR.YELLOW}
+                            disabled={false}
+                            onClick={updatePageNo}
+                        />
+                    </div>
+                    <div className={styles.descriptionRightContainer}>
+                        <MovieDescription
+                            advertisement={LARGE_AD}
+                            movieDetails={selectedMovie}
+                            updateLike={updateLike}
+                            resetAdvertisement={resetAdvertisement}
+                            setResetAdvertisement={setResetAdvertisement}
+                        />
+                    </div>
+                </div>
             </div>
-
-            <Button label={LOAD_MORE} size={MEDIUM_VARIANT} color={COLOR.YELLOW} disabled={false} />
-          </div>
-          <div className={styles.descriptionRightContainer}>
-            <MovieDescription movieDetails={selectedMovie}/>
-
-          </div>
         </div>
-      </div>
-    </div>
-  )
+    );
 }
 
-export default AllMovies
+export default AllMovies;

@@ -3,7 +3,7 @@ export const localStorageHelper = {
         const data = localStorage.getItem(key);
         return data;
     },
-    set: (key: string, data: (boolean| string | object | object[])) => {
+    set: (key: string, data: boolean | string | object | object[]) => {
         localStorage.setItem(key, JSON.stringify(data));
     },
     remove: (key: string) => {
@@ -11,5 +11,5 @@ export const localStorageHelper = {
     },
     clear: () => {
         localStorage.clear();
-    }
-}
+    },
+};

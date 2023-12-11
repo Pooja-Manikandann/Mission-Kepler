@@ -1,18 +1,21 @@
 export const APP_PATH = {
-    HOME_PATH : {
+    HOME_PATH: {
         PATH: '/',
-        LABEL: 'HOME'
+        LABEL: 'HOME',
     },
-    LOGIN_PATH : {
+    LOGIN_PATH: {
         PATH: '/login',
-        LABEL: 'LOGIN'
+        LABEL: 'LOGIN',
     },
-    SHOW_TIME_PATH : {
-        PATH: '/showTime',
-        LABEL: 'SHOW TIME'
+    SHOW_TIME_PATH: {
+        PATH: '/nowShowing',
+        LABEL: 'NOW SHOWING',
     },
-    ALL_MOVIES : {
+    ALL_MOVIES: {
         PATH: '/allMovies',
-        LABEL: 'ALL MOVIES'
+        LABEL: 'ALL MOVIES',
     },
-}
+    LOGOUT: {
+        LABEL: 'Logout',
+    },
+};

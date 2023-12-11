@@ -1,55 +1,97 @@
-import { APP_CONSTANTS } from '../../constants/app.constants';
+import { ADVERTISEMENT_LIMIT, APP_CONSTANTS } from '../../constants/';
 import styles from './MovieDescription.module.scss';
 import { FaThumbsUp } from 'react-icons/fa';
+import React, { useEffect } from 'react';
+import { movieDescriptionProps } from '../../modals/modal';
+import WithAdvertisement from '../../components/WithAdvertisement/WithAdvertisement';
+import { formatNumberTwoDigits } from '../../utils/format.utils';
 
-type Props = {
+export const defaultProps = {
     movieDetails: {
-        id: number,
-        name: string,
-        likes: number,
-        description: string,
-        actors: Array<string>,
-    }
-}
-
-const defaultProps = {
-    movieDetails: {
-        id: 0,
-        name: '',
-        likes: 0,
+        id: '0',
+        movie: '',
+        likes: '0',
         decription: '',
-        actors:[''],
-    }
-}
+        actors: [''],
+    },
+    updateLike: () => {},
+};
 
-const MovieDescription = ({movieDetails}: Props) => {
-    const { name, likes, description, actors } = movieDetails;
-    const { LIKES, ACTORS } = APP_CONSTANTS.ALL_MOVIES
+const MovieDescription = ({
+    resetAdvertisement,
+    advertisement,
+    movieDetails,
+    updateLike,
+    onclick,
+    limit,
+    setAdStatus,
+    setResetAdvertisement,
+}: movieDescriptionProps) => {
+    const { movie, likes, description, actors, link, id, isLiked } = movieDetails;
+    const { LIKES, ACTORS, MOVIE_POSTER, FALLBACK_TEXT } = APP_CONSTANTS.ALL_MOVIES;
+    const { ADVERTISEMENT_LABEL } = ADVERTISEMENT_LIMIT;
+
+    useEffect(() => {
+        if (movie && resetAdvertisement) {
+            onclick(true);
+            setResetAdvertisement(false);
+            setAdStatus(false);
+        }
+    }, [movie]);
 
     return (
-        <div className={styles.movieDescriptionSection}>
-            <div className={styles.movieDescriptionHeader}>
-                <h2 className={styles.movieName}>{name}</h2>
-                <div className={styles.likeIconWrapper}>
-                    <FaThumbsUp />
+        <>
+            {movieDetails.movie ? (
+                <div className={styles.movieDescriptionSection}>
+                    <div className={styles.movieDescriptionHeader}>
+                        <h2 className={styles.movieName}>{movie}</h2>
+                        <div
+                            className={`${styles.likeIconWrapper} ${
+                                isLiked && styles.liked
+                            }`}
+                            onClick={() => updateLike(id, Number(likes) + 1)}
+                        >
+                            <FaThumbsUp />
+                        </div>
+                    </div>
+                    <h5 className={styles.movieLikes}>
+                        {likes} {LIKES}
+                    </h5>
+                    <img
+                        className={styles.moviePosterImage}
+                        src={link}
+                        alt={MOVIE_POSTER}
+                    />
+                    <p className={styles.movieDescription}>{description}</p>
+                    <div className={styles.actorsWrapper}>
+                        <h4 className={styles.actorTitle}>{ACTORS}</h4>
+                        <div className={styles.actorsContent}>
+                            {actors.map((actor, index) => (
+                                <p key={index} className={styles.actorName}>
+                                    {actor}
+                                </p>
+                            ))}
+                        </div>
+                    </div>
+                    {limit && limit >= 0 ? (
+                        <span className={styles.adLabel}>
+                            {`${ADVERTISEMENT_LABEL}${formatNumberTwoDigits(limit)}`}
+                        </span>
+                    ) : (
+                        <></>
+                    )}
                 </div>
-
-            </div>
-            <h5 className={styles.movieLikes}>{likes} {LIKES}</h5>
-            <img className={styles.moviePosterImage} src="https://m.media-amazon.com/images/M/MV5BYmY2ZDUxNzUtYWZlYy00MThhLWI5NjktZDhjZTU3MDY5YTM3XkEyXkFqcGdeQXVyNTYxMDgzODI@._V1_.jpg" alt="movie poster" />
-            <p className={styles.movieDescription}>{description}</p>
-            <div className={styles.actorsWrapper}>
-                <h4 className={styles.actorTitle}>{ACTORS}</h4>
-                <div className={styles.actorsContent}>
-                    {actors.map((actor) => (
-                        <p className={styles.actorName}>{actor}</p>
-                    ))}
+            ) : (
+                <div className={styles.fallbackSection}>
+                    <p className={styles.fallback}>
+                        {FALLBACK_TEXT}
+                    </p>
                 </div>
-            </div>
-        </div>
-    )
-}
+            )}
+        </>
+    );
+};
 
 MovieDescription.defaultProps = defaultProps;
 
-export default MovieDescription;
+export default WithAdvertisement(MovieDescription);

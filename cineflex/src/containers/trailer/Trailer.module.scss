@@ -1,16 +1,20 @@
 .trailerSection {
     .tarilerTitle {
-        font-size: 1.5rem;
-        font-weight: 400;
+        font-size: 2rem;
+        font-weight: 300;
     }
     .trailerAction {
         font-size: 1rem;
+        font-weight: 300;
         margin: 0.5rem 0 1.5rem;
+        .link {
+            color: #2c67c1;
+        }
     }
     .trailerContainer {
         display: flex;
         gap: 2rem;
-        img{
+        img {
             width: 400px;
         }
         .trailerContentWrapper {
@@ -19,9 +23,9 @@
                 font-weight: 300;
                 margin-bottom: 1.25rem;
             }
-            p { 
+            p {
                 width: 78%;
-                margin: 1rem 0;             
+                margin: 1rem 0;
                 font-size: 1.25rem;
                 font-weight: 300;
             }

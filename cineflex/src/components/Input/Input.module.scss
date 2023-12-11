@@ -4,11 +4,12 @@
         background-color: transparent;
         color: #fff;
         border: none;
+        width: 100%;
         &:focus {
             outline: none;
         }
         &.borderbottom {
-            border-bottom: 1px solid #413F3D;
+            border-bottom: 1px solid #413f3d;
         }
         &.themewhite {
             background-color: #fff;
@@ -46,14 +47,24 @@
         label {
             font-size: 1.7rem;
         }
-        input {
+        .inputWrapper {
             width: 39%;
-            padding: 1rem;
-            color: #cacaca;
-            &::placeholder {
-                font-size: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            input {
+                width: 100%;
+                padding: 1rem;
                 color: #cacaca;
+                &::placeholder {
+                    font-size: 0.75rem;
+                    color: #cacaca;
+                }
             }
         }
+    }
+    .inputError {
+        color: #c12828;
+        font-size: 0.85rem;
     }
 }
