@@ -1,0 +1,28 @@
+.allMoviesContainer {
+    padding: 4rem 5rem;
+    background-color: #151515;
+    .allMoviesWrapper {
+        .allMoviesTitle {
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 1.25rem;
+            color: #fff;
+        }
+        .allMoviesContextWrapper {
+            display: flex;
+            justify-content: space-between;
+            .moviesLeftContainer {
+                width: 47%;
+                .moviesWrapper {
+                    display: flex;
+                    gap: 42px;
+                    flex-wrap: wrap;
+                    padding: 1.5rem 0;
+                }
+            }
+            .descriptionRightContainer {
+                width: 39%;
+            }
+        }
+    }
+}

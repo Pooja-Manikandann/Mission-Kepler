@@ -1,0 +1,17 @@
+.lotterySection {
+    margin-top: -5px;
+    background-color: #d9bc2f;
+    padding: 1rem;
+    color: #fff;
+    .lotteryForm {
+        display: flex;
+        width: 75%;
+        margin: 0 auto;
+    }
+    .successLotterySection,
+    h3 {
+        font-size: 1.7rem;
+        font-weight: 300;
+        text-align: center;
+    }
+}

@@ -1,0 +1,18 @@
+.otherLanguagesSections {
+    padding-top: 4rem;
+    .otherLanguagesWrapper {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        margin: 1rem 0;
+        .languageIconWrapper {
+            border: 2px solid #376194;
+            width: 38px;
+            height: 38px;
+            padding: 0.5rem;
+            .languageIcon {
+                width: 100%;
+            }
+        }
+    }
+}
