@@ -4,6 +4,7 @@ import {
     FORM_CONSTANTS,
     SMALL_VARIANT,
     VALIDATIONS,
+    EXTRA_SMALL_VARIANT
 } from '../../constants';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
@@ -81,7 +82,7 @@ const Lottery = () => {
                                     error={errors}
                                 />
                                 <Button
-                                    size={SMALL_VARIANT}
+                                    size={EXTRA_SMALL_VARIANT}
                                     disabled={disabled}
                                     label={BUTTON_LABEL}
                                     color={COLOR.RED}

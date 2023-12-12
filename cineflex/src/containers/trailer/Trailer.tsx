@@ -33,7 +33,7 @@ const Trailer = () => {
             <h2 className={styles.tarilerTitle}>{TITLE}</h2>
             <p className={styles.trailerAction}>
                 {SIGN_IN_REQ_LABEL}{' '}
-                <span className={styles.link}>{SIGN_IN_LABEL}</span>
+                {!isUserLoggedIn && <span className={styles.link}>{SIGN_IN_LABEL}</span>}
             </p>
             <div className={styles.trailerContainer}>
                 <img

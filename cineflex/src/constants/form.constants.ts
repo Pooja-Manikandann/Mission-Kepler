@@ -11,7 +11,7 @@ export const FORM_CONSTANTS = {
             },
             PASSWORD: {
                 LABEL: 'Password',
-                TYPE: 'text',
+                TYPE: 'password',
                 NAME: 'password',
             },
         },

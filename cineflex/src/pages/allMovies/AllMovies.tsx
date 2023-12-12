@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Button from '../../components/Button/Button';
 import MoviePoster from '../../components/MoviePoster/MoviePoster';
 import styles from './AllMovies.module.scss';
@@ -33,6 +33,7 @@ function AllMovies() {
     const [movies, setMovies] = useState<movieDetails[] | any>([]);
     const [pageNo, setPageNo] = useState(1);
     const [resetAdvertisement, setResetAdvertisement] = useState<boolean>(false);
+    const ref = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
         const fetchAllMovies = async () => {
@@ -42,11 +43,19 @@ function AllMovies() {
         fetchAllMovies();
     }, [pageNo]);
 
+    useEffect(() => {
+        ref.current?.scrollTo({
+            top: pageNo==1? 0 : ref.current?.scrollHeight*pageNo,
+            left: 0,                        
+            behavior: "smooth",
+            });
+    },[movies])
+
     /**
      * @description update page number to show movie cards
      */
     const updatePageNo = () => {
-        setPageNo(pageNo + 1);
+        setPageNo(pageNo + 1);        
     };
 
     /**
@@ -89,7 +98,7 @@ function AllMovies() {
                 <h2 className={styles.allMoviesTitle}>{TITLE}</h2>
                 <div className={styles.allMoviesContextWrapper}>
                     <div className={styles.moviesLeftContainer}>
-                        <div className={styles.moviesWrapper}>
+                        <div className={styles.moviesWrapper} ref={ref}>
                             {movies.map((movie: movieDetails, index: number) => (
                                 <MoviePoster
                                     key={index}
@@ -100,6 +109,7 @@ function AllMovies() {
                                 />
                             ))}
                         </div>
+                        {movies.length === pageNo*6 &&
 
                         <Button
                             label={LOAD_MORE}
@@ -107,7 +117,7 @@ function AllMovies() {
                             color={COLOR.YELLOW}
                             disabled={false}
                             onClick={updatePageNo}
-                        />
+                        />}
                     </div>
                     <div className={styles.descriptionRightContainer}>
                         <MovieDescription

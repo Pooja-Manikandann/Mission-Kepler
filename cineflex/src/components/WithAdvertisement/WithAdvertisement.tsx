@@ -13,7 +13,7 @@ import { getRandomLargeAdvertisement, getRandomNumber, getRandomShortAdvertiseme
 const WithAdvertisement = (Component: any) => {
   
   const Advertisement = (props: any) => {
-    const { advertisement } = props;
+    const { advertisement, resetAdvertisement } = props;
     const [videoStatus, setVideoStatus] = useState(false);
     const videoRef = useRef<HTMLVideoElement>(null);
     const [showAdvertisement, setShowAdvertisement] = useState(false);
@@ -51,28 +51,40 @@ const WithAdvertisement = (Component: any) => {
       setLimit(limit>0? limit : advertisement.START);
     }
 
+    const resetAd = () => {
+        setShowAdvertisement(false);
+        setAdStatus(false);
+        setVideoStatus(true);
+        setLimit(advertisement.START);
+    }
+
     /**
      * counter based on which the showing and hiding of ad starts
      */
     useEffect(() => {
-      if(!adStatus) {
       let id: number| any;
-      if(limit >= -1 && (videoStatus || showAdvertisement)) {
-       id = setTimeout(()=>{
-        setLimit(limit-1);
-       }, 1000)
-       if(limit === 0) {
-        if(videoStatus){
-          showAd();
-        }
-        else {
-          hideAd();
+      if(!adStatus) {
+        if(limit >= -1 && (videoStatus || showAdvertisement)) {
+        id = setTimeout(()=>{
+          setLimit(limit-1);
+        }, 1000)
+        if(limit === 0) {
+          if(videoStatus){
+            showAd();
+          }
+          else {
+            hideAd();
+          }
         }
       }
     }
-  }
+    return () => {clearTimeout(id)}
   },[videoStatus, limit, showAdvertisement, adStatus]);
 
+  useEffect(() => {
+    if(resetAdvertisement)
+    resetAd();
+  },[resetAdvertisement])
     return (showAdvertisement? <AdvertisementCard imageUrl={imageUrl} alt='advertisement' title={props.title} limit={limit} size={advertisement.DURATION === LIMIT_5S? 'large' : 'small'} /> : <Component {...props} onclick={handleClick} videoStatus={videoStatus} adStatus={adStatus} videoRef={videoRef} limit={limit} setAdStatus={setAdStatus} />)
   }
   return Advertisement;

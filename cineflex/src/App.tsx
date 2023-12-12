@@ -11,6 +11,7 @@ import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { RecoilRoot } from 'recoil';
+import { PageNotFound } from './pages/pageNotFound/PageNotFound';
 
 function App() {
     const { HOME_PATH, LOGIN_PATH, SHOW_TIME_PATH, ALL_MOVIES } = APP_PATH;
@@ -23,6 +24,7 @@ function App() {
             children: [{ path: SHOW_TIME_PATH.PATH, element: <ShowTime /> }],
         },
         { path: ALL_MOVIES.PATH, element: <AllMovies /> },
+        { path: "*", element: <PageNotFound />}
     ]);
     return (
         <UserContextProvider>

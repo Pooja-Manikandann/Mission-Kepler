@@ -8,9 +8,11 @@
         }
         svg {
             position: absolute;
-            top: 48%;
-            left: 48%;
+            top: 50%;
+            left: 50%;
             font-size: 2rem;
+            transform: translate(-50%, -50%);
+            color: #000;
         }
     }
     .teaserTitle {
