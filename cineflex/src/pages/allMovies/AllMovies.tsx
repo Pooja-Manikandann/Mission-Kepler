@@ -36,12 +36,10 @@ function AllMovies() {
 
     useEffect(() => {
         const fetchAllMovies = async () => {
-            console.log('inside')
             const data = await getMovies(pageNo);
             setMovies(data);
         };
         fetchAllMovies();
-        console.log('useffect', pageNo)
     }, [pageNo]);
 
     /**
