@@ -3,20 +3,19 @@ import Button, { defaultProps } from '../Button';
 
 describe('Button', () => {
     test('should render button text correctly', () => {
-        const { getByText } = render(<Button>LOGIN</Button>);
-        expect(getByText('LOGIN')).toBeInTheDocument();
+        const { getByText } = render(<Button {...defaultProps}/>);
+        expect(getByText('button')).toBeInTheDocument();
     });
 
-    test('should call onClick function when clicked', () => {
+    test('should call onClick function when clicked', async() => {
         const handleClick = jest.fn();
-        const { getByTestId } = render(
+        const buttonComponent = render(
             <Button dataTestId='button' size='' disabled={false} color='' label='LOGIN' onClick={handleClick} />
         );
-        console.log('getByTestId ', getByTestId);
 
-        const button = getByTestId('button');
+        const button = buttonComponent.getByTestId('button');
         expect(button).toBeEnabled();
-        fireEvent.click(getByTestId('button'));
+        fireEvent.click(button);
         expect(handleClick).toHaveBeenCalled();
     });
 
