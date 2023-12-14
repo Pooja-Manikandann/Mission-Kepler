@@ -16,7 +16,14 @@ export const defaultProps = {
  * @param param required props to render button
  * @returns button element with the expected props
  */
-const Button = ({ label, size, disabled, color, onClick, dataTestId }: buttonProps) => {
+const Button = ({
+    label,
+    size,
+    disabled,
+    color,
+    onClick,
+    dataTestId,
+}: buttonProps) => {
     const className = `${styles.cineflexButton} ${size ? styles[size] : ''} ${
         disabled ? styles.disabled : ''
     } ${color ? styles[color] : ''}`;

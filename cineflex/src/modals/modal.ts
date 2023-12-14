@@ -91,5 +91,5 @@ export type buttonProps = {
     disabled: boolean;
     color: string;
     onClick: Function;
-    dataTestId?: string
+    dataTestId?: string;
 };

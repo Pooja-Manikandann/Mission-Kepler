@@ -4,11 +4,9 @@
         height: 100%;
     }
     &.largeAdvertisement {
-        // width: 39%;
         height: 850px;
         margin: 1rem 0;
         & + span {
-            // color: #fff;
             padding: 1rem 0;
         }
     }

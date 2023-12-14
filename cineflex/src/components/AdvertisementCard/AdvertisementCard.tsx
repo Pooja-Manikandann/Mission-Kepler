@@ -9,11 +9,11 @@ export const defaultProps = {
     limit: 0,
     title: '',
     size: '',
-}
+};
 
 /**
  * @description component to show advertisement card
- * @param props 
+ * @param props
  * @returns return return advertisement card
  */
 const AdvertisementCard = ({
@@ -31,7 +31,11 @@ const AdvertisementCard = ({
                 <img src={imageUrl} alt={alt} />
             </div>
             {title && <p className={styles.title}>{title}</p>}
-            {<span className={styles.adLabel}>{`${LABEL}${formatNumberTwoDigits(limit)}`}</span>}
+            {
+                <span className={styles.adLabel}>{`${LABEL}${formatNumberTwoDigits(
+                    limit,
+                )}`}</span>
+            }
         </div>
     );
 };

@@ -32,7 +32,6 @@ function TeaserCard({
         }
     }, [limit]);
 
-
     const controlVideo = () => {
         if (ref?.current?.paused) {
             playVideoHandler();
@@ -44,8 +43,13 @@ function TeaserCard({
 
     return (
         <div key={id} className={styles.teaserWrapper}>
-            <div className={styles.videoWrapper}  onClick={controlVideo}>
-                <video data-testid='video' src={videoSrc} poster={POSTER_URL} ref={ref}>
+            <div className={styles.videoWrapper} onClick={controlVideo}>
+                <video
+                    data-testid='video'
+                    src={videoSrc}
+                    poster={POSTER_URL}
+                    ref={ref}
+                >
                     <source src={videoSrc} type='video/mp4' />
                 </video>
                 <div data-testid='icon' ref={playIconRef}>

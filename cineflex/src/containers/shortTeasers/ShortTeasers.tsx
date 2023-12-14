@@ -16,8 +16,7 @@ const ShortTeasers = () => {
     const { TITLE } = APP_CONSTANTS.SHORT_TEASERS;
     const { SMALL_AD } = ADVERTISEMENT_LIMIT;
     const [shortTeasers, setShortTeasers] = useState<teaserProps[]>([]);
-    const {loading, showLoader, hideLoader} = useLoader();
-
+    const { loading, showLoader, hideLoader } = useLoader();
 
     useEffect(() => {
         showLoader();
@@ -31,19 +30,26 @@ const ShortTeasers = () => {
 
     return (
         <>
-        {loading ?
-            <CustomLoader /> :
-        <div className={styles.teasersSections}>
-            <h3>{TITLE}</h3>
-            <div className={styles.shortTeasersWrapper}>
-                {shortTeasers.map((teaser: teaserProps, id: number) => (
-                    <div key={id}>
-                        <TeaserCard key={id} {...teaser} adStartTiming={SMALL_AD.START} adDuration={SMALL_AD.DURATION} adUrl={getRandomShortAdvertisement()} />
+            {loading ? (
+                <CustomLoader />
+            ) : (
+                <div className={styles.teasersSections}>
+                    <h3>{TITLE}</h3>
+                    <div className={styles.shortTeasersWrapper}>
+                        {shortTeasers.map((teaser: teaserProps, id: number) => (
+                            <div key={id}>
+                                <TeaserCard
+                                    key={id}
+                                    {...teaser}
+                                    adStartTiming={SMALL_AD.START}
+                                    adDuration={SMALL_AD.DURATION}
+                                    adUrl={getRandomShortAdvertisement()}
+                                />
+                            </div>
+                        ))}
                     </div>
-                ))}
-            </div>
-        </div>
-        }
+                </div>
+            )}
         </>
     );
 };

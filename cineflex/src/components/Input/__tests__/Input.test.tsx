@@ -38,12 +38,10 @@ describe('Input component', () => {
             placeHolder: '',
             border: '',
             maxLength: 100,
-            error: {test:{message: 'testing error'}},
+            error: { test: { message: 'testing error' } },
             datatestid: '',
-        }
-        const component = render(
-            <Input {...mockData} />,
-        );
+        };
+        const component = render(<Input {...mockData} />);
         expect(screen.getByText(mockData.error.test.message));
     });
     test('should render text input content', () => {
@@ -58,7 +56,6 @@ describe('Input component', () => {
             expect(userInput).toBeInTheDocument();
             expect(userInput).toBeEnabled;
             userEvent.type(userInput, 'admin');
-            // expect(userInput).toHaveValue('admin');
         });
     });
 });

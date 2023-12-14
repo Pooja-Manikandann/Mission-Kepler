@@ -7,7 +7,7 @@ import OtherLangauges from '../../containers/otherLanguages/OtherLangauges';
 import React, { useEffect } from 'react';
 /**
  * @description renders components for home page
- * @returns renderes homepage 
+ * @returns renderes homepage
  */
 const Home = () => {
     return (

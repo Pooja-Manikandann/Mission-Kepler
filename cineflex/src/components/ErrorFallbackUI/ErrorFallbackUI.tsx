@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ErrorFallbackUI.module.scss'
+import styles from './ErrorFallbackUI.module.scss';
 import { APP_CONSTANTS } from 'src/constants';
 type Props = {
     errorMessage?: string;
@@ -7,9 +7,9 @@ type Props = {
 
 /**
  * @description function to render Error fallback UI
- * @returns error fallback component 
+ * @returns error fallback component
  */
-const ErrorFallbackUI = ({errorMessage}: Props) => {
+const ErrorFallbackUI = ({ errorMessage }: Props) => {
     const { ERROR_MESSAGE } = APP_CONSTANTS.LOTTERY;
     return (
         <div className={styles.articleError}>

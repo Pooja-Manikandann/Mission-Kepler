@@ -35,10 +35,25 @@ const Header = () => {
             {pathName !== LOGIN_PATH.PATH && (
                 <>
                     <div className={styles.group}>
-                        <NavLink className={HOME_PATH.PATH===pathName && styles.active} to={HOME_PATH.PATH}>{HOME_PATH.LABEL}</NavLink>
-                        <NavLink className={ALL_MOVIES.PATH===pathName && styles.active} to={ALL_MOVIES.PATH}>{ALL_MOVIES.LABEL}</NavLink>
+                        <NavLink
+                            className={HOME_PATH.PATH === pathName && styles.active}
+                            to={HOME_PATH.PATH}
+                        >
+                            {HOME_PATH.LABEL}
+                        </NavLink>
+                        <NavLink
+                            className={ALL_MOVIES.PATH === pathName && styles.active}
+                            to={ALL_MOVIES.PATH}
+                        >
+                            {ALL_MOVIES.LABEL}
+                        </NavLink>
                         {isUserLoggedIn && (
-                            <NavLink className={SHOW_TIME_PATH.PATH===pathName && styles.active} to={SHOW_TIME_PATH.PATH}>
+                            <NavLink
+                                className={
+                                    SHOW_TIME_PATH.PATH === pathName && styles.active
+                                }
+                                to={SHOW_TIME_PATH.PATH}
+                            >
                                 {SHOW_TIME_PATH.LABEL}
                             </NavLink>
                         )}

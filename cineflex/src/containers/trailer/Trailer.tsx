@@ -12,8 +12,14 @@ import { useNavigate } from 'react-router-dom';
  * @returns static trailer content
  */
 const Trailer = () => {
-    const { TITLE, SINTEL_TITLE, SINTEL_DESCRIPTION, WATCH_NOW, SIGN_IN_LABEL, SIGN_IN_REQ_LABEL } =
-        APP_CONSTANTS.TRAILER;
+    const {
+        TITLE,
+        SINTEL_TITLE,
+        SINTEL_DESCRIPTION,
+        WATCH_NOW,
+        SIGN_IN_LABEL,
+        SIGN_IN_REQ_LABEL,
+    } = APP_CONSTANTS.TRAILER;
     const { LOGIN_PATH, SHOW_TIME_PATH } = APP_PATH;
     const { COLOR } = FORM_CONSTANTS;
     const { useAuthContext } = useAuth();
@@ -33,7 +39,9 @@ const Trailer = () => {
             <h2 className={styles.tarilerTitle}>{TITLE}</h2>
             <p className={styles.trailerAction}>
                 {SIGN_IN_REQ_LABEL}{' '}
-                {!isUserLoggedIn && <span className={styles.link}>{SIGN_IN_LABEL}</span>}
+                {!isUserLoggedIn && (
+                    <span className={styles.link}>{SIGN_IN_LABEL}</span>
+                )}
             </p>
             <div className={styles.trailerContainer}>
                 <img

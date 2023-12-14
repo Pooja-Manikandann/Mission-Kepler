@@ -24,13 +24,13 @@ function App() {
             children: [{ path: SHOW_TIME_PATH.PATH, element: <ShowTime /> }],
         },
         { path: ALL_MOVIES.PATH, element: <AllMovies /> },
-        { path: "*", element: <PageNotFound />}
+        { path: '*', element: <PageNotFound /> },
     ]);
     return (
         <UserContextProvider>
             <LoaderContextProvider>
                 <Layout>{routes}</Layout>
-            </LoaderContextProvider>            
+            </LoaderContextProvider>
         </UserContextProvider>
     );
 }

@@ -21,7 +21,7 @@ export const LoaderContext = createContext<LoaderContextValue>({
  * @returns context provider along with the values to be shared
  */
 const LoaderContextProvider = ({ children }: Props) => {
-    const [loading, setLoading] = useState(false);    
+    const [loading, setLoading] = useState(false);
     return (
         <LoaderContext.Provider value={{ loading, setLoading }}>
             {children}

@@ -17,7 +17,7 @@ import useLoader from 'src/hooks/useLoader';
 
 /**
  * @description component that renders all movies page
- * @returns renders all movies page 
+ * @returns renders all movies page
  */
 function AllMovies() {
     const { COLOR } = FORM_CONSTANTS;
@@ -36,18 +36,15 @@ function AllMovies() {
     const [movies, setMovies] = useState<movieDetails[] | any>([]);
     const [pageNo, setPageNo] = useState<number>(1);
     const [resetAdvertisement, setResetAdvertisement] = useState<boolean>(false);
-    const {loading, showLoader, hideLoader} = useLoader();
-    // const [loading, setLoading] = useState<boolean>(false);
-    const ref = useRef<HTMLDivElement>(null)
+    const { loading, showLoader, hideLoader } = useLoader();
+    const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        // setLoading(true);
         showLoader();
         const fetchAllMovies = async () => {
             const data = await getMovies(pageNo);
             setMovies(data);
             hideLoader();
-            // setLoading(false);
         };
         fetchAllMovies();
     }, [pageNo]);
@@ -55,16 +52,16 @@ function AllMovies() {
     useEffect(() => {
         // ref.current?.scrollTo({
         //     top: pageNo==1? 0 : ref.current?.scrollHeight*pageNo,
-        //     left: 0,                        
+        //     left: 0,
         //     behavior: "smooth",
         //     });
-    },[movies])
+    }, [movies]);
 
     /**
      * @description update page number to show movie cards
      */
     const updatePageNo = () => {
-        setPageNo(pageNo + 1);        
+        setPageNo(pageNo + 1);
     };
 
     /**
@@ -102,51 +99,55 @@ function AllMovies() {
     };
     return (
         <>
-            
-            {loading ?
-            <CustomLoader /> :
-            <div className={styles.allMoviesContainer}>
-                <div className={styles.allMoviesWrapper}>
-                    <h2 className={styles.allMoviesTitle}>{TITLE}</h2>
-                    <div className={styles.allMoviesContextWrapper}>
-                        <div className={styles.moviesLeftContainer}>
-                            <div className={styles.moviesWrapper} ref={ref}>
-                                {movies.map((movie: movieDetails, index: number) => (
-                                    <MoviePoster
-                                        key={index}
-                                        movieDetails={movie}
-                                        updateSelectedMovie={setSelectedMovie}
-                                        updateLike={updateLike}
-                                        selectMovie={selectMovie}
+            {loading ? (
+                <CustomLoader />
+            ) : (
+                <div className={styles.allMoviesContainer}>
+                    <div className={styles.allMoviesWrapper}>
+                        <h2 className={styles.allMoviesTitle}>{TITLE}</h2>
+                        <div className={styles.allMoviesContextWrapper}>
+                            <div className={styles.moviesLeftContainer}>
+                                <div className={styles.moviesWrapper} ref={ref}>
+                                    {movies.map(
+                                        (movie: movieDetails, index: number) => (
+                                            <MoviePoster
+                                                key={index}
+                                                movieDetails={movie}
+                                                updateSelectedMovie={
+                                                    setSelectedMovie
+                                                }
+                                                updateLike={updateLike}
+                                                selectMovie={selectMovie}
+                                            />
+                                        ),
+                                    )}
+                                </div>
+                                {movies.length === pageNo * 6 && (
+                                    <Button
+                                        label={LOAD_MORE}
+                                        size={MEDIUM_VARIANT}
+                                        color={COLOR.YELLOW}
+                                        disabled={false}
+                                        onClick={updatePageNo}
                                     />
-                                ))}
+                                )}
                             </div>
-                            {movies.length === pageNo*6 &&
-
-                            <Button
-                                label={LOAD_MORE}
-                                size={MEDIUM_VARIANT}
-                                color={COLOR.YELLOW}
-                                disabled={false}
-                                onClick={updatePageNo}
-                            />}
-                        </div>
-                        <div className={styles.descriptionRightContainer}>
-                            <MovieDescription
-                                advertisement={LARGE_AD}
-                                movieDetails={selectedMovie}
-                                updateLike={updateLike}
-                                resetAdvertisement={resetAdvertisement}
-                                setResetAdvertisement={setResetAdvertisement}
-                                adStartTiming={LARGE_AD.START}
-                                adDuration={LARGE_AD.DURATION}
-                                adUrl={getRandomLargeAdvertisement()}
-                            />
+                            <div className={styles.descriptionRightContainer}>
+                                <MovieDescription
+                                    advertisement={LARGE_AD}
+                                    movieDetails={selectedMovie}
+                                    updateLike={updateLike}
+                                    resetAdvertisement={resetAdvertisement}
+                                    setResetAdvertisement={setResetAdvertisement}
+                                    adStartTiming={LARGE_AD.START}
+                                    adDuration={LARGE_AD.DURATION}
+                                    adUrl={getRandomLargeAdvertisement()}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        }
+            )}
         </>
     );
 }

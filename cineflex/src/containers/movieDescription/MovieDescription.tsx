@@ -84,9 +84,7 @@ const MovieDescription = ({
                 </div>
             ) : (
                 <div className={styles.fallbackSection}>
-                    <p className={styles.fallback}>
-                        {FALLBACK_TEXT}
-                    </p>
+                    <p className={styles.fallback}>{FALLBACK_TEXT}</p>
                 </div>
             )}
         </>

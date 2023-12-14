@@ -4,7 +4,7 @@ import {
     FORM_CONSTANTS,
     SMALL_VARIANT,
     VALIDATIONS,
-    EXTRA_SMALL_VARIANT
+    EXTRA_SMALL_VARIANT,
 } from '../../constants';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
@@ -47,18 +47,21 @@ const Lottery = () => {
     /**
      * @description function to invoke lottery check service
      */
-    const checkForLottery = async (data : any) => {
+    const checkForLottery = async (data: any) => {
         const response = await checkForPrize({ ...data });
         if (response.data.length) setLotteryResult(response.data);
         else setLotteryResult(null);
-        // setErrorMessage(ERROR_MESSAGE);
     };
 
     try {
         return (
             <>
                 <div className={styles.lotterySection}>
-                    <ErrorBoundary FallbackComponent={() => <ErrorFallbackUI errorMessage={ERROR_MESSAGE} />}>
+                    <ErrorBoundary
+                        FallbackComponent={() => (
+                            <ErrorFallbackUI errorMessage={ERROR_MESSAGE} />
+                        )}
+                    >
                         {!lotteryResult.length ? (
                             <form
                                 onSubmit={handleSubmit(checkForLottery)}
