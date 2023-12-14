@@ -30,6 +30,9 @@ export type movieDescriptionProps = {
     limit: number;
     setAdStatus: Function;
     setResetAdvertisement: Function;
+    adStartTiming?: number;
+    adDuration?: number;
+    adUrl?: number;
 };
 
 export type teaserProps = {
@@ -41,6 +44,9 @@ export type teaserProps = {
     adStatus?: boolean;
     limit?: number;
     videoStatus?: boolean;
+    adStartTiming?: number;
+    adDuration?: number;
+    adUrl?: number;
 };
 
 export type layoutProps = {
@@ -76,6 +82,7 @@ export type inputProps = {
     border?: string;
     maxLength?: number;
     error?: any;
+    datatestid?: any;
 };
 
 export type buttonProps = {

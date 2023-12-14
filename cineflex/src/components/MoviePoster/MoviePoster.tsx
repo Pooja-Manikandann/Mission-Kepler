@@ -7,7 +7,7 @@ import { movieProps } from '../../modals/modal';
 export const defaultProps = {
     movieDetails: {
         id: '0',
-        name: '',
+        movie: '',
         likes: '0',
         decription: '',
         actors: [''],
@@ -50,6 +50,7 @@ const MoviePoster = ({
                     </h5>
                 </div>
                 <div
+                    data-testid='like'
                     className={`${styles.iconWrapper} ${isLiked && styles.liked}`}
                     onClick={() => updateLike(id, Number(likes) + 1)}
                 >

@@ -13,19 +13,15 @@ import { useForm } from 'react-hook-form';
 import ErrorFallbackUI from '../ErrorFallbackUI/ErrorFallbackUI';
 import React from 'react';
 import { checkForPrize } from '../../services/LotteryService';
-import { ToastContainer, toast } from 'react-toastify';
 import { ErrorBoundary } from 'react-error-boundary';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { errorMessageAtom } from '../../atoms/atom';
 
 /**
  * @description function to render lottery section contains form and result message
  * @returns return lottery section component
  */
 const Lottery = () => {
-    const [disabled, setDisabled] = useState(true);
+    const [disabled, setDisabled] = useState<boolean>(true);
     const [lotteryResult, setLotteryResult] = useState<any>('');
-    const setErrorMessage = useSetRecoilState(errorMessageAtom);
 
     const { LABEL, BUTTON_LABEL, PLACE_HOLDER, NAME, TYPE } =
         FORM_CONSTANTS.LOTTERY_FORM;
@@ -55,14 +51,14 @@ const Lottery = () => {
         const response = await checkForPrize({ ...data });
         if (response.data.length) setLotteryResult(response.data);
         else setLotteryResult(null);
-        setErrorMessage(ERROR_MESSAGE);
+        // setErrorMessage(ERROR_MESSAGE);
     };
 
     try {
         return (
             <>
                 <div className={styles.lotterySection}>
-                    <ErrorBoundary FallbackComponent={ErrorFallbackUI}>
+                    <ErrorBoundary FallbackComponent={() => <ErrorFallbackUI errorMessage={ERROR_MESSAGE} />}>
                         {!lotteryResult.length ? (
                             <form
                                 onSubmit={handleSubmit(checkForLottery)}

@@ -24,7 +24,7 @@ export const UserContext = createContext<UserContextValue>({
 const UserContextProvider = ({ children }: Props) => {
     const { get } = localStorageHelper;
     const { IS_USER_LOGGED_IN } = AUTH;
-    const [isUserLoggedIn, setIsUserLoggedIn] = useState(JSON.parse(get(IS_USER_LOGGED_IN)|| 'null') || false);
+    const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(JSON.parse(get(IS_USER_LOGGED_IN)|| 'null') || false);
     return (
         <UserContext.Provider value={{ isUserLoggedIn, setIsUserLoggedIn }}>
             {children}

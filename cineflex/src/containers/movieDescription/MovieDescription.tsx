@@ -3,7 +3,7 @@ import styles from './MovieDescription.module.scss';
 import { FaThumbsUp } from 'react-icons/fa';
 import React, { useEffect } from 'react';
 import { movieDescriptionProps } from '../../modals/modal';
-import WithAdvertisement from '../../components/WithAdvertisement/WithAdvertisement';
+import WithAdvertisement from '../../hoc/WithAdvertisement/WithAdvertisement';
 import { formatNumberTwoDigits } from '../../utils/format.utils';
 
 export const defaultProps = {
@@ -46,6 +46,7 @@ const MovieDescription = ({
                     <div className={styles.movieDescriptionHeader}>
                         <h2 className={styles.movieName}>{movie}</h2>
                         <div
+                            data-testid='like'
                             className={`${styles.likeIconWrapper} ${
                                 isLiked && styles.liked
                             }`}

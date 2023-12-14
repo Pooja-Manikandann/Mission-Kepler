@@ -9,20 +9,22 @@ describe('teaser card component', () => {
         videoSrc: '',
         onclick: ()=>{},
     }
-    // test('play icon hidden when video is played', async() => {
-    //     const component = render(<TeaserCard {...mockProps} />)
-    //     const video = screen.find
-    //     expect(video);
-    //     userEvent.click(await video)
-    //     const playIcon = component.findByRole('svg');
-    //     expect(screen.findByRole('svg')).not.toBeInTheDocument();
+    test('play icon hidden when video is played', async() => {
+        const component = render(<TeaserCard {...mockProps} />)
+        fireEvent.click(screen.getByTestId('video'))
+        const playIcon = component.findByRole('svg');
+        expect(screen.getByTestId('icon')).toBeInTheDocument();
         
-    // })
+    })
     test('renders teaser cards without crashing', () => {
             const mockData =  {
                 title: "Enchanto",
                 videoSrc: "https://tympanus.net/Development/SeatPreview/media/sintel.mp4"
             }
             render(<TeaserCard {...mockProps} {...mockData} />)
+    })
+    test('render tester card with ', () =>{
+        render(<TeaserCard {...mockProps} title='test-title' adStatus={false} limit={1} />)
+        expect(screen.getByText('test-title')).toBeInTheDocument()
     })
 })

@@ -9,7 +9,6 @@ import { every } from 'lodash';
 import { loginService } from '../../../services/loginServices';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../hooks/useAuth';
-import { ToastContainer, toast } from 'react-toastify';
 
 /**
  * @description function to render login form and let user to perform login functionality
@@ -26,7 +25,7 @@ const LoginForm = () => {
     const { FORM_ATTRIBUTES } = FORM_CONSTANTS.LOGIN_FORM;
     const { VARIANT, BORDER, COLOR } = FORM_CONSTANTS;
     const { REGEX, MESSAGE } = VALIDATIONS.EMAIL;
-    const [disableButton, setDisableButton] = useState(true);
+    const [disableButton, setDisableButton] = useState<boolean>(true);
     const values = watch(FORM_ATTRIBUTES);
 
     const { setAuth } = useAuth();
@@ -52,10 +51,12 @@ const LoginForm = () => {
     return (
         <>
             <form
+                data-testid='form'
                 className={styles.loginFormWrapper}
                 onSubmit={handleSubmit(handleFormSubmit)}
             >
                 <Input
+                    datatestid='email'
                     label={EMAIL.LABEL}
                     name={EMAIL.NAME}
                     type={EMAIL.TYPE}
@@ -67,6 +68,7 @@ const LoginForm = () => {
                     error={errors}
                 />
                 <Input
+                    datatestid='password'
                     label={PASSWORD.LABEL}
                     name={PASSWORD.NAME}
                     type={PASSWORD.TYPE}

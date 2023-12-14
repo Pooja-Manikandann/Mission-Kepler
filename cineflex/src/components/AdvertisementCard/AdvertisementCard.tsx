@@ -3,6 +3,14 @@ import { advertisementCard } from '../../modals/modal';
 import { formatNumberTwoDigits } from '../../utils/format.utils';
 import styles from './AdvertisementCard.module.scss';
 
+export const defaultProps = {
+    imageUrl: '',
+    alt: '',
+    limit: 0,
+    title: '',
+    size: '',
+}
+
 /**
  * @description component to show advertisement card
  * @param props 

@@ -13,6 +13,7 @@ export const defaultProps = {
     border: '',
     maxLength: 100,
     error: {},
+    datatestid: '',
 };
 
 /**
@@ -31,6 +32,7 @@ const Input = ({
     border,
     maxLength,
     error,
+    datatestid,
 }: inputProps) => {
     const customStyle = `${styles.inputWrapper} ${variant ? styles[variant] : ''}`;
 
@@ -45,6 +47,7 @@ const Input = ({
             </label>
             <div className={styles.inputWrapper}>
                 <input
+                    data-testid={datatestid}
                     type={type}
                     {...register}
                     id={name}

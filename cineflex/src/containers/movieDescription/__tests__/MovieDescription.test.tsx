@@ -1,10 +1,12 @@
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import MovieDescription from '../MovieDescription';
 import { defaultProps } from '../MovieDescription';
 
 describe('Movie description component', ()=>{
-    test('if components renders without crashing', () => {
-        const mockData = {
+    const mocklikehandler = jest.fn();
+    const mockData = {
+        movieDetails: {
+
             link: "https://images.pexels.com/photos/3131971/pexels-photo-3131971.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
             movie: "Drishyam",
             likes: "222",
@@ -18,7 +20,9 @@ describe('Movie description component', ()=>{
                 "Siddique",
                 "Asha"
             ],
-        updateLike: () => {},}
+        },
+    updateLike: () => {},}
+    test('if components renders without crashing', () => {
         render(
             <MovieDescription {...mockData} />
         )
@@ -29,4 +33,20 @@ describe('Movie description component', ()=>{
         )
         expect(screen.getByText(/Please select a movie to view movie description/i)).toBeInTheDocument();
     })
+    test('like count increased', async() => {
+        const component = render(<MovieDescription {...mockData} updateLike={mocklikehandler} />)
+        expect(screen.getByText(mockData.movieDetails.movie))
+        const image = screen.getByRole('img')
+        expect(image).toHaveAttribute('alt','movie poster')
+        expect(image).toHaveAttribute('src', mockData.movieDetails.link)
+
+    });
+    test('like count increased', async() => {
+        const component = render(<MovieDescription {...mockData} updateLike={mocklikehandler} />)
+        const likeComponent = await screen.findByTestId('like');
+        console.log('screen', screen)
+        expect(likeComponent);
+        fireEvent.click(likeComponent)
+
+    });
 })

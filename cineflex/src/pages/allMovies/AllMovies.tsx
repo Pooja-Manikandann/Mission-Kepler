@@ -11,6 +11,9 @@ import {
 import { APP_CONSTANTS } from '../../constants';
 import { getMovies } from '../../services/MovieService';
 import { movieDetails } from '../../modals/modal';
+import { getRandomLargeAdvertisement } from 'src/utils/getRandomAdvertisement.utils';
+import CustomLoader from 'src/components/CustomLoader/CustomLoader';
+import useLoader from 'src/hooks/useLoader';
 
 /**
  * @description component that renders all movies page
@@ -21,7 +24,7 @@ function AllMovies() {
     const { TITLE, LOAD_MORE } = APP_CONSTANTS.ALL_MOVIES;
     const { LARGE_AD } = ADVERTISEMENT_LIMIT;
 
-    const [selectedMovie, setSelectedMovie] = useState({
+    const [selectedMovie, setSelectedMovie] = useState<movieDetails>({
         id: '0',
         movie: '',
         likes: '0',
@@ -31,24 +34,30 @@ function AllMovies() {
         isLiked: false,
     });
     const [movies, setMovies] = useState<movieDetails[] | any>([]);
-    const [pageNo, setPageNo] = useState(1);
+    const [pageNo, setPageNo] = useState<number>(1);
     const [resetAdvertisement, setResetAdvertisement] = useState<boolean>(false);
+    const {loading, showLoader, hideLoader} = useLoader();
+    // const [loading, setLoading] = useState<boolean>(false);
     const ref = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
+        // setLoading(true);
+        showLoader();
         const fetchAllMovies = async () => {
             const data = await getMovies(pageNo);
             setMovies(data);
+            hideLoader();
+            // setLoading(false);
         };
         fetchAllMovies();
     }, [pageNo]);
 
     useEffect(() => {
-        ref.current?.scrollTo({
-            top: pageNo==1? 0 : ref.current?.scrollHeight*pageNo,
-            left: 0,                        
-            behavior: "smooth",
-            });
+        // ref.current?.scrollTo({
+        //     top: pageNo==1? 0 : ref.current?.scrollHeight*pageNo,
+        //     left: 0,                        
+        //     behavior: "smooth",
+        //     });
     },[movies])
 
     /**
@@ -91,46 +100,54 @@ function AllMovies() {
     const selectMovie = () => {
         setResetAdvertisement(true);
     };
-
     return (
-        <div className={styles.allMoviesContainer}>
-            <div className={styles.allMoviesWrapper}>
-                <h2 className={styles.allMoviesTitle}>{TITLE}</h2>
-                <div className={styles.allMoviesContextWrapper}>
-                    <div className={styles.moviesLeftContainer}>
-                        <div className={styles.moviesWrapper} ref={ref}>
-                            {movies.map((movie: movieDetails, index: number) => (
-                                <MoviePoster
-                                    key={index}
-                                    movieDetails={movie}
-                                    updateSelectedMovie={setSelectedMovie}
-                                    updateLike={updateLike}
-                                    selectMovie={selectMovie}
-                                />
-                            ))}
-                        </div>
-                        {movies.length === pageNo*6 &&
+        <>
+            
+            {loading ?
+            <CustomLoader /> :
+            <div className={styles.allMoviesContainer}>
+                <div className={styles.allMoviesWrapper}>
+                    <h2 className={styles.allMoviesTitle}>{TITLE}</h2>
+                    <div className={styles.allMoviesContextWrapper}>
+                        <div className={styles.moviesLeftContainer}>
+                            <div className={styles.moviesWrapper} ref={ref}>
+                                {movies.map((movie: movieDetails, index: number) => (
+                                    <MoviePoster
+                                        key={index}
+                                        movieDetails={movie}
+                                        updateSelectedMovie={setSelectedMovie}
+                                        updateLike={updateLike}
+                                        selectMovie={selectMovie}
+                                    />
+                                ))}
+                            </div>
+                            {movies.length === pageNo*6 &&
 
-                        <Button
-                            label={LOAD_MORE}
-                            size={MEDIUM_VARIANT}
-                            color={COLOR.YELLOW}
-                            disabled={false}
-                            onClick={updatePageNo}
-                        />}
-                    </div>
-                    <div className={styles.descriptionRightContainer}>
-                        <MovieDescription
-                            advertisement={LARGE_AD}
-                            movieDetails={selectedMovie}
-                            updateLike={updateLike}
-                            resetAdvertisement={resetAdvertisement}
-                            setResetAdvertisement={setResetAdvertisement}
-                        />
+                            <Button
+                                label={LOAD_MORE}
+                                size={MEDIUM_VARIANT}
+                                color={COLOR.YELLOW}
+                                disabled={false}
+                                onClick={updatePageNo}
+                            />}
+                        </div>
+                        <div className={styles.descriptionRightContainer}>
+                            <MovieDescription
+                                advertisement={LARGE_AD}
+                                movieDetails={selectedMovie}
+                                updateLike={updateLike}
+                                resetAdvertisement={resetAdvertisement}
+                                setResetAdvertisement={setResetAdvertisement}
+                                adStartTiming={LARGE_AD.START}
+                                adDuration={LARGE_AD.DURATION}
+                                adUrl={getRandomLargeAdvertisement()}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        }
+        </>
     );
 }
 

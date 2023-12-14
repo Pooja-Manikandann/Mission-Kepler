@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import AdvertisementCard from '../AdvertisementCard/AdvertisementCard';
+import AdvertisementCard from '../../components/AdvertisementCard/AdvertisementCard';
 import { ADVERTISEMENT_LIMIT } from '../../constants';
-import { useRecoilState } from 'recoil';
-import { timerAtom } from '../../atoms/atom';
 import { getRandomLargeAdvertisement, getRandomNumber, getRandomShortAdvertisement } from '../../utils/getRandomAdvertisement.utils';
 
 /**
@@ -13,13 +11,13 @@ import { getRandomLargeAdvertisement, getRandomNumber, getRandomShortAdvertiseme
 const WithAdvertisement = (Component: any) => {
   
   const Advertisement = (props: any) => {
-    const { advertisement, resetAdvertisement } = props;
-    const [videoStatus, setVideoStatus] = useState(false);
+    const { adStartTiming, adDuration, adUrl, resetAdvertisement } = props;
+    const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(false);
     const videoRef = useRef<HTMLVideoElement>(null);
-    const [showAdvertisement, setShowAdvertisement] = useState(false);
-    const [adStatus, setAdStatus] = useState(false);
-    const [limit, setLimit] = useState(-2);
-    const [imageUrl, setImageUrl] = useState('')
+    const [showAdvertisement, setShowAdvertisement] = useState<boolean>(false);
+    const [isAdShown, setIsAdShown] = useState<boolean>(false);
+    const [limit, setLimit] = useState<number>(-2);
+    const [imageUrl, setImageUrl] = useState<string>('')
     const { LIMIT_5S } = ADVERTISEMENT_LIMIT;
 
     /**
@@ -27,9 +25,9 @@ const WithAdvertisement = (Component: any) => {
      */
     const showAd = () => {
       setShowAdvertisement(true);
-      setVideoStatus(false);
-      setLimit(advertisement.DURATION);
-      setImageUrl(advertisement.DURATION === LIMIT_5S? getRandomLargeAdvertisement() : getRandomShortAdvertisement());
+      setIsVideoPlaying(false);
+      setLimit(adDuration);
+      setImageUrl(adUrl);
     }
 
     /**
@@ -37,8 +35,8 @@ const WithAdvertisement = (Component: any) => {
      */
     const hideAd = () => {
       setShowAdvertisement(false);
-      setAdStatus(true);
-      setVideoStatus(true);
+      setIsAdShown(true);
+      setIsVideoPlaying(true);
       setLimit(-3);
     }
 
@@ -47,15 +45,15 @@ const WithAdvertisement = (Component: any) => {
      * @param currentVideoStatus - status that mentions the video play status
      */
     const handleClick = (currentVideoStatus: boolean) => {
-      setVideoStatus(currentVideoStatus);
-      setLimit(limit>0? limit : advertisement.START);
+      setIsVideoPlaying(currentVideoStatus);
+      setLimit(limit>0? limit : adStartTiming);
     }
 
     const resetAd = () => {
         setShowAdvertisement(false);
-        setAdStatus(false);
-        setVideoStatus(true);
-        setLimit(advertisement.START);
+        setIsAdShown(false);
+        setIsVideoPlaying(true);
+        setLimit(adStartTiming);
     }
 
     /**
@@ -63,13 +61,13 @@ const WithAdvertisement = (Component: any) => {
      */
     useEffect(() => {
       let id: number| any;
-      if(!adStatus) {
-        if(limit >= -1 && (videoStatus || showAdvertisement)) {
+      if(!isAdShown) {
+        if(limit >= -1 && (isVideoPlaying || showAdvertisement)) {
         id = setTimeout(()=>{
           setLimit(limit-1);
         }, 1000)
         if(limit === 0) {
-          if(videoStatus){
+          if(isVideoPlaying){
             showAd();
           }
           else {
@@ -79,13 +77,13 @@ const WithAdvertisement = (Component: any) => {
       }
     }
     return () => {clearTimeout(id)}
-  },[videoStatus, limit, showAdvertisement, adStatus]);
+  },[isVideoPlaying, limit, showAdvertisement, isAdShown]);
 
   useEffect(() => {
     if(resetAdvertisement)
     resetAd();
   },[resetAdvertisement])
-    return (showAdvertisement? <AdvertisementCard imageUrl={imageUrl} alt='advertisement' title={props.title} limit={limit} size={advertisement.DURATION === LIMIT_5S? 'large' : 'small'} /> : <Component {...props} onclick={handleClick} videoStatus={videoStatus} adStatus={adStatus} videoRef={videoRef} limit={limit} setAdStatus={setAdStatus} />)
+    return (showAdvertisement? <AdvertisementCard imageUrl={imageUrl} alt='advertisement' title={props.title} limit={limit} size={adDuration === LIMIT_5S? 'large' : 'small'} /> : <Component {...props} onclick={handleClick} videoStatus={isVideoPlaying} adStatus={isAdShown} videoRef={videoRef} limit={limit} setAdStatus={setIsAdShown} />)
   }
   return Advertisement;
 };

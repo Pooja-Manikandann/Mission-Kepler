@@ -1,7 +1,6 @@
 import React from 'react';
-import { useRecoilValue } from 'recoil';
-import { errorMessageAtom } from '../../atoms/atom';
 import styles from './ErrorFallbackUI.module.scss'
+import { APP_CONSTANTS } from 'src/constants';
 type Props = {
     errorMessage?: string;
 };
@@ -10,11 +9,11 @@ type Props = {
  * @description function to render Error fallback UI
  * @returns error fallback component 
  */
-const ErrorFallbackUI = () => {
-    const errorMessage = useRecoilValue(errorMessageAtom);
+const ErrorFallbackUI = ({errorMessage}: Props) => {
+    const { ERROR_MESSAGE } = APP_CONSTANTS.LOTTERY;
     return (
         <div className={styles.articleError}>
-            <h3 className='error'>{errorMessage}</h3>
+            <h3 className='error'>{ERROR_MESSAGE}</h3>
         </div>
     );
 };

@@ -16,5 +16,22 @@ describe('lottery component', () => {
         act(() =>{
             expect(getByText("I'm feeling lucky")).toBeEnabled();
         })
+        const button = screen.getByRole('button');
+        fireEvent.click(button);
+    })
+    test('if lottery success results are received', () => {
+        const { getByRole, getByText } = render(<Lottery />);
+        userEvent.type(getByRole('textbox'), '9876543210')
+        act(() =>{
+            expect(getByText("I'm feeling lucky")).toBeEnabled();
+        })
+        const button = screen.getByRole('button');
+        fireEvent.click(button);
+    })
+    test('if lottery failure results are received', () => {
+        const { getByRole, getByText } = render(<Lottery />);
+        userEvent.type(getByRole('textbox'), '9876543211')
+        const button = screen.getByRole('button');
+        fireEvent.click(button);
     })
 })

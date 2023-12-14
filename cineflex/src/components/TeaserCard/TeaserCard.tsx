@@ -1,12 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { teaserProps } from '../../modals/modal';
 import styles from './TeaserCard.module.scss';
-import WithAdvertisement from '../WithAdvertisement/WithAdvertisement';
+import WithAdvertisement from '../../hoc/WithAdvertisement/WithAdvertisement';
 import { FaPlay, FaPlayCircle } from 'react-icons/fa';
-import { useRecoilValue } from 'recoil';
-import { timerAtom } from '../../atoms/atom';
 import { formatNumberTwoDigits } from '../../utils/format.utils';
 import { APP_CONSTANTS } from '../../constants';
+import { useVideoController } from 'src/hooks/useVideoController';
 
 function TeaserCard({
     id,
@@ -20,41 +19,36 @@ function TeaserCard({
     const ref = useRef<HTMLVideoElement>(null);
     const playIconRef = useRef<HTMLDivElement>(null);
     const { POSTER_URL } = APP_CONSTANTS.SHORT_TEASERS;
+    const { playVideo, pauseVideo } = useVideoController(ref, playIconRef);
 
-    const toggleVideo = () => {
-        if (ref?.current?.paused) {
-            ref.current.currentTime = adStatus ? 6 : 0;
-            ref?.current?.play();
-            const element = playIconRef.current || { className: '' };
-            element.className = styles.hide;
-        }
+    const playVideoHandler = () => {
+        playVideo(adStatus ? 6 : 0);
         onclick(true);
     };
 
     useEffect(() => {
         if (limit === -3) {
-            toggleVideo();
+            playVideoHandler();
         }
     }, [limit]);
 
+
     const controlVideo = () => {
         if (ref?.current?.paused) {
-            toggleVideo();
+            playVideoHandler();
         } else {
-            ref?.current?.pause();
-            const element = playIconRef.current || { className: '' };
-            element.className = styles.show;
+            pauseVideo();
             onclick(false);
         }
     };
 
     return (
         <div key={id} className={styles.teaserWrapper}>
-            <div className={styles.videoWrapper} onClick={controlVideo}>
-                <video src={videoSrc} poster={POSTER_URL} ref={ref}>
+            <div className={styles.videoWrapper}  onClick={controlVideo}>
+                <video data-testid='video' src={videoSrc} poster={POSTER_URL} ref={ref}>
                     <source src={videoSrc} type='video/mp4' />
                 </video>
-                <div ref={playIconRef}>
+                <div data-testid='icon' ref={playIconRef}>
                     <FaPlayCircle />
                 </div>
             </div>

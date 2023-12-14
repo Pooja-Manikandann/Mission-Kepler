@@ -7,11 +7,11 @@ import Layout from './containers/layout/Layout';
 import UserContextProvider from './context/User.context';
 import { APP_PATH } from './constants/index';
 import AllMovies from './pages/allMovies/AllMovies';
-import React from 'react';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { RecoilRoot } from 'recoil';
+import React, { useContext } from 'react';
 import { PageNotFound } from './pages/pageNotFound/PageNotFound';
+import CustomLoader from './components/CustomLoader/CustomLoader';
+import useLoader from './hooks/useLoader';
+import LoaderContextProvider, { LoaderContext } from './context/Loader.context';
 
 function App() {
     const { HOME_PATH, LOGIN_PATH, SHOW_TIME_PATH, ALL_MOVIES } = APP_PATH;
@@ -28,10 +28,9 @@ function App() {
     ]);
     return (
         <UserContextProvider>
-            <RecoilRoot>
+            <LoaderContextProvider>
                 <Layout>{routes}</Layout>
-                <ToastContainer />
-            </RecoilRoot>
+            </LoaderContextProvider>            
         </UserContextProvider>
     );
 }

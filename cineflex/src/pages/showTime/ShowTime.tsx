@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import styles from './ShowTime.module.scss';
 import { APP_CONSTANTS } from '../../constants';
 import { FaPlayCircle } from 'react-icons/fa';
+import { useVideoController } from 'src/hooks/useVideoController';
 
 
 /**
@@ -13,17 +14,8 @@ const ShowTime = () => {
     const { TITLE, VIDEO_URL, POSTER_URL } = APP_CONSTANTS.NOW_SHOWING;
     const playIconRef = useRef<HTMLDivElement>(null);
     const ref = useRef<HTMLVideoElement>(null);
-
-    /**
-     * @description function to hide play icon and start video with controls
-     */
-    const playVideo = () => {
-        const element = playIconRef.current || { className: '' };
-        element.className = styles.hide;
-        ref?.current?.play();
-        const videoElement = ref.current || { controls: '' };
-        videoElement.controls = true;
-    }
+    const {playVideo } = useVideoController(ref, playIconRef);
+    
     return (
         <div className={styles.nowShowingSection}>
             <h3>{TITLE}</h3>
@@ -33,10 +25,11 @@ const ShowTime = () => {
                     <video                        
                         poster={POSTER_URL}
                         ref={ref}
+                        data-testid='video'
                     >
                         <source src={VIDEO_URL}></source>
                     </video>
-                    <div className={styles.iconWrapper} onClick={playVideo} ref={playIconRef}>
+                    <div data-testid='icon' className={styles.iconWrapper} onClick={() => playVideo(0, true)} ref={playIconRef}>
                         <FaPlayCircle />
                     </div>
                 </div>

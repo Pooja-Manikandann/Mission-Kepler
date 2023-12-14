@@ -20,6 +20,9 @@
                     padding: 1.5rem 0;
                     height: 70vh;
                     overflow: scroll;
+                    &::-webkit-scrollbar { 
+                        display: none;  /* Safari and Chrome */
+                    }
                 }
             }
             .descriptionRightContainer {

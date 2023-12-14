@@ -5,8 +5,6 @@ import Trailer from '../../containers/trailer/Trailer';
 import ShortTeasers from '../../containers/shortTeasers/ShortTeasers';
 import OtherLangauges from '../../containers/otherLanguages/OtherLangauges';
 import React, { useEffect } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-
 /**
  * @description renders components for home page
  * @returns renderes homepage 

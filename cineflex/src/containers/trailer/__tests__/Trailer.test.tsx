@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react"
+import { fireEvent, render, screen } from "@testing-library/react"
 import Trailer from "../Trailer"
 import { APP_CONSTANTS } from "../../../constants";
 import {BrowserRouter as Router} from 'react-router-dom';
@@ -21,5 +21,12 @@ describe('trailer component', ()=> {
         expect(screen.findByText(WATCH_NOW))
         expect(screen.findByText(SIGN_IN_LABEL))
         expect(screen.findByText(SIGN_IN_REQ_LABEL))
+    })
+    test('checks if navigate works fine', ()=>{
+        render(<Router>
+            <Trailer />
+        </Router>);
+        const button = screen.getByRole('button');
+        fireEvent.click(button);
     })
 })
