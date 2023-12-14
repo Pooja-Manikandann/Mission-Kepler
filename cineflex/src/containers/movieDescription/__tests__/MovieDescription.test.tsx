@@ -39,7 +39,6 @@ describe('Movie description component', () => {
             <MovieDescription {...mockData} updateLike={mocklikehandler} />,
         );
         const likeComponent = await screen.findByTestId('like');
-        console.log('screen', screen);
         expect(likeComponent);
         fireEvent.click(likeComponent);
     });

@@ -15,7 +15,6 @@ describe('advertisement card component', () => {
                 title='test-title'
             />,
         );
-        console.log('screen', screen);
         const image = screen.getByRole('img');
         expect(image).toHaveAttribute('alt', 'advetisement');
     });
