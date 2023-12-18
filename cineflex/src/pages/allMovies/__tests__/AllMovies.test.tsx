@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import AllMovies from '../AllMovies';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { APP_CONSTANTS } from 'src/constants';
@@ -19,5 +19,14 @@ describe('all movies page', () => {
             </Router>,
         );
         expect(screen.getByText(TITLE));
+    });
+    test('load more button functionality', () => {
+        const component = render(
+            <Router>
+                <AllMovies />
+            </Router>,
+        );
+        const button = screen.getByText('load more')
+        fireEvent.click(button);
     });
 });

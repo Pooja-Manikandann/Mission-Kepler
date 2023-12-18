@@ -16,10 +16,10 @@ function TeaserCard({
     videoStatus,
     limit,
 }: teaserProps) {
-    const ref = useRef<HTMLVideoElement>(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
     const playIconRef = useRef<HTMLDivElement>(null);
     const { POSTER_URL } = APP_CONSTANTS.SHORT_TEASERS;
-    const { playVideo, pauseVideo } = useVideoController(ref, playIconRef);
+    const { playVideo, pauseVideo } = useVideoController(videoRef, playIconRef);
 
     const playVideoHandler = () => {
         playVideo(adStatus ? 6 : 0);
@@ -33,7 +33,7 @@ function TeaserCard({
     }, [limit]);
 
     const controlVideo = () => {
-        if (ref?.current?.paused) {
+        if (videoRef?.current?.paused) {
             playVideoHandler();
         } else {
             pauseVideo();
@@ -48,7 +48,7 @@ function TeaserCard({
                     data-testid='video'
                     src={videoSrc}
                     poster={POSTER_URL}
-                    ref={ref}
+                    ref={videoRef}
                 >
                     <source src={videoSrc} type='video/mp4' />
                 </video>
