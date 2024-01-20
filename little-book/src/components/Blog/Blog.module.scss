@@ -1,0 +1,40 @@
+@import '../../styles/color';
+
+.blogContainer {
+    height: 179px;
+    padding: 31px 33px;
+    border-radius: 8px;
+    margin: 23px 0;
+    background-color: $white;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0px 2px 4px 0px rgba(231,232,235,1);
+    -webkit-box-shadow: 0px 2px 4px 0px rgba(231,232,235,1);
+    -moz-box-shadow: 0px 2px 4px 0px rgba(231,232,235,1);
+    &:hover{
+        background-color: $secondary-color-light-theme;
+    }
+    .blogTitle {
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .blogType {
+        font-family: "IBM Plex Sans", sans-serif;        
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 13px;
+        padding: 8px 0;
+        color: #B355B7;
+    }
+    .blogDetails {
+        font-family: "IBM Plex Sans", sans-serif;
+        height: 57%;
+        font-size: 14px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.5;
+    }
+}

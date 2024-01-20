@@ -1,0 +1,22 @@
+@import '../../styles/color';
+
+.button {
+    font-family: 'IBM Plex Sans', sans-serif;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.primary {
+    background-color: $pink;
+    color: $white;
+    padding: 0.75rem 3.25rem;
+    font-size: 1rem;
+}
+
+.secondary {
+    background-color: $blue;
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 500;
+}

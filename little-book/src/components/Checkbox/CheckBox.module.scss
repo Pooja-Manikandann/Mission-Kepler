@@ -1,0 +1,57 @@
+@import '../../styles/color';
+
+.checkboxContainer {
+    margin-bottom: 1rem;
+    position: relative;
+    label {
+        display: block;
+        position: relative;
+        padding-left: 2rem;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+     
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 1.2rem;
+        width: 1.2rem;
+        border: 1px solid $pink;
+        border-radius: 3px;
+    }
+    
+    input:checked ~ .checkmark {
+        background-color: $pink;
+    }
+      
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+      
+    input:checked ~ .checkmark:after {
+        display: block;
+    }
+      
+    .checkmark:after {
+        left: 7px;
+        top: 4px;
+        width: 3px;
+        height: 7px;
+        border: solid white;
+        border-width: 0 1.5px 1.5px 0;
+        transform: rotate(45deg);
+    }
+}

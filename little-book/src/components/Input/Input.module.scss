@@ -1,0 +1,13 @@
+@import '../../styles/color';
+
+.input {
+    font-family: 'IBM Plex Sans', sans-serif;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background-color: $light-grey;
+    border: none;
+    border-radius: 50px;
+    &::placeholder {
+        color: $grey;
+    }
+}
