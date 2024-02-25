@@ -1,0 +1,21 @@
+@import '../../styles/color';
+
+.overlayModalWrapper {
+    position: absolute;
+    width: 35%;
+    height: 100vh;
+    z-index: 3;
+    right: 0;
+    background: $white;
+    padding: 70px 40px;
+    .overlayHeader {
+        h2{
+            font-weight: 500;
+            font-size: 18px;
+        }
+    }
+    &.darkTheme {
+        background-color: $black;
+        color: $white;
+    }
+}

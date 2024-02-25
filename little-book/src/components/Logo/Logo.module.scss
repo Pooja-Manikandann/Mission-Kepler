@@ -17,4 +17,10 @@
             margin-left: 0.5rem;
         }
     }
+    &.darkTheme {
+        a span, a span:first-child {
+    
+            color: $white;
+        }
+    }
 }

@@ -2,39 +2,23 @@ import React, { useState } from 'react';
 import Checkbox  from '../Checkbox/Checkbox';
 import styles from './Filters.module.scss';
 
-const filterData = [
-    {
-        id: 'regional',
-        name: 'regional',
-        value: true,
-        label: 'Regional Blogs',
-    },
-    {
-        id: 'national',
-        name: 'national',
-        value: true,
-        label: 'National Blogs',
-    },
-    {
-        id: 'international',
-        name: 'international',
-        value: true,
-        label: 'International Blogs',
-    },
-];
+type FilterProps = {
+    setFilters: Function,
+    filters: any,
+    filtersData: any,
+  }
 
-const Filters = () => {
-    const [filters, setFilters] = useState(['national', 'regional', 'international']);
+const Filters = (props: FilterProps) => {
+    const {filters, setFilters, filtersData} = props;
     const handleFilterChange = (filterKey: string) => {
-        console.log(filters.findIndex((filter) => filter === filterKey));
-        filters.findIndex((filter) => filter === filterKey) >= 0
-            ? setFilters([...filters.filter((filter) => filter !== filterKey)])
+        filters.findIndex((filter: string) => filter === filterKey) >= 0
+            ? setFilters([...filters.filter((filter: string) => filter !== filterKey)])
             : setFilters([...filters, filterKey]);
     };
     return (
         <div className={styles.filters}>
-            {filterData.map((filter) => (
-                <Checkbox {...filter} value={filters.includes(filter.id)} onChange={handleFilterChange} />
+            {filtersData.map((filter:any, index: number) => (
+                <Checkbox key={index} {...filter} value={filters.includes(filter.id)} onChange={handleFilterChange} />
             ))}
         </div>
     );

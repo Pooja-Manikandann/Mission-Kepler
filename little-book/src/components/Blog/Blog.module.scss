@@ -11,8 +11,17 @@
     box-shadow: 0px 2px 4px 0px rgba(231,232,235,1);
     -webkit-box-shadow: 0px 2px 4px 0px rgba(231,232,235,1);
     -moz-box-shadow: 0px 2px 4px 0px rgba(231,232,235,1);
-    &:hover{
+
+    &.active{
         background-color: $secondary-color-light-theme;
+    }
+    &.darkTheme {
+        background-color: $primary-color-dark-theme;
+        color: $white;
+        box-shadow: none;
+        &.active {
+            background-color: $secondary-color-dark-theme;
+        }
     }
     .blogTitle {
         font-size: 16px;

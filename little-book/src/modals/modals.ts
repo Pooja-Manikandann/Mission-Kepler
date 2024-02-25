@@ -9,6 +9,12 @@ export type checkBoxProps = {
 export type inputProps = {
     type: string,
     placeholder: string,
+    handleEnter?: any,
+    maxlength?: number,
+    value?: string,
+    onChange?: any,
+    variant: string,
+    darkTheme?: boolean,
 }
 
 export type buttonProps = {
@@ -21,6 +27,9 @@ export type blogProps = {
     title: string,
     details: string,
     type: string,
+    handleBlogClick?: any,
+    active: boolean,
+    darkTheme: boolean,
 }
 
 export type blogType = {
@@ -28,4 +37,38 @@ export type blogType = {
     details: string,
     type: string,
     photo: string,
+    updateBlog?: any,
+    isEditView?: boolean,
+    setIsEditView?: any,
+}
+
+export type userType = {
+    id: number,
+    name: string,
+    username: string,
+    email: string, 
+    photo: string, 
+    address: object,
+    phone: string,
+    website: string,
+    company: object,
+}
+
+export type profileCardtype = {
+    name: string,
+    username: string,
+    photo: string,
+    darkTheme: boolean,
+}
+
+export type NewBlogFormProps = {
+    updateBlogDetails: any,
+    newBlogDetails: any,
+}
+
+export type filterType = {
+    id: string, 
+    name: string,
+    value: boolean,
+    label: string,
 }

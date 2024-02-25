@@ -1,0 +1,21 @@
+@import '../../styles/color';
+
+.textarea {
+    width: 100%;
+    height: 70vh;
+    font-size: 16px;
+    padding: 20px 0;
+    border: none;
+    &::placeholder {
+        color: #CACACA;
+        font-size: 15px;
+        font-weight: 400;
+    }
+}
+
+.darkTheme {
+    .textarea {
+        background-color: $black;
+
+    }
+}

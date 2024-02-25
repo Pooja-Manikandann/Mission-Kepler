@@ -1,7 +1,15 @@
+@import '../../styles/color';
+
 .blogDescriptionSection {
     width: 50%;
     padding: 55px 66px;
-    border: 1px solid black;
+    padding-bottom: 0;
+    z-index: 2;
+    background: $white;
+    &.darkTheme {
+        background-color: $tertiery-color-dark-theme;
+        color: $white;
+    }
     .blogDescriptionWrapper {
         .blogImage {
             width: 100%;
@@ -19,11 +27,14 @@
             font-family: "IBM Plex Sans", sans-serif;
             font-size: 16px;
             line-height: 1.5;
+            height: 274px;
+            overflow: scroll;
         }
     }
     .actions {
         display: flex;
         justify-content: flex-end;
         margin-top: 20px;
+        gap: 2rem;
     }
 }
