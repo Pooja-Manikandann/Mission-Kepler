@@ -42,7 +42,7 @@ const BlogDescription = (props:blogType) => {
                 <p className={styles.blogDetails}>{blogDuplicate.details}</p>
             </>: <>
                 <Input type='text' variant='transparent' value={blogDuplicate.title} onChange={(value: string) => updateValue('title', value)}/>
-                <textarea value={blogDuplicate.details} onChange={(e: any) => {updateValue('details', e.target.value)}}></textarea>
+                <textarea data-testid="textarea" value={blogDuplicate.details} onChange={(e: any) => {updateValue('details', e.target.value)}}></textarea>
             </>}
         </div>
         <div className={styles.actions}>
@@ -70,6 +70,16 @@ const BlogDescription = (props:blogType) => {
 
     </div> : <></>
   )
+}
+
+BlogDescription.defaultProps = {
+    title:'test',
+    details: 'test details',
+    photo: '',
+    type: 'national',
+    updateBlog: () => { },
+    isEditView: false,
+    setIsEditView: () => { },
 }
 
 export default BlogDescription

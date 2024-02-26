@@ -11,6 +11,7 @@ import { modalAction } from 'src/store/modalSlice';
 import NewBlogForm from 'src/components/NewBlogForm/NewBlogForm';
 import { localStorageHelper } from 'src/utils/localStorage.util';
 import { loaderAction } from 'src/store/loaderSlice';
+import { filterData } from 'src/components/Filters/Filters';
 
 type blogsContainerPropType = {
     updateSelectedBlog: Function,
@@ -97,7 +98,7 @@ const BlogsContainer = (props:blogsContainerPropType) => {
     }
 
     const header = (<h2>Add New Blog</h2>)
-    const content = (<NewBlogForm newBlogDetails={newBlogDetails} updateBlogDetails={dispatchBlog}  />)
+    const content = (<NewBlogForm updateBlogDetails={dispatchBlog}  />)
     const footer = (<Button label='ADD' type='primary' onClick={()=> setClick(true)} />)
 
     
@@ -134,5 +135,15 @@ const BlogsContainer = (props:blogsContainerPropType) => {
         </div>
     );
 };
+
+BlogsContainer.defaultProps = {
+    updateSelectedBlog: () => { },
+    filters: ['local'],
+    blogs: [{title: 'hello', details:'heelo details', photo: '', type:'local'}],
+    setBlogs: () => { },
+    setFiltersData: () => { },
+    setFilters: () => { },
+    selectedBlogIndex: 0,
+}
 
 export default BlogsContainer;

@@ -1,6 +1,6 @@
 import React from 'react'
 import Logo from '../../components/Logo/Logo'
-import  Filters from '../../components/Filters/Filters'
+import  Filters, { filterData } from '../../components/Filters/Filters'
 import Menu  from '../../components/Menu/Menu'
 import styles from './SideBar.module.scss';
 import { useSelector } from 'react-redux';
@@ -29,4 +29,10 @@ export const SideBar = (props:sideBarProps) => {
         </div>
     </div>
   )
+}
+
+SideBar.defaultProps = {
+  setFilters: () => { },
+  filters: [''],
+  filtersData: filterData,
 }

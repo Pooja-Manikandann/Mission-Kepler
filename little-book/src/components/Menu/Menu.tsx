@@ -44,7 +44,7 @@ const Menu = () => {
   return (
     <menu className={styles.menuWrapper}>
         {menuItemsData.map((items, index)=>(
-            <li key={index} onClick={() => handleMenuClick(items.value)}>{items.label}</li>
+            <li key={index} data-testid='menu-item' onClick={() => handleMenuClick(items.value)}>{items.label}</li>
         ))}
     </menu>
   )

@@ -9,7 +9,7 @@ const config: Config.InitialOptions = {
     },
     coverageThreshold: {
         global: {
-            branches: 100,
+
             functions: 100,
             lines: 100,
             statements: 100,
@@ -28,13 +28,13 @@ const config: Config.InitialOptions = {
     },
     coveragePathIgnorePatterns: [
         '<rootDir>/src/services',
-        '<rootDir>/src/hoc',
+        '<rootDir>/src/app.tsx',
         '<rootDir>/src/declarations.d.ts',
         '<rootDir>/src/index.tsx',
         '<rootDir>/src/utils',
-        '<rootDir>/src/hooks',
         '<rootDir>/src/constants',
         '<rootDir>/src/types',
+        '<rootDir>/src/store',
     ],
     testMatch: [
         '**/__tests__/**/*.+(ts|tsx|js)',

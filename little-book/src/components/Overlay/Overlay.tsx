@@ -11,7 +11,7 @@ type overlayProps = {
 const Overlay = (props:overlayProps) => {
     const { handleOverlayClick, variant, zindex, showCursor } = props;
   return (
-    <div className={`${styles.overlay} ${styles[variant]} ${styles['zindex'+zindex]} ${showCursor? styles.cursorPointer: ''}`} onClick={handleOverlayClick}></div>
+    <div data-testid='overlay' className={`${styles.overlay} ${styles[variant]} ${styles['zindex'+zindex]} ${showCursor? styles.cursorPointer: ''}`} onClick={handleOverlayClick}></div>
   )
 }
 

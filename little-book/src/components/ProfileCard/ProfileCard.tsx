@@ -3,6 +3,13 @@ import { profileCardtype } from 'src/modals/modals'
 import styles from './ProfileCard.module.scss';
 import errorImageProvider from 'src/utils/errorImageProvider.util';
 
+export const defaultProps = {
+    name: 'test',
+    username: 'test username',
+    photo: '',
+    darkTheme: false,
+}
+
 const ProfileCard = (props: profileCardtype) => {
     const { name, username, photo, darkTheme } = props;
 
@@ -16,5 +23,7 @@ const ProfileCard = (props: profileCardtype) => {
     </div>
   )
 }
+
+ProfileCard.defaultProps = defaultProps;
 
 export default ProfileCard

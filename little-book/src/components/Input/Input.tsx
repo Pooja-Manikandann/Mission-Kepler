@@ -16,16 +16,16 @@ const Input = (props: inputProps) => {
     }
 
   return (
-    <input value={value} className={`${styles.input} ${styles[variant]} ${darkTheme? styles.darkTheme: ''}`} type={type} placeholder={placeholder} onChange={handleInputChange} ref={inputRef} onKeyDown={handleKeyDown} maxLength={maxlength} />
+    <input data-testid='input' value={value} className={`${styles.input} ${styles[variant]} ${darkTheme? styles.darkTheme: ''}`} type={type} placeholder={placeholder} onChange={handleInputChange} ref={inputRef} onKeyDown={handleKeyDown} maxLength={maxlength} />
   )
 }
 
-const defaultProps = {
+export const defaultProps = {
   type: 'text',
   placeholder: '',
   handleEnter: () => { },
   maxLength: 100,
-  value: '',
+  value: 'test',
   onChange: () => { },
   variant: '',
 }

@@ -63,7 +63,6 @@ export type profileCardtype = {
 
 export type NewBlogFormProps = {
     updateBlogDetails: any,
-    newBlogDetails: any,
 }
 
 export type filterType = {

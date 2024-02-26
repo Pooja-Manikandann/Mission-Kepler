@@ -2,12 +2,38 @@ import React, { useState } from 'react';
 import Checkbox  from '../Checkbox/Checkbox';
 import styles from './Filters.module.scss';
 
+export const filterData = [
+    {
+        id: 'regional',
+        name: 'regional',
+        value: true,
+        label: 'Regional Blogs',
+    },
+    {
+        id: 'national',
+        name: 'national',
+        value: true,
+        label: 'National Blogs',
+    },
+    {
+        id: 'international',
+        name: 'international',
+        value: true,
+        label: 'International Blogs',
+    },
+];
+
 type FilterProps = {
     setFilters: Function,
     filters: any,
-    filtersData: any,
+    filtersData: Array<object>,
   }
 
+  export const defaultProps = {
+    setFilters: () => { },
+    filters: [],
+    filtersData: filterData,
+}
 const Filters = (props: FilterProps) => {
     const {filters, setFilters, filtersData} = props;
     const handleFilterChange = (filterKey: string) => {
@@ -23,5 +49,6 @@ const Filters = (props: FilterProps) => {
         </div>
     );
 };
+Filters.defaultProps = defaultProps;
 
 export default Filters;

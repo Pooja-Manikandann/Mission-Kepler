@@ -9,6 +9,11 @@ type confirmationModalProps= {
     closeModal: any,
 }
 
+export const defaultProps = {
+    onCloseModal: () => { },
+    closeModal: () => { },
+}
+
 const ConfirmationModal = (props: confirmationModalProps) => {
     const {onCloseModal, closeModal} = props;
     const isDarkTheme = useSelector((state:any) => state.theme.isDarkTheme);
@@ -35,5 +40,6 @@ const ConfirmationModal = (props: confirmationModalProps) => {
     </>
   )
 }
+ConfirmationModal.defaultProps = defaultProps;
 
 export default ConfirmationModal;
